@@ -48,9 +48,6 @@ jest.mock("@xyflow/react", () => ({
   ),
 }));
 
-jest.mock("@/features/workflows/ai-assistant", () => ({
-  WorkflowBuilderChatSafe: () => <div>WorkflowBuilderChat</div>,
-}));
 
 jest.mock("@/shared/ui/WorkflowYAMLEditor", () => ({
   __esModule: true,
@@ -196,21 +193,18 @@ const mockConfig: InternalConfig = {
   READ_ONLY: false,
   OPEN_AI_API_KEY_SET: false,
   NOISY_ALERTS_ENABLED: false,
-  KEEP_DOCS_URL: "https://docs.keephq.dev",
-  KEEP_CONTACT_US_URL: "https://docs.keephq.dev/slack",
+  KEEP_DOCS_URL: "https://www.decisionminds.com/",
+  KEEP_CONTACT_US_URL: "https://www.decisionminds.com/#contact",
   SENTRY_DISABLED: "true",
   KEEP_WORKFLOW_DEBUG: false,
   KEEP_HIDE_SENSITIVE_FIELDS: true,
-  ALERT_SIDEBAR_FIELDS: [
-    "service",
-    "source",
-    "description",
-    "fingerprint",
-    "url",
-    "incidents",
-    "timeline",
-    "relatedServices",
-  ],
+  HIDE_NAVBAR_DEDUPLICATION: false,
+  HIDE_NAVBAR_WORKFLOWS: false,
+  HIDE_NAVBAR_SERVICE_TOPOLOGY: false,
+  HIDE_NAVBAR_MAPPING: false,
+  HIDE_NAVBAR_EXTRACTION: false,
+  HIDE_NAVBAR_MAINTENANCE_WINDOW: false,
+  KEEP_TICKETING_ENABLED: false,
 };
 
 jest.mock("@/utils/hooks/useConfig", () => ({

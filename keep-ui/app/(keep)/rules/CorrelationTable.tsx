@@ -65,7 +65,7 @@ export const CorrelationTable = ({ rules }: CorrelationTableProps) => {
         cell: (context) => {
           const template = context.getValue();
           return template ? (
-            <Badge title={context.getValue() as string} color="orange">
+            <Badge title={context.getValue() as string} className="bg-[#e6f4f9] text-[#0d88c0] border-[#0d88c0]">
               {
                 <div className="max-w-28 md:max-w-40 2xl:max-w-96 overflow-hidden overflow-ellipsis">
                   {template}
@@ -81,7 +81,7 @@ export const CorrelationTable = ({ rules }: CorrelationTableProps) => {
         header: "Incident Prefix",
         cell: (context) =>
           context.getValue() && (
-            <Badge color="orange">{context.getValue()}</Badge>
+            <Badge className="bg-[#e6f4f9] text-[#0d88c0] border-[#0d88c0]">{context.getValue()}</Badge>
           ),
       }),
       columnHelper.accessor("definition_cel", {
@@ -138,11 +138,11 @@ export const CorrelationTable = ({ rules }: CorrelationTableProps) => {
           </PageSubtitle>
         </div>
         <Button
-          color="orange"
           size="md"
           variant="primary"
           onClick={() => setIsRuleCreation(true)}
           icon={PlusIcon}
+          className="bg-[#0d88c0] hover:bg-[#0b76a8] border-[#0d88c0] text-white"
         >
           Create correlation
         </Button>

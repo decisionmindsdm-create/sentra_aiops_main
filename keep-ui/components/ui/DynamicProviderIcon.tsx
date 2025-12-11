@@ -16,16 +16,36 @@ export const DynamicImageProviderIcon = (props: any) => {
   const { providerType, src, ...rest } = props;
   const { data: providers } = useProviders();
   const { getImageUrl, blobCache } = useProviderImages();
-  const [imageSrc, setImageSrc] = useState<string | undefined>(
-    blobCache[providerType] ?? src ?? fallbackIcon
+  const [imageSrc, setImageSrc] = useState<string>(
+    blobCache[providerType] || src || fallbackIcon
   );
 
   useEffect(() => {
-    if (!providerType || !providers) return;
-    if (imageSrc === fallbackIcon) return;
+    // If src is provided, use it directly
+    if (src) {
+      setImageSrc(src);
+      return;
+    }
+    
+    if (!providerType) {
+      setImageSrc(fallbackIcon);
+      return;
+    }
 
     const loadImage = async () => {
-      const isKnownProvider = providers.providers.some(
+      // For "sentra" provider, use static icon immediately without waiting for providers data
+      if (providerType === "sentra") {
+        setImageSrc(`/icons/${providerType}-icon.png`);
+        return;
+      }
+
+      if (!providers) {
+        // While waiting for providers data, try to load the static icon
+        setImageSrc(`/icons/${providerType}-icon.png`);
+        return;
+      }
+
+      const isKnownProvider = providers.providers?.some(
         (provider) => provider.type === providerType
       );
 
@@ -37,7 +57,7 @@ export const DynamicImageProviderIcon = (props: any) => {
       } else {
         try {
           const customImageUrl = await getImageUrl(providerType);
-          setImageSrc(customImageUrl);
+          setImageSrc(customImageUrl || fallbackIcon);
         } catch (error) {
           setImageSrc(fallbackIcon);
         }
@@ -45,16 +65,19 @@ export const DynamicImageProviderIcon = (props: any) => {
     };
 
     loadImage();
-  }, [providers, getImageUrl, providerType]);
-
-  if (!imageSrc) return;
+  }, [providers, getImageUrl, providerType, src]);
 
   return (
     <Image
       {...rest}
       alt={providerType || "No provider icon found"}
       src={imageSrc}
-      onError={() => setImageSrc(fallbackIcon)}
+      onError={() => {
+        // If we're already showing the fallback icon, don't try to set it again
+        if (imageSrc !== fallbackIcon) {
+          setImageSrc(fallbackIcon);
+        }
+      }}
       unoptimized
     />
   );

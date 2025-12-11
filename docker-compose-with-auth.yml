@@ -3,7 +3,7 @@ services:
     extends:
       file: docker-compose.common.yml
       service: keep-frontend-common
-    image: us-central1-docker.pkg.dev/keephq/keep/keep-ui
+    image: keep/fontend:local
     environment:
       - AUTH_TYPE=DB
       - NEXTAUTH_SECRET=verysecretkey

@@ -1,8 +1,10 @@
+// UI Change Only - functionality unchanged
 import { ReactNode } from "react";
 import { NextAuthProvider } from "../auth-provider";
 import { Mulish } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import Navbar from "components/navbar/Navbar";
+import HeaderWrapper from "components/header/HeaderWrapper";
 import { TopologyPollingContextProvider } from "@/app/(keep)/topology/model/TopologyPollingContext";
 import { getConfig } from "@/shared/lib/server/getConfig";
 import { ConfigProvider } from "../config-provider";
@@ -30,8 +32,8 @@ export default async function RootLayout({ children }: RootLayoutProps) {
   const session = await auth();
 
   return (
-    <html lang="en" className={`bg-gray-50 ${mulish.className}`}>
-      <body className="h-screen flex flex-col lg:grid lg:grid-cols-[192px_30px_auto] xl:grid-cols-[220px_30px_auto] 2xl:grid-cols-[250px_30px_auto] lg:grid-rows-1 lg:has-[aside[data-minimized='true']]:grid-cols-[0px_30px_auto]">
+    <html lang="en" className={`bg-white ${mulish.className}`}>
+      <body className="h-screen flex flex-col bg-gradient-to-br from-slate-50 via-blue-50/40 to-cyan-50/30">
         {/* ThemeScript must be the first thing to avoid flickering */}
         <ThemeScript />
         <ConfigProvider config={config}>
@@ -41,24 +43,33 @@ export default async function RootLayout({ children }: RootLayoutProps) {
                 <WorkflowModalProvider>
                   {/* @ts-ignore-error Server Component */}
                   <PostHogPageView />
-                  <Navbar />
-                  {/* https://discord.com/channels/752553802359505017/1068089513253019688/1117731746922893333 */}
-                  <main className="page-container flex flex-col col-start-3 overflow-auto">
-                    {/* Add the banner here, before the navbar */}
+                  
+                  {/* Header at the top - visible on all pages */}
+                  <HeaderWrapper session={session} />
+                  
+                  {/* Main container with sidebar and content */}
+                  <div className="flex-1 flex overflow-hidden">
+                    {/* Sidebar */}
+                    <Navbar />
+                    
+                  {/* Main content area */}
+                  <main className="flex-1 flex flex-col overflow-auto bg-white/40 backdrop-blur-sm">
+                    {/* Add the banner here, before the content */}
                     {config.READ_ONLY && <ReadOnlyBanner />}
-                    <div className="flex-1">{children}</div>
-                    {/** footer */}
-                    {process.env.GIT_COMMIT_HASH &&
-                      process.env.SHOW_BUILD_INFO !== "false" && (
-                        <div className="pointer-events-none opacity-80 w-full p-2 text-slate-400 text-xs">
-                          <div className="w-full text-right">
-                            Version: {process.env.KEEP_VERSION} | Build:{" "}
-                            {process.env.GIT_COMMIT_HASH.slice(0, 6)}
+                    <div className="flex-1 p-1">{children}</div>
+                      {/** footer */}
+                      {process.env.GIT_COMMIT_HASH &&
+                        process.env.SHOW_BUILD_INFO !== "false" && (
+                          <div className="pointer-events-none w-full px-4 py-2 text-slate-400 text-xs bg-gradient-to-t from-slate-50/80 to-transparent">
+                            <div className="w-full text-right font-medium">
+                              Version: {process.env.KEEP_VERSION} | Build:{" "}
+                              {process.env.GIT_COMMIT_HASH.slice(0, 6)}
+                            </div>
                           </div>
-                        </div>
-                      )}
-                    <ToastContainer />
-                  </main>
+                        )}
+                      <ToastContainer />
+                    </main>
+                  </div>
                 </WorkflowModalProvider>
               </TopologyPollingContextProvider>
             </NextAuthProvider>

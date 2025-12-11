@@ -295,11 +295,11 @@ export function IncidentList({
         {!isPredictedLoading &&
         predictedIncidents &&
         predictedIncidents.items.length > 0 ? (
-          <Card className="mt-10 mb-10 flex-grow">
-            <Title>Incident Predictions</Title>
-            <Subtitle>
+          <Card className="mt-10 mb-10 flex-grow shadow-md border border-slate-200/60 rounded-xl">
+            <Title className="text-slate-900 font-bold">Incident Predictions</Title>
+            <Subtitle className="text-slate-600">
               Possible problems predicted by Keep AI & Correlation Rules{" "}
-              <Badge color="orange">Beta</Badge>
+              <Badge color="orange" className="bg-orange-100 text-orange-700 font-semibold border border-orange-200 rounded-lg">Beta</Badge>
             </Subtitle>
             <PredictedIncidentsTable
               incidents={predictedIncidents}
@@ -308,14 +308,14 @@ export function IncidentList({
           </Card>
         ) : null}
 
-        <div className="h-full flex flex-col gap-5">
-          <div className="flex justify-between items-center">
+        <div className="h-full flex flex-col gap-6">
+          <div className="flex justify-between items-center bg-white/60 backdrop-blur-sm p-4 rounded-xl border border-slate-200/60 shadow-sm">
             <div>
               <PageTitle>Incidents</PageTitle>
               <PageSubtitle>Group alerts into incidents</PageSubtitle>
             </div>
 
-            <div className="flex gap-2">
+            <div className="flex gap-3">
               {renderDateTimePicker()}
               <Button
                 color="orange"
@@ -323,6 +323,7 @@ export function IncidentList({
                 icon={PlusIcon}
                 variant="primary"
                 onClick={() => setIsFormOpen(true)}
+                className="bg-gradient-to-r from-[#085690] to-[#0d88c0] hover:from-[#0d88c0] hover:to-[#085690] font-semibold shadow-md hover:shadow-lg transition-all duration-200 rounded-lg border-2 border-[#085690]"
               >
                 Create Incident
               </Button>
@@ -333,9 +334,9 @@ export function IncidentList({
               <IncidentListError incidentError={incidentsError} />
             ) : null}
             {incidentsError ? null : (
-              <div className="flex flex-row gap-5">
+              <div className="flex flex-row gap-6">
                 <FacetsPanelServerSide
-                  className="mt-14"
+                  className=""
                   entityName={"incidents"}
                   facetsConfig={facetsConfig}
                   facetOptionsCel={facetsCel}
@@ -345,7 +346,7 @@ export function IncidentList({
                   onCelChange={setFilterCel}
                   revalidationToken={filterRevalidationToken}
                 />
-                <div className="flex flex-col gap-5 flex-1 min-w-0">
+                <div className="flex flex-col gap-6 flex-1 min-w-0">
                   {renderIncidents()}
                 </div>
               </div>

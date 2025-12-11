@@ -67,7 +67,7 @@ export function SameIncidentField({ incident }: { incident: IncidentDto }) {
             </Button>
           </p>
           <p className="text-sm text-tremor-content-subtle">
-            Link the same incident from the past to help the AI classifier
+            Link the same incident from the past
           </p>
         </>
       )}

@@ -55,10 +55,10 @@ const KeepBanner = ({
                 source: bannerId,
               });
               {newWindow ? window.open(
-                "https://www.keephq.dev/meet-keep",
+                "https://www.decisionminds.com/#contact",
                 "_blank",
                 "noopener,noreferrer"
-              ) : window.location.href = "https://www.keephq.dev/meet-keep"}
+              ) : window.location.href = "https://www.decisionminds.com/#contact"}
             }}
             color="orange"
             variant="secondary"

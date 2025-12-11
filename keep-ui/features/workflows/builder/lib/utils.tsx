@@ -174,12 +174,15 @@ export function getToolboxConfiguration(
 }
 
 export const normalizeStepType = (type: string) => {
+  // Handle undefined, null or empty type
+  if (!type) return "";
+  
   return type
-    ?.replace("step-", "")
-    ?.replace("action-", "")
-    ?.replace("__end", "")
-    ?.replace("condition-", "")
-    ?.replace("trigger_", "");
+    .replace("step-", "")
+    .replace("action-", "")
+    .replace("__end", "")
+    .replace("condition-", "")
+    .replace("trigger_", "");
 };
 
 export function edgeCanHaveAddButton(source: string, target: string) {

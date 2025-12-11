@@ -133,7 +133,7 @@ export function ChangeSameIncidentInThePastForm({
             onClick={handleLinkIncident}
             disabled={selectedIncident === null}
           >
-            Link and help AI
+            Link Incident
           </Button>
         </div>
       </form>

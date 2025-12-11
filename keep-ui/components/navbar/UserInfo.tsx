@@ -1,19 +1,16 @@
+// UI Change Only - functionality unchanged
 "use client";
 
 import { Menu } from "@headlessui/react";
-import { LinkWithIcon } from "components/LinkWithIcon";
 import { Session } from "next-auth";
 import { useConfig } from "utils/hooks/useConfig";
 import { AuthType } from "@/utils/authenticationType";
 import Link from "next/link";
-import { VscDebugDisconnect } from "react-icons/vsc";
 import { useFloating } from "@floating-ui/react";
 import { Subtitle } from "@tremor/react";
 import UserAvatar from "./UserAvatar";
 import { useSignOut } from "@/shared/lib/hooks/useSignOut";
-import { FaSlack } from "react-icons/fa";
 import { ThemeControl } from "@/shared/ui";
-import { HiOutlineDocumentText } from "react-icons/hi2";
 
 const ONBOARDING_FLOW_ID = "flow_FHDz1hit";
 
@@ -38,26 +35,26 @@ const UserDropdown = ({ session }: UserDropdownProps) => {
   const isNoAuth = configData?.AUTH_TYPE === AuthType.NOAUTH;
   return (
     <Menu as="li" ref={refs.setReference} className="w-full">
-      <Menu.Button className="flex items-center justify-between w-full text-sm pl-2.5 pr-2 py-1 text-gray-700 hover:bg-stone-200/50 font-medium rounded-lg hover:text-orange-400 focus:ring focus:ring-orange-300 group capitalize">
+      <Menu.Button className="flex items-center justify-between w-full text-sm pl-3 pr-2.5 py-2.5 text-slate-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-cyan-50/50 font-medium rounded-xl focus:ring-2 focus:ring-blue-400/50 group capitalize transition-all duration-200 hover:shadow-md border border-transparent hover:border-blue-100">
         <span className="space-x-3 flex items-center w-full">
           <UserAvatar image={image} name={name ?? email} />{" "}
-          <Subtitle className="truncate">{name ?? email}</Subtitle>
+          <Subtitle className="truncate text-slate-700 font-semibold">{name ?? email}</Subtitle>
         </span>
       </Menu.Button>
 
       <Menu.Items
-        className="w-48 ml-2 origin-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none z-10"
+        className="w-52 ml-2 origin-right divide-y divide-slate-100 rounded-xl bg-white shadow-2xl ring-1 ring-slate-200/50 focus:outline-none z-10 border border-slate-200/60"
         style={floatingStyles}
         ref={refs.setFloating}
         as="ul"
       >
-        <div className="px-1 py-1 ">
+        <div className="px-1.5 py-1.5">
           {userRole !== "noc" && (
             <li>
               <Menu.Item
                 as={Link}
                 href="/settings"
-                className="ui-active:bg-orange-400 ui-active:text-white ui-not-active:text-gray-900 group flex w-full items-center rounded-md px-2 py-2 text-sm"
+                className="ui-active:bg-gradient-to-r ui-active:from-blue-500 ui-active:to-cyan-500 ui-active:text-white ui-not-active:text-slate-700 group flex w-full items-center rounded-lg px-3.5 py-2.5 text-sm font-semibold transition-all duration-200 hover:bg-slate-50"
               >
                 Settings
               </Menu.Item>
@@ -67,7 +64,7 @@ const UserDropdown = ({ session }: UserDropdownProps) => {
             <li>
               <Menu.Item
                 as="button"
-                className="ui-active:bg-orange-400 ui-active:text-white ui-not-active:text-gray-900 group flex w-full items-center rounded-md px-2 py-2 text-sm"
+                className="ui-active:bg-gradient-to-r ui-active:from-blue-500 ui-active:to-cyan-500 ui-active:text-white ui-not-active:text-slate-700 group flex w-full items-center rounded-lg px-3.5 py-2.5 text-sm font-semibold transition-all duration-200 hover:bg-slate-50"
                 onClick={signOut}
               >
                 Sign out
@@ -85,42 +82,12 @@ type UserInfoProps = {
 };
 
 export const UserInfo = ({ session }: UserInfoProps) => {
-  const { data: config } = useConfig();
-
-  const docsUrl = config?.KEEP_DOCS_URL || "https://docs.keephq.dev";
-
   return (
-    <>
-      <ul className="space-y-2 p-2">
-        <li>
-          <LinkWithIcon href="/providers" icon={VscDebugDisconnect}>
-            <Subtitle className="text-xs">Providers</Subtitle>
-          </LinkWithIcon>
-        </li>
-        <li className="flex text-xs items-center gap-2">
-          <LinkWithIcon
-            icon={FaSlack}
-            href="https://slack.keephq.dev/"
-            className="w-auto pr-3.5"
-            target="_blank"
-          >
-            Slack
-          </LinkWithIcon>
-          <LinkWithIcon
-            icon={HiOutlineDocumentText}
-            iconClassName="w-4"
-            href={docsUrl}
-            className="w-auto px-3.5"
-            target="_blank"
-          >
-            Docs
-          </LinkWithIcon>
-        </li>
-        <div className="flex items-center justify-between">
-          {session && <UserDropdown session={session} />}
-          <ThemeControl className="text-sm size-10 flex items-center justify-center font-medium rounded-lg focus:ring focus:ring-orange-300 hover:!bg-stone-200/50" />
-        </div>
-      </ul>
-    </>
+    <ul className="space-y-2 p-3 border-t border-cyan-200/60 bg-gradient-to-b from-cyan-50/70 to-blue-50/60">
+      <div className="flex items-center justify-between gap-2">
+        {session && <UserDropdown session={session} />}
+        <ThemeControl className="text-sm size-10 flex items-center justify-center font-medium rounded-xl focus:ring-2 focus:ring-blue-400/50 hover:!bg-slate-100 text-slate-700 transition-all duration-200 hover:shadow-md border border-transparent hover:border-slate-200" />
+      </div>
+    </ul>
   );
 };

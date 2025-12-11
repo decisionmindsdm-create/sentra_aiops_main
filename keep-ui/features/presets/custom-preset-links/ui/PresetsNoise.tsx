@@ -1,4 +1,4 @@
-import { Preset, useSilencedPresets } from "@/entities/presets/model";
+import { Preset } from "@/entities/presets/model";
 import { useMemo } from "react";
 import { useApi } from "@/shared/lib/hooks/useApi";
 import useSWR from "swr";
@@ -14,11 +14,9 @@ interface PresetsNoiseProps {
 
 export const PresetsNoise = ({ presets }: PresetsNoiseProps) => {
   const api = useApi();
-  const { silencedPresetIds } = useSilencedPresets();
-  
   const noisyPresets = useMemo(
-    () => presets?.filter((preset) => preset.is_noisy && !silencedPresetIds.includes(preset.id)),
-    [presets, silencedPresetIds]
+    () => presets?.filter((preset) => preset.is_noisy),
+    [presets]
   );
 
   const { data: shouldDoNoise } = useSWR(
@@ -53,11 +51,6 @@ export const PresetsNoise = ({ presets }: PresetsNoiseProps) => {
       }
 
       return shouldDoNoise;
-    },
-    {
-      refreshInterval: 5000, // Refresh every 5 seconds to check if alerts have been resolved
-      revalidateOnFocus: true,
-      revalidateOnReconnect: true,
     }
   );
 

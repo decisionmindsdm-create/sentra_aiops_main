@@ -14,7 +14,7 @@ const SidePanel: React.FC<SidePanelProps> = ({
   onClose,
   children,
   panelWidth = "w-1/2", // Default width
-  overlayOpacity = "bg-black/30", // Default overlay opacity
+  overlayOpacity = "bg-slate-900/40", // Default overlay opacity
 }) => {
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -29,7 +29,7 @@ const SidePanel: React.FC<SidePanelProps> = ({
           leaveTo="opacity-0"
         >
           <div
-            className={`fixed inset-0 ${overlayOpacity}`}
+            className={`fixed inset-0 ${overlayOpacity} backdrop-blur-sm`}
             aria-hidden="true"
           />
         </Transition.Child>
@@ -43,7 +43,7 @@ const SidePanel: React.FC<SidePanelProps> = ({
           leaveTo="translate-x-full"
         >
           <Dialog.Panel
-            className={`fixed right-0 inset-y-0 ${panelWidth} bg-white z-30 flex flex-col p-6`}
+            className={`fixed right-0 inset-y-0 ${panelWidth} bg-gradient-to-br from-white to-slate-50/30 z-30 flex flex-col p-6 shadow-2xl border-l border-slate-200/60`}
           >
             {children}
           </Dialog.Panel>

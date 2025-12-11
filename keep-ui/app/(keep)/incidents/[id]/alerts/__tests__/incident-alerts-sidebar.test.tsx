@@ -36,7 +36,7 @@ jest.mock('@/utils/hooks/useProviders', () => ({
 
 jest.mock('@/utils/hooks/useConfig', () => ({
   useConfig: jest.fn(() => ({
-    data: { KEEP_DOCS_URL: 'https://docs.keephq.dev' },
+    data: { KEEP_DOCS_URL: 'https://www.decisionminds.com/' },
   })),
 }));
 

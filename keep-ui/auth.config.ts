@@ -130,8 +130,8 @@ const baseProviderConfigs = {
     Credentials({
       name: "Credentials",
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "keep" },
-        password: { label: "Password", type: "password", placeholder: "keep" },
+        username: { label: "Username", type: "text", placeholder: "DmAiops" },
+        password: { label: "Password", type: "password", placeholder: "DmAiops" },
       },
       async authorize(credentials): Promise<User | null> {
         try {
@@ -179,7 +179,7 @@ const baseProviderConfigs = {
       async authorize(credentials): Promise<User> {
         // Extract tenantId from callbackUrl if present
         let tenantId = NoAuthTenant;
-        let name = "Keep";
+        let name = "Dm Vivek";
 
         if (
           credentials &&
@@ -207,12 +207,12 @@ const baseProviderConfigs = {
           }),
           tenantIds: [
             {
-              tenant_id: "keep",
-              tenant_name: "Tenant of Keep (tenant_id: keep)",
+              tenant_id: "Dm Vivek",
+              tenant_name: "Tenant of Dm Vivek (tenant_id: Dm Vivek)",
             },
             {
-              tenant_id: "keep2",
-              tenant_name: "Tenant of another Keep (tenant_id: keep2)",
+              tenant_id: "Dm Aiops",
+              tenant_name: "Tenant of another Dm Aiops (tenant_id: Dm Aiops)",
             },
           ],
           tenantId: tenantId,

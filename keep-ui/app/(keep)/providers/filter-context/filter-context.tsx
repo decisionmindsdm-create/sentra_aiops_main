@@ -1,3 +1,5 @@
+"use client";
+
 import { createContext, useState, FC, PropsWithChildren } from "react";
 import { IFilterContext } from "./types";
 import { useSearchParams } from "next/navigation";

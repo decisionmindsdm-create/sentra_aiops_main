@@ -29,7 +29,6 @@ export function NoWorkflowsState({}: {
             <div className="flex items-center gap-2">
               <span>You can also</span>
               <Button
-                color="orange"
                 size="xs"
                 variant="secondary"
                 onClick={() => {
@@ -37,15 +36,16 @@ export function NoWorkflowsState({}: {
                 }}
                 icon={ArrowUpOnSquareStackIcon}
                 id="uploadWorkflowButton"
+                className="border-[#0d88c0] text-[#0d88c0] hover:bg-[#e6f4f9]"
               >
                 Upload Workflows
               </Button>
               <span>or</span>
               <Button
-                color="orange"
                 size="xs"
                 variant="primary"
                 onClick={() => router.push("/workflows/builder")}
+                className="bg-[#0d88c0] hover:bg-[#0b76a8] border-[#0d88c0] text-white"
               >
                 Start from scratch
               </Button>
