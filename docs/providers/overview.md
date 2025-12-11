@@ -129,4 +129,3 @@ By leveraging Keep Providers, users are able to deeply integrate Keep with the t
 - [Zabbix](/providers/documentation/zabbix-provider)
 - [Zenduty](/providers/documentation/zenduty-provider)
 - [Zoom](/providers/documentation/zoom-provider)
-- [Zoom Chat](/providers/documentation/zoom_chat-provider)

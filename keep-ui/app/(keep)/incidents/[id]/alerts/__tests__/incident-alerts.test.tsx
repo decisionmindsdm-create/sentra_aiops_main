@@ -243,7 +243,7 @@ describe('IncidentAlerts', () => {
     });
 
     (useConfig as jest.Mock).mockReturnValue({
-      data: { KEEP_DOCS_URL: 'https://docs.keephq.dev' },
+      data: { KEEP_DOCS_URL: 'https://www.decisionminds.com/' },
     });
   });
 

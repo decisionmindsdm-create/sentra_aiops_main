@@ -53,7 +53,7 @@ export async function generateMetadata(props: PageProps) {
   const incidentDescription =
     incident.user_summary || incident.generated_summary;
   return {
-    title: `Keep — ${incidentName} — Topology`,
+    title: `Dm AIops — ${incidentName} — Topology`,
     description: incidentDescription,
   };
 }

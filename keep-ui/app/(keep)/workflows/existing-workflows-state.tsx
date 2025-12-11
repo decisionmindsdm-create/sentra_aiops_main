@@ -268,7 +268,6 @@ export function ExistingWorkflowsState({
             </div>
             <div className="flex gap-2">
               <Button
-                color="orange"
                 size="md"
                 variant="secondary"
                 onClick={() => {
@@ -276,15 +275,16 @@ export function ExistingWorkflowsState({
                 }}
                 icon={ArrowUpOnSquareStackIcon}
                 id="uploadWorkflowButton"
+                className="border-[#0d88c0] text-[#0d88c0] hover:bg-[#e6f4f9]"
               >
                 Upload Workflows
               </Button>
               <Button
-                color="orange"
                 size="md"
                 variant="primary"
                 onClick={() => setIsCreateWorkflowModalOpen(true)}
                 icon={PlusIcon}
+                className="bg-[#0d88c0] hover:bg-[#0b76a8] border-[#0d88c0] text-white"
               >
                 Create Workflow
               </Button>

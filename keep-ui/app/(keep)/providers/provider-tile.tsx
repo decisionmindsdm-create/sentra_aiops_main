@@ -163,11 +163,11 @@ export default function ProviderTile({ provider, onClick }: Props) {
   return (
     <button
       className={
-        "min-h-36 tile-basis text-left min-w-0 py-4 px-4 relative group flex justify-around items-center bg-white rounded-lg shadow hover:grayscale-0 gap-3" +
+        "min-h-36 tile-basis text-left min-w-0 py-5 px-5 relative group flex justify-around items-center bg-white rounded-xl shadow-md hover:grayscale-0 gap-4 border border-slate-100 transition-all duration-300" +
         // Add fixed height only if provider card doesn't have much content
         (!provider.installed && !provider.linked ? " h-32" : "") +
         (!provider.linked
-          ? " cursor-pointer hover:shadow-lg"
+          ? " cursor-pointer hover:shadow-xl hover:border-blue-200 hover:-translate-y-0.5"
           : " cursor-auto") +
         (provider.coming_soon && !provider.linked
           ? " opacity-50 cursor-not-allowed"
@@ -182,7 +182,7 @@ export default function ProviderTile({ provider, onClick }: Props) {
           !provider.linked && (
             <Icon
               icon={WebhookIcon}
-              className="absolute top-[-15px] right-[-15px] grayscale hover:grayscale-0 group-hover:grayscale-0"
+              className="absolute top-[-12px] right-[-12px] grayscale hover:grayscale-0 group-hover:grayscale-0 transition-all duration-200 shadow-lg rounded-full bg-white p-1"
               color="green"
               size="sm"
               tooltip="Webhook available"
@@ -191,58 +191,58 @@ export default function ProviderTile({ provider, onClick }: Props) {
         {provider.oauth2_url && !provider.installed && !provider.linked && (
           <Icon
             icon={OAuthIcon}
-            className={`absolute top-[-15px] ${
+            className={`absolute top-[-12px] ${
               provider.can_setup_webhook || provider.supports_webhook
-                ? "right-[-0px]"
-                : "right-[-15px]"
-            } grayscale hover:grayscale-0 group-hover:grayscale-0`}
+                ? "right-[2px]"
+                : "right-[-12px]"
+            } grayscale hover:grayscale-0 group-hover:grayscale-0 transition-all duration-200 shadow-lg rounded-full bg-white p-1`}
             color="green"
             size="sm"
             tooltip="OAuth2 available"
           />
         )}
         {provider.installed ? (
-          <Text color={"green"} className="flex text-xs">
+          <Text color={"green"} className="flex text-xs font-semibold">
             {provider.provider_metadata &&
             provider.provider_metadata.version ? (
-              <span>
+              <span className="bg-green-50 px-2 py-1 rounded-md border border-green-200">
                 Connected | Version: {provider.provider_metadata.version}
               </span>
             ) : (
-              <span>Connected</span>
+              <span className="bg-green-50 px-2 py-1 rounded-md border border-green-200">Connected</span>
             )}
           </Text>
         ) : null}
         {provider.linked ? (
-          <Text color={"green"} className="flex text-xs">
-            Linked
+          <Text color={"green"} className="flex text-xs font-semibold">
+            <span className="bg-green-50 px-2 py-1 rounded-md border border-green-200">Linked</span>
           </Text>
         ) : null}
         {provider.provisioned ? (
           <Icon
             icon={FaCode}
-            className="absolute top-[-15px] right-[-15px]"
+            className="absolute top-[-12px] right-[-12px] shadow-lg rounded-full bg-white p-1"
             color="orange"
             size="sm"
             tooltip="Provisioned"
           />
         ) : null}
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2.5">
           <div>
-            <Title className="capitalize" title={provider.details?.name}>
+            <Title className="capitalize font-bold text-slate-900" title={provider.details?.name}>
               {provider.display_name}{" "}
               {provider.coming_soon && !provider.linked && (
-                <span className="text-sm">(Coming Soon)</span>
+                <span className="text-sm text-slate-500 font-normal">(Coming Soon)</span>
               )}
             </Title>
 
             {provider.details && provider.details.name && (
-              <Subtitle className="truncate">
+              <Subtitle className="truncate text-slate-600 font-medium mt-1">
                 Name: {provider.details.name}
               </Subtitle>
             )}
             {provider.last_alert_received ? (
-              <Text>
+              <Text className="text-slate-500 text-xs mt-1">
                 Last alert:{" "}
                 <TimeAgo date={provider.last_alert_received + "Z"} />
               </Text>
@@ -250,7 +250,7 @@ export default function ProviderTile({ provider, onClick }: Props) {
               <p></p>
             )}
             {provider.linked && provider.id ? (
-              <Text className="truncate">Name: {provider.id}</Text>
+              <Text className="truncate text-slate-600 font-medium">Name: {provider.id}</Text>
             ) : null}
             {renderChart()}
           </div>
@@ -261,22 +261,22 @@ export default function ProviderTile({ provider, onClick }: Props) {
         <div className="flex-grow flex items-center">
           <DynamicImageProviderIcon
             src={`/icons/${provider.type}-icon.png`}
-            width={48}
-            height={48}
+            width={64}
+            height={64}
             alt={provider.type}
             providerType={provider.type}
-            className={`${
+            className={`transition-all duration-300 ${
               provider.installed || provider.linked || provider.coming_soon
                 ? ""
-                : "grayscale group-hover:grayscale-0"
+                : "grayscale group-hover:grayscale-0 group-hover:scale-110"
             }`}
           />
         </div>
         {provider.installed ? (
           <Icon
             icon={Cog6ToothIcon}
-            color="gray"
-            className="w-6 h-6 self-end place-self-end"
+            color="slate"
+            className="w-6 h-6 self-end place-self-end opacity-60 group-hover:opacity-100 transition-opacity duration-200"
             tooltip="Modify"
           />
         ) : null}

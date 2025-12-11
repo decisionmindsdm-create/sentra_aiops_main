@@ -46,11 +46,20 @@ export function DebugNodeInfo({ id, data }: Pick<FlowNode, "id" | "data">) {
 
 function IconUrlProvider(data: FlowNode["data"]) {
   const { type } = data || {};
-  if (type === "alert" || type === "workflow" || type === "trigger" || !type)
+  
+  // Handle cases where type is undefined or null
+  if (!type) return "/keep.png";
+  
+  if (type === "alert" || type === "workflow" || type === "trigger")
     return "/keep.png";
-  if (type === "incident" || type === "workflow" || type === "trigger" || !type)
+  if (type === "incident")
     return "/keep.png";
-  return `/icons/${normalizeStepType(type)}-icon.png`;
+  
+  // Normalize the step type for icon lookup
+  const normalizedType = normalizeStepType(type);
+  if (!normalizedType) return "/keep.png";
+  
+  return `/icons/${normalizedType}-icon.png`;
 }
 
 function ErrorIcon({ error }: { error: ValidationError | null }) {

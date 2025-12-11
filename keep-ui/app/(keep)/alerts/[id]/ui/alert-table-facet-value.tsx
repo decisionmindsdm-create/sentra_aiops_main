@@ -174,7 +174,7 @@ export const FacetValue: React.FC<FacetValueProps> = ({
           checked={isValueSelected}
           onClick={handleCheckboxClick}
           onChange={() => {}}
-          style={{ accentColor: "#eb6221" }}
+          style={{ accentColor: "#0d88c0" }}
           className="h-4 w-4 rounded border-gray-300 cursor-pointer"
         />
       </div>
@@ -191,7 +191,7 @@ export const FacetValue: React.FC<FacetValueProps> = ({
       <div className="flex-shrink-0 w-8 text-right flex justify-end">
         <button
           onClick={handleActionClick}
-          className="text-xs text-orange-600 hover:text-orange-800 hidden group-hover:block"
+          className="text-xs text-[#0d88c0] hover:text-[#085690] hidden group-hover:block font-semibold"
         >
           {isExclusivelySelected() ? "All" : "Only"}
         </button>

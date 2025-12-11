@@ -179,7 +179,7 @@ function WorkflowTile({ workflow }: { workflow: Workflow }) {
         </div>
       )}
       <Card
-        className="relative flex flex-col justify-between p-4 h-full border-2 border-transparent hover:border-orange-400 overflow-hidden cursor-pointer"
+        className="relative flex flex-col justify-between p-4 h-full border-2 border-transparent hover:border-[#0d88c0] overflow-hidden cursor-pointer"
         data-testid={`workflow-tile-${workflow.id}`}
       >
         <Link

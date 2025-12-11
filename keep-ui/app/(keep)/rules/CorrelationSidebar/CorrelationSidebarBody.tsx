@@ -126,10 +126,10 @@ export const CorrelationSidebarBody = ({
           <Link
             icon={ArrowUpRightIcon}
             iconPosition="right"
-            className="!text-orange-500 hover:!text-orange-700 ml-0.5"
+            className="!text-[#0d88c0] hover:!text-[#0b76a8] ml-0.5"
             target="_blank"
             href={`${
-              config?.KEEP_DOCS_URL || "https://docs.keephq.dev"
+              config?.KEEP_DOCS_URL || "https://www.decisionminds.com/"
             }/overview/correlation`}
           >
             docs
@@ -148,7 +148,7 @@ export const CorrelationSidebarBody = ({
           className="relative"
           title="NOTE: Rules will be applied only to new alerts. Historical data will
           be ignored."
-          color="orange"
+          color="blue"
         >
           <Button
             className="absolute top-0 right-0"

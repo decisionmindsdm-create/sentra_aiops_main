@@ -25,6 +25,6 @@ export default async function Page() {
 }
 
 export const metadata = {
-  title: "Keep - Workflows",
+  title: "Dm AIops - Workflows",
   description: "Automate your workflows with Keep.",
 };

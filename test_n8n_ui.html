@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>N8n Provider Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .success { color: green; font-weight: bold; }
+        .error { color: red; font-weight: bold; }
+        pre { background: #f4f4f4; padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>N8n Provider Test</h1>
+    <button onclick="testBackend()">Test Backend API</button>
+    <button onclick="testFrontend()">Test Frontend</button>
+    <div id="result"></div>
+
+    <script>
+        async function testBackend() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<p>Testing backend...</p>';
+            
+            try {
+                const response = await fetch('http://localhost:8080/providers');
+                const data = await response.json();
+                const n8n = data.providers.find(p => p.type === 'n8n');
+                
+                if (n8n) {
+                    resultDiv.innerHTML = `
+                        <h2 class="success">✓ Backend: N8n provider found!</h2>
+                        <pre>${JSON.stringify(n8n, null, 2)}</pre>
+                        <p>Total providers: ${data.providers.length}</p>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <h2 class="error">✗ Backend: N8n not found</h2>
+                        <p>Total providers: ${data.providers.length}</p>
+                        <p>Available providers: ${data.providers.map(p => p.type).join(', ')}</p>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<h2 class="error">Error: ${error.message}</h2>`;
+            }
+        }
+
+        async function testFrontend() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<p>Opening frontend...</p>';
+            window.open('http://localhost:3000/providers', '_blank');
+            resultDiv.innerHTML = '<p>Frontend opened in new tab. Check if n8n appears in the list.</p>';
+        }
+    </script>
+</body>
+</html>

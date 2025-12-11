@@ -34,18 +34,10 @@ export function getTriggerDescriptionFromStep(trigger: V2StepTrigger) {
         return "Run now button";
       }
       case "interval": {
-        // Handle both cases: properties as object with interval property, or properties as direct interval value
-        let intervalValue;
-        if (typeof trigger.properties === "string" || typeof trigger.properties === "number") {
-          intervalValue = trigger.properties;
-        } else if (trigger.properties?.interval) {
-          intervalValue = trigger.properties.interval;
-        }
-        
-        if (!intervalValue) {
+        if (!trigger.properties?.interval) {
           return "Not set";
         }
-        return `Every ${getHumanReadableInterval(intervalValue)} (${intervalValue} seconds)`;
+        return `Every ${getHumanReadableInterval(trigger.properties.interval)} (${trigger.properties.interval} seconds)`;
       }
       case "alert": {
         if (trigger.properties?.cel) {

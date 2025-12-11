@@ -11,7 +11,7 @@ import { FaVolumeMute } from "react-icons/fa";
 import { IoMdGitMerge } from "react-icons/io";
 import { useTopology } from "@/app/(keep)/topology/model/useTopology";
 import clsx from "clsx";
-import { AILink } from "./AILink";
+
 import { useConfig } from "@/utils/hooks/useConfig";
 import { useTenantConfiguration } from "@/utils/hooks/useTenantConfiguration";
 import { ReactNode } from "react";
@@ -99,35 +99,40 @@ export const NoiseReductionLinks = ({ session }: NoiseReductionLinksProps) => {
         )}
       </Disclosure.Button>
 
-      <Disclosure.Panel as="ul" className="space-y-0.5 p-1 pr-1">
+      <Disclosure.Panel
+        as="ul"
+        className="space-y-0.5 p-1 pr-1 overflow-x-hidden overflow-y-auto w-full box-border"
+      >
         <TogglableLink
           disabledConfigKey={noiseReductionKeys.HIDE_NAVBAR_DEDUPLICATION}
         >
-          <li>
+          <li className="w-full">
             <LinkWithIcon
               href="/deduplication"
               icon={IoMdGitMerge}
               testId="deduplication"
             >
-              <Subtitle className="text-xs">Deduplication</Subtitle>
+              <Subtitle className="text-xs truncate">Deduplication</Subtitle>
             </LinkWithIcon>
           </li>
         </TogglableLink>
+
         <TogglableLink
           disabledConfigKey={noiseReductionKeys.HIDE_NAVBAR_CORRELATION}
         >
-          <li>
+          <li className="w-full">
             <LinkWithIcon href="/rules" icon={Rules} testId="rules">
-              <Subtitle className="text-xs">Correlations</Subtitle>
+              <Subtitle className="text-xs truncate">Correlations</Subtitle>
             </LinkWithIcon>
           </li>
         </TogglableLink>
+
         <TogglableLink
           disabledConfigKey={noiseReductionKeys.HIDE_NAVBAR_WORKFLOWS}
         >
-          <li>
+          <li className="w-full">
             <LinkWithIcon href="/workflows" icon={Workflows} testId="workflows">
-              <Subtitle className="text-xs">Workflows</Subtitle>
+              <Subtitle className="text-xs truncate">Workflows</Subtitle>
             </LinkWithIcon>
           </li>
         </TogglableLink>
@@ -135,63 +140,54 @@ export const NoiseReductionLinks = ({ session }: NoiseReductionLinksProps) => {
         <TogglableLink
           disabledConfigKey={noiseReductionKeys.HIDE_NAVBAR_SERVICE_TOPOLOGY}
         >
-          <li>
+          <li className="w-full">
             <LinkWithIcon
               href="/topology"
               icon={TbTopologyRing}
-              isBeta={!topologyData || topologyData.length === 0}
-              count={
-                topologyData?.length === 0 ? undefined : topologyData?.length
-              }
+              // isBeta={!topologyData || topologyData.length === 0}
+              count={topologyData?.length || undefined}
               testId="service-topology"
             >
-              <Subtitle className="text-xs">Service Topology</Subtitle>
+              <Subtitle className="text-xs truncate">Service Topology</Subtitle>
             </LinkWithIcon>
           </li>
         </TogglableLink>
+
         <TogglableLink
           disabledConfigKey={noiseReductionKeys.HIDE_NAVBAR_MAPPING}
         >
-          <li>
+          <li className="w-full">
             <LinkWithIcon href="/mapping" icon={Mapping} testId="mapping">
-              <Subtitle className="text-xs">Mapping</Subtitle>
+              <Subtitle className="text-xs truncate">Mapping</Subtitle>
             </LinkWithIcon>
           </li>
         </TogglableLink>
+
         <TogglableLink
           disabledConfigKey={noiseReductionKeys.HIDE_NAVBAR_EXTRACTION}
         >
-          <li>
-            <LinkWithIcon
-              href="/extraction"
-              icon={ExportIcon}
-              testId="extraction"
-            >
-              <Subtitle className="text-xs">Extraction</Subtitle>
+          <li className="w-full">
+            <LinkWithIcon href="/extraction" icon={ExportIcon} testId="extraction">
+              <Subtitle className="text-xs truncate">Extraction</Subtitle>
             </LinkWithIcon>
           </li>
         </TogglableLink>
+
         <TogglableLink
           disabledConfigKey={noiseReductionKeys.HIDE_NAVBAR_MAINTENANCE_WINDOW}
         >
-          <li>
+          <li className="w-full">
             <LinkWithIcon
               href="/maintenance"
               icon={FaVolumeMute}
               testId="maintenance"
             >
-              <Subtitle className="text-xs">Maintenance Windows</Subtitle>
+              <Subtitle className="text-xs truncate">Maintenance Windows</Subtitle>
             </LinkWithIcon>
           </li>
         </TogglableLink>
-        <TogglableLink
-          disabledConfigKey={noiseReductionKeys.HIDE_NAVBAR_AI_PLUGINS}
-        >
-          <li>
-            <AILink></AILink>
-          </li>
-        </TogglableLink>
       </Disclosure.Panel>
+
     </Disclosure>
   );
 };

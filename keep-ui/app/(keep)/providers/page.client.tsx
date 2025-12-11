@@ -29,7 +29,7 @@ export const useFetchProviders = () => {
       <br />
       <Link
         href={`${
-          config?.KEEP_DOCS_URL || "https://docs.keephq.dev"
+          config?.KEEP_DOCS_URL || "https://www.decisionminds.com/"
         }/development/external-url`}
         target="_blank"
         rel="noreferrer noopener"
@@ -55,7 +55,7 @@ export const useFetchProviders = () => {
         autoClose: 10000,
         onClick: () =>
           window.open(
-            `${config?.KEEP_DOCS_URL || "https://docs.keephq.dev"}`,
+            `${config?.KEEP_DOCS_URL || "https://www.decisionminds.com/"}`,
             "_blank"
           ),
         style: {
@@ -161,25 +161,29 @@ export default function ProvidersPage({
   }
 
   const searchProviders = (provider: Provider) => {
+    if (!providersSearchString) return true;
+    
+    const searchLower = providersSearchString.toLowerCase();
     return (
-      !providersSearchString ||
-      provider.type?.toLowerCase().includes(providersSearchString.toLowerCase())
+      provider.type?.toLowerCase().includes(searchLower) ||
+      provider.display_name?.toLowerCase().includes(searchLower)
     );
   };
 
   const searchCategories = (provider: Provider) => {
-    if (providersSelectedCategories.includes("Coming Soon")) {
-      if (provider.coming_soon) {
-        return true;
-      }
+    if (providersSelectedCategories.length === 0) {
+      return true;
     }
 
-    return (
-      providersSelectedCategories.length === 0 ||
-      provider.categories.some((category) =>
-        providersSelectedCategories.includes(category)
-      )
+    // Check if provider matches any of the selected categories
+    const matchesComingSoon =
+      providersSelectedCategories.includes("Coming Soon") && provider.coming_soon;
+    
+    const matchesOtherCategories = provider.categories.some((category) =>
+      providersSelectedCategories.includes(category)
     );
+
+    return matchesComingSoon || matchesOtherCategories;
   };
 
   const searchTags = (provider: Provider) => {
@@ -196,12 +200,6 @@ export default function ProvidersPage({
       searchCategories(provider)
   );
 
-  const displayableProviders = filteredProviders.filter(
-    (provider) =>
-      Object.keys(provider.config || {}).length > 0 ||
-      (provider.tags && provider.tags.includes("alert"))
-  );
-
   return (
     <>
       {isFilteringActive && (
@@ -212,13 +210,13 @@ export default function ProvidersPage({
             isLocalhost={isLocalhost}
             mutate={mutate}
           />
-          {displayableProviders.length > 0 && (
+          {filteredProviders.length > 0 && (
             <p className="text-m text-gray-500">
-              {displayableProviders.length} provider
-              {displayableProviders.length > 1 ? "s" : ""} found
+              {filteredProviders.length} provider
+              {filteredProviders.length > 1 ? "s" : ""} found
             </p>
           )}
-          {displayableProviders.length === 0 && (
+          {filteredProviders.length === 0 && (
             <p className="text-m text-gray-500">
               No providers found matching your filters.
             </p>

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "keep"
-version = "0.47.11"
+version = "0.47.10"
 description = "Alerting. for developers, by developers."
 authors = ["Keep Alerting LTD"]
 packages = [{include = "keep"}]
@@ -90,7 +90,6 @@ urllib3 = "<2.4.0"
 
 prometheus-fastapi-instrumentator = "^7.0.0"
 slowapi = "^0.1.9"
-uvloop = "^0.21.0"
 httptools = "^0.6.4"
 anthropic = "^0.44.0"
 google-generativeai = "^0.8.4"

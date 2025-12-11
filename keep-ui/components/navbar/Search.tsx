@@ -100,7 +100,7 @@ export const Search = ({ session }: SearchProps) => {
   const router = useRouter();
   const comboboxInputRef = useRef<ElementRef<"input">>(null);
   const { data: configData } = useConfig();
-  const docsUrl = configData?.KEEP_DOCS_URL || "https://docs.keephq.dev";
+  const docsUrl = configData?.KEEP_DOCS_URL || "https://www.decisionminds.com/";
   const [isLoading, setIsLoading] = useState(false);
 
   // Log session for debugging
@@ -111,21 +111,21 @@ export const Search = ({ session }: SearchProps) => {
   const EXTERNAL_OPTIONS = [
     {
       icon: FileTextIcon,
-      label: "Keep Docs",
+      label: "Dm AIops Docs",
       shortcut: ["⇧", "D"],
       navigate: docsUrl,
     },
     {
       icon: GitHubLogoIcon,
-      label: "Keep Source code",
+      label: "Dm AIops Source code",
       shortcut: ["⇧", "C"],
-      navigate: "https://github.com/keephq/keep",
+      navigate: "https://github.com/Karthi417/DmAIops.git",
     },
     {
       icon: TwitterLogoIcon,
-      label: "Keep Twitter",
+      label: "Dm AIops Twitter",
       shortcut: ["⇧", "T"],
-      navigate: "https://twitter.com/keepalerting",
+      navigate: "https://twitter.com/",
     },
   ];
 

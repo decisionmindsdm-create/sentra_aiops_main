@@ -14,7 +14,7 @@ import {
 const WorkflowsEmptyState = () => {
   const router = useRouter();
   const { data: configData } = useConfig();
-  const docsUrl = configData?.KEEP_DOCS_URL || "https://docs.keephq.dev";
+  const docsUrl = configData?.KEEP_DOCS_URL || "https://www.decisionminds.com/";
 
   const links = [
     {
@@ -28,7 +28,7 @@ const WorkflowsEmptyState = () => {
       icon: BellAlertIcon,
     },
     {
-      href: "https://slack.keephq.dev",
+      href: "https://www.decisionminds.com/#contact",
       label: "Get support on your Workflow",
       icon: FaSlack,
     },
@@ -52,8 +52,7 @@ const WorkflowsEmptyState = () => {
         >
           <Button
             icon={PlusIcon}
-            className="mt-4 px-6 py-2"
-            color="orange"
+            className="mt-4 px-6 py-2 bg-[#0d88c0] hover:bg-[#0b76a8] border-[#0d88c0] text-white"
             variant="primary"
             onClick={() => {
               router.push("/workflows/builder");

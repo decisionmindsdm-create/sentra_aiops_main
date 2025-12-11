@@ -21,7 +21,7 @@ export const WorkflowTemplateCard: React.FC<{ template: WorkflowTemplate }> = ({
   };
   return (
     <Card
-      className="p-4 flex flex-col justify-between w-full border-2 border-transparent hover:border-orange-400 gap-2"
+      className="p-4 flex flex-col justify-between w-full border-2 border-transparent hover:border-[#0d88c0] gap-2"
       onClick={(e) => {
         e.preventDefault();
         e.stopPropagation();

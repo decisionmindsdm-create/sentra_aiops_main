@@ -467,6 +467,8 @@
             Ntfy.sh
         </a>
     </td>
+</tr>
+<tr>
   <td align="center" width="150">
         <a href="https://docs.keephq.dev/providers/documentation/pushover-provider" target="_blank">
             <img width="40" src="keep-ui/public/icons/pushover-icon.png" alt="Pushover"/><br/>
@@ -479,8 +481,6 @@
             Resend
         </a>
   </td>
-</tr>
-<tr>
   <td align="center" width="150">
       <a href="https://docs.keephq.dev/providers/documentation/sendgrid-provider" target="_blank">
           <img width="40" src="keep-ui/public/icons/sendgrid-icon.png" alt="SendGrid"/><br/>
@@ -500,6 +500,20 @@
       </a>
   </td>
   <td align="center" width="150">
+      <a href="https://docs.keephq.dev/providers/documentation/teams-provider" target="_blank">
+          <img width="40" src="keep-ui/public/icons/teams-icon.png" alt="Teams"/><br/>
+          Teams
+      </a>
+  </td>
+  <td align="center" width="150">
+      <a href="https://docs.keephq.dev/providers/documentation/zoom-provider" target="_blank">
+          <img width="40" src="keep-ui/public/icons/zoom-icon.png" alt="Teams"/><br/>
+          Zoom
+      </a>
+  </td>
+</tr>
+<tr>
+  <td align="center" width="150">
       <a href="https://docs.keephq.dev/providers/documentation/telegram-provider" target="_blank">
           <img width="40" src="keep-ui/public/icons/telegram-icon.png" alt="Telegram"/><br/>
           Telegram
@@ -509,26 +523,6 @@
       <a href="https://docs.keephq.dev/providers/documentation/twilio-provider" target="_blank">
           <img width="40" src="keep-ui/public/icons/twilio-icon.png" alt="Twilio"/><br/>
           Twilio
-      </a>
-  </td>
-  <td align="center" width="150">
-      <a href="https://docs.keephq.dev/providers/documentation/teams-provider" target="_blank">
-          <img width="40" src="keep-ui/public/icons/teams-icon.png" alt="Teams"/><br/>
-          Teams
-      </a>
-  </td>
-  <td align="center" width="150">
-      <a href="https://docs.keephq.dev/providers/documentation/zoom-provider" target="_blank">
-          <img width="40" src="keep-ui/public/icons/zoom-icon.png" alt="Zoom"/><br/>
-          Zoom
-      </a>
-  </td>
-</tr>
-<tr>
-  <td align="center" width="150">
-      <a href="https://docs.keephq.dev/providers/documentation/zoom_chat-provider" target="_blank">
-          <img width="40" src="keep-ui/public/icons/zoom-icon.png" alt="Zoom Chat"/><br/>
-          Zoom Chat
       </a>
   </td>
 </tr>
@@ -696,7 +690,7 @@
 </tr>
 </table>
 
-### Container Orchestration Platforms
+### Container Orchecstration Platforms
 
 <table>
 <tr>
@@ -715,7 +709,7 @@
     <td align="center" width="150">
         <a href="https://docs.keephq.dev/providers/documentation/fluxcd-provider" target="_blank">
             <img width="40" src="keep-ui/public/icons/fluxcd-icon.png" alt="Flux CD"/><br/>
-            Flux
+            Flux CD
         </a>
     </td>
     <td align="center" width="150">

@@ -1,0 +1,23 @@
+workflow:
+  id: n8n-workflow-execution-example
+  name: N8n Workflow Execution Example
+  description: Execute an n8n workflow using API with workflow ID
+  debug: true
+  triggers:
+    - type: manual
+
+  actions:
+    - name: execute-n8n-workflow
+      provider:
+        type: n8n
+        config: "{{ providers.n8n_api }}"
+        with:
+          workflow_id: "your-workflow-id-here"
+          data:
+            alert_source: "Keep Monitoring"
+            environment: "production"
+            metrics:
+              cpu: 85
+              memory: 75
+              disk: 60
+            timestamp: "{{ timestamp }}"

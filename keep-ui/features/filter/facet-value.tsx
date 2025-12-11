@@ -56,7 +56,7 @@ export const FacetValue: React.FC<FacetValueProps> = ({
           readOnly // Fixes "You provided a `checked` prop to a form field without an `onChange` handler." because click handler is on div above
           checked={isSelected}
           onClick={handleCheckboxClick}
-          style={{ accentColor: "#eb6221" }}
+          style={{ accentColor: "#0d88c0" }}
           className="h-4 w-4 rounded border-gray-300 cursor-pointer"
         />
       </div>
@@ -79,7 +79,7 @@ export const FacetValue: React.FC<FacetValueProps> = ({
       <div className="flex-shrink-0 w-8 text-right flex justify-end">
         <button
           onClick={handleActionClick}
-          className="h-full text-xs text-orange-600 hidden hover:text-orange-800 group-hover:block"
+          className="h-full text-xs text-[#0d88c0] hidden hover:text-[#085690] group-hover:block font-semibold"
         >
           {isExclusivelySelected ? "All" : "Only"}
         </button>

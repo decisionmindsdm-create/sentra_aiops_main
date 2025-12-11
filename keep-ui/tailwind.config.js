@@ -11,6 +11,13 @@ module.exports = {
   ],
   darkMode: "class",
   theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
     extend: {
       zIndex: {
         60: "60",
@@ -23,35 +30,89 @@ module.exports = {
         "screen-minus-200": "calc(100vh - 200px)",
       },
       colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+        chart: {
+          1: "hsl(var(--chart-1))",
+          2: "hsl(var(--chart-2))",
+          3: "hsl(var(--chart-3))",
+          4: "hsl(var(--chart-4))",
+          5: "hsl(var(--chart-5))",
+        },
         // light mode
         tremor: {
           brand: {
-            faint: "rgb(255 247 237)", // orange-50
-            muted: "rgb(255 237 213)", // orange-200
-            subtle: "rgb(251 146 60)", // orange-400
-            DEFAULT: "rgb(249 115 22)", // orange-500
-            emphasis: "#374151", //  gray-700
+            faint: "rgb(236 248 252)", // teal-50
+            muted: "rgb(207 237 247)", // teal-100
+            subtle: "rgb(147 217 237)", // teal-300
+            DEFAULT: "rgb(13 136 192)", // #0d88c0 bright teal
+            emphasis: "rgb(8 86 144)", // #085690 ocean teal
             inverted: "#ffffff", // white
           },
           background: {
             muted: "#f9fafb", // gray-50
-            subtle: "#f9fafb", // orange-200
+            subtle: "#ffffff", // white
             DEFAULT: "#ffffff", // white
-            emphasis: "#374151", // gray-700
+            emphasis: "#1e1e1e", // dark secondary
           },
           border: {
             DEFAULT: "#e5e7eb", // gray-200
           },
           ring: {
-            DEFAULT: "#e5e7eb", // gray-200
+            DEFAULT: "rgb(13 136 192)", // bright teal
           },
           content: {
-            subtle: "#646464", // Custom black-400 (light black)
-            DEFAULT: "#333333", // Custom black-500 (standard black)
-            emphasis: "#1a1a1a", // Custom black-700 (darker black)
-            strong: "#000000", // Custom black-900 (the darkest black)
+            subtle: "#6b7280", // gray-500
+            DEFAULT: "#1f2937", // gray-800 for high contrast
+            emphasis: "#111827", // gray-900
+            strong: "#000000", // black
             inverted: "#ffffff", // white
           },
+        },
+        // Override orange colors to use #0d88c0 theme
+        orange: {
+          50: "rgb(236 248 252)",   // Lightest shade - using teal-50
+          100: "rgb(207 237 247)",  // Light shade - using teal-100  
+          200: "rgb(178 225 240)",  // Lighter shade
+          300: "rgb(147 217 237)",  // Light-medium shade - using teal-300
+          400: "rgb(103 198 218)",  // Medium-light shade
+          500: "rgb(13 136 192)",   // Main color - #0d88c0
+          600: "rgb(8 86 144)",     // Dark shade - using emphasis color
+          700: "rgb(6 71 120)",     // Darker shade
+          800: "rgb(4 56 96)",      // Very dark shade
+          900: "rgb(3 41 72)",      // Darkest shade
+          950: "rgb(2 28 49)",      // Extremely dark shade
         },
         // dark mode
         "dark-tremor": {
@@ -99,8 +160,11 @@ module.exports = {
           "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
       },
       borderRadius: {
-        "tremor-small": "0.375rem",
-        "tremor-default": "0.5rem",
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+        "tremor-small": "0.5rem", // 8px
+        "tremor-default": "0.75rem", // 12px
         "tremor-full": "9999px",
       },
       fontSize: {

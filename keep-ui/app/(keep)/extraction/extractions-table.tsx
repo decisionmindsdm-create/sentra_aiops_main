@@ -106,7 +106,7 @@ export default function ExtractionsTable({ extractions, editCallback }: Props) {
           Condition{" "}
           <a
             href={`${
-              config?.KEEP_DOCS_URL || "https://docs.keephq.dev"
+              config?.KEEP_DOCS_URL || "https://www.decisionminds.com/"
             }/overview/enrichment/extraction`}
             target="_blank"
           >

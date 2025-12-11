@@ -26,11 +26,11 @@ export function showErrorToast(
       <>
         You&apos;re in read-only mode. Sign up at{" "}
         <Link
-          href="https://keephq.dev"
+          href="https://www.decisionminds.com/"
           target="_blank"
           rel="noreferrer noopener"
         >
-          keephq.dev
+          Decisionminds.com
         </Link>{" "}
         to get your own instance!
       </>,
