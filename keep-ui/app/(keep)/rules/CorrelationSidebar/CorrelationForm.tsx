@@ -340,7 +340,7 @@ export const CorrelationForm = ({
           name="requireApprove"
           render={({ field: { value, onChange } }) => (
             <Switch
-              className="data-[state=checked]:bg-[#0d88c0]"
+              className="[&>span]:!bg-[#0d88c0]"
               id="requireManualApprove"
               onChange={onChange}
               checked={value}
@@ -359,7 +359,7 @@ export const CorrelationForm = ({
             name="multiLevel"
             render={({ field: { value, onChange } }) => (
               <Switch
-                className="data-[state=checked]:bg-[#0d88c0]"
+                className="[&>span]:!bg-[#0d88c0]"
                 id="multiLevelCorrelation"
                 onChange={onChange}
                 checked={value}

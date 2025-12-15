@@ -129,7 +129,7 @@ export const getRowClassName = (
 
   return clsx(
     "cursor-pointer group",
-    isLastViewed ? "bg-blue-50" : rowBgColor,
+    isLastViewed ? "bg-orange-50" : rowBgColor,
     // Expanded rows should have auto height with a larger minimum height
     expanded ? "h-auto min-h-16" : rowStyle === "default" ? "h-8" : "h-12",
     // More padding for expanded rows
@@ -138,7 +138,7 @@ export const getRowClassName = (
       : rowStyle === "default"
         ? "[&>td]:px-0.5 [&>td]:py-0"
         : "[&>td]:p-2",
-    "hover:bg-cyan-50"
+    "hover:bg-orange-100"
   );
 };
 
@@ -177,8 +177,8 @@ export const getCellClassName = (
     isDescriptionCell && expanded && "whitespace-pre-wrap break-words",
     // Remove line clamp for expanded rows
     expanded && "!whitespace-pre-wrap !overflow-visible",
-    "group-hover:bg-cyan-50", // Group hover styling
-    isLastViewed && "bg-blue-50" // Override with highlight if this is the last viewed row
+    "group-hover:bg-orange-100", // Group hover styling
+    isLastViewed && "bg-orange-50" // Override with highlight if this is the last viewed row
   );
 };
 
@@ -339,6 +339,11 @@ export const useAlertTableCols = (
           }
 
           if (value) {
+            // Safely handle objects that weren't caught by earlier checks
+            const displayValue = typeof value === "object" && value !== null 
+              ? JSON.stringify(value) 
+              : value.toString();
+              
             return (
               <div
                 className={clsx(
@@ -348,7 +353,7 @@ export const useAlertTableCols = (
                     (rowStyle === "default" ? "line-clamp-1" : "line-clamp-3")
                 )}
               >
-                {value.toString()}
+                {displayValue}
               </div>
             );
           }

@@ -111,21 +111,21 @@ export const Search = ({ session }: SearchProps) => {
   const EXTERNAL_OPTIONS = [
     {
       icon: FileTextIcon,
-      label: "Dm AIops Docs",
+      label: "Keep Docs",
       shortcut: ["⇧", "D"],
       navigate: docsUrl,
     },
     {
       icon: GitHubLogoIcon,
-      label: "Dm AIops Source code",
+      label: "Keep Source code",
       shortcut: ["⇧", "C"],
-      navigate: "https://github.com/Karthi417/DmAIops.git",
+      navigate: "https://github.com/keephq/keep",
     },
     {
       icon: TwitterLogoIcon,
-      label: "Dm AIops Twitter",
+      label: "Keep Twitter",
       shortcut: ["⇧", "T"],
-      navigate: "https://twitter.com/",
+      navigate: "https://twitter.com/keepalerting",
     },
   ];
 
@@ -344,7 +344,7 @@ export const Search = ({ session }: SearchProps) => {
                   className="focus:outline-none flex items-center"
                   disabled={isLoading}
                 >
-                  <Image className="w-8" src={KeepPng} alt="Keep Logo" />
+                  <Image className="w-8" src={KeepPng} alt="Dm Vivek Logo" />
                   {tenantLogoUrl && (
                     <Image
                       src={tenantLogoUrl || ""}
@@ -384,7 +384,7 @@ export const Search = ({ session }: SearchProps) => {
           </Popover>
         ) : (
           <Link href="/" className="flex items-center">
-            <Image className="w-8" src={KeepPng} alt="Keep Logo" />
+            <Image className="w-8" src={KeepPng} alt="Dm Vivek Logo" />
             {hasTenantLogo && (
               <Image
                 src={tenantLogoUrl || ""}

@@ -59,7 +59,7 @@ export const EnrichmentEditableForm = ({fields, title, onUpdate, onDelete, child
         icon={() => (
           <Icon
             icon={MdModeEdit}
-            className={`w-4 h-4 text-orange-500`}
+            className={`w-4 h-4 text-[#0d88c0]`}
           />
         )}
       />
@@ -103,7 +103,7 @@ export const EnrichmentEditableForm = ({fields, title, onUpdate, onDelete, child
           tooltip="Save"
           icon={() => <Icon
             icon={FiSave}
-            className={`w-4 h-4 text-orange-500`}
+            className={`w-4 h-4 text-[#0d88c0]`}
           />}
           onClick={handleSave}
         />

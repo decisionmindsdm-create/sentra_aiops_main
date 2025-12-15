@@ -190,12 +190,12 @@ function WorkflowTile({ workflow }: { workflow: Workflow }) {
         >
           <div className="absolute top-0 right-0 mt-2 mr-2 mb-2 flex items-center flex-wrap">
             {workflow.provisioned && (
-              <Badge color="orange" size="xs" className="mr-2 mb-2">
+              <Badge className="mr-2 mb-2 !bg-[#0d88c0] !text-white" size="xs">
                 Provisioned
               </Badge>
             )}
             {workflow.alertRule && (
-              <Badge color="orange" size="xs" className="mr-2 mb-2">
+              <Badge className="mr-2 mb-2 !bg-[#0d88c0] !text-white" size="xs">
                 Alert Rule
               </Badge>
             )}

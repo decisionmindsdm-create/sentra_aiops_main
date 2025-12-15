@@ -46,7 +46,7 @@ export const RuleGroup = ({ actions, ruleGroup }: QueryRuleGroupProps) => {
         ) : null
       )}
       <Button
-        className="mt-3 text-[#0d88c0] hover:bg-[#e6f4f9]"
+        className="mt-3 !text-[#0d88c0] hover:!text-[#0a6d9a]"
         onClick={onAddGroupClick}
         type="button"
         variant="light"

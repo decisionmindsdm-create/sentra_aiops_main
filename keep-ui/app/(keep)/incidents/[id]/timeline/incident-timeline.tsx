@@ -21,27 +21,27 @@ import { FormattedContent } from "@/shared/ui/FormattedContent/FormattedContent"
 
 const severityColors = {
   critical: "bg-red-300",
-  high: "bg-orange-300",
+  high: "bg-blue-300",
   warning: "bg-blue-200",
   low: "bg-green-300",
   info: "bg-green-300",
-  error: "bg-orange-300",
+  error: "bg-blue-300",
 };
 
 const dotColors = {
   "bg-red-300": "bg-red-500",
-  "bg-orange-300": "bg-orange-500",
+  "bg-blue-300": "bg-blue-500",
   "bg-blue-200": "bg-blue-400",
   "bg-green-300": "bg-green-500",
 };
 
 const severityTextColors = {
   critical: "text-red-500",
-  high: "text-orange-500",
+  high: "text-[#0d88c0]",
   warning: "text-yellow-500",
   low: "text-green-500",
   info: "text-emerald-500",
-  error: "text-orange-500",
+  error: "text-[#0d88c0]",
 };
 
 interface EventDotProps {
@@ -262,7 +262,7 @@ const IncidentTimelineNoAlerts: React.FC = () => {
         description="No alerts found for this incident. Go to the alerts feed and assign alerts to view the timeline."
       >
         <Button
-          color="orange"
+          className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
           variant="primary"
           size="md"
           onClick={() => router.push("/alerts/feed")}

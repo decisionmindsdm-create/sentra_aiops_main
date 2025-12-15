@@ -154,7 +154,7 @@ export const UploadWorkflowsModal: React.FC<UploadWorkflowsModalProps> = ({
           </Button>
         </div>
         <div className="mt-4 text-sm">
-          <h3>Or just try some from DMAiops examples:</h3>
+          <h3>Or just try some from Keep examples:</h3>
           <Button
             className="mt-2"
             color="orange"
@@ -177,7 +177,7 @@ export const UploadWorkflowsModal: React.FC<UploadWorkflowsModalProps> = ({
             Run SQL query and send the results as a Slack message
           </Button>
 
-          {/* <p className="mt-2">
+          <p className="mt-2">
             More examples at{" "}
             <a
               href="https://github.com/keephq/keep/tree/main/examples/workflows"
@@ -185,7 +185,7 @@ export const UploadWorkflowsModal: React.FC<UploadWorkflowsModalProps> = ({
             >
               Keep GitHub repo
             </a>
-          </p> */}
+          </p>
         </div>
 
         <div className="mt-4">

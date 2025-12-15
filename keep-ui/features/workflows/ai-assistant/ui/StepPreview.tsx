@@ -11,20 +11,11 @@ import { useConfig } from "@/utils/hooks/useConfig";
 
 function getStepIconUrl(data: V2Step | V2StepTrigger) {
   const { type } = data || {};
-  
-  // Handle cases where type is undefined or null
-  if (!type) return "/keep.png";
-  
-  if (type === "alert" || type === "workflow" || type === "trigger")
+  if (type === "alert" || type === "workflow" || type === "trigger" || !type)
     return "/keep.png";
-  if (type === "incident")
+  if (type === "incident" || type === "workflow" || type === "trigger" || !type)
     return "/keep.png";
-  
-  // Normalize the step type for icon lookup
-  const normalizedType = normalizeStepType(type);
-  if (!normalizedType) return "/keep.png";
-  
-  return `/icons/${normalizedType}-icon.png`;
+  return `/icons/${normalizeStepType(type)}-icon.png`;
 }
 
 export const StepPreview = ({

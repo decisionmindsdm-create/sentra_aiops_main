@@ -26,8 +26,9 @@ import {
 } from "@tanstack/react-table";
 import { DeduplicationRule } from "@/app/(keep)/deduplication/models";
 import DeduplicationSidebar from "@/app/(keep)/deduplication/DeduplicationSidebar";
-import { TrashIcon, QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
+import { TrashIcon } from "@heroicons/react/24/outline";
 import { PlusIcon } from "@heroicons/react/20/solid";
+import { QuestionMarkCircleIcon } from "@heroicons/react/16/solid";
 import { useProviders } from "utils/hooks/useProviders";
 import { useApi } from "@/shared/lib/hooks/useApi";
 import { KeyedMutator } from "swr";
@@ -138,25 +139,20 @@ export const DeduplicationTable: React.FC<DeduplicationTableProps> = ({
     () => [
       columnHelper.accessor("provider_type", {
         header: "",
-        cell: (info) => {
-          // Use Sentra icon for "keep" provider type
-          const providerType = info.getValue();
-          const iconProviderType = providerType === "keep" ? "sentra" : providerType;
-          
-          return (
-            <div className="flex justify-center items-center">
-              <DynamicImageProviderIcon
-                className="inline-block"
-                alt={info.getValue()}
-                height={40}
-                width={40}
-                title={info.getValue()}
-                providerType={iconProviderType}
-                src={`/icons/${iconProviderType}-icon.png`}
-              />
-            </div>
-          );
-        },
+        cell: (info) => (
+          <div className="flex justify-center items-center">
+            <DynamicImageProviderIcon
+              className="inline-block"
+              key={info.getValue()}
+              alt={info.getValue()}
+              height={24}
+              width={24}
+              title={info.getValue()}
+              providerType={info.getValue()}
+              src={`/icons/${info.getValue()}-icon.png`}
+            />
+          </div>
+        ),
       }),
       columnHelper.accessor("description", {
         header: "Description",
@@ -167,18 +163,13 @@ export const DeduplicationTable: React.FC<DeduplicationTableProps> = ({
           const providerName =
             matchingProvider?.details.name ||
             info.row.original.provider_id ||
-            "Sentra";
-
-          // Transform "keep default" to "Sentra default" in description
-          let displayDescription = info.row.original.description || `${providerName} deduplication rule`;
-          if (displayDescription.toLowerCase().includes('keep default')) {
-            displayDescription = displayDescription.replace(/keep default/gi, 'Sentra default');
-          }
+            "Keep";
 
           return (
             <div className="flex flex-row items-center max-w-[320px]">
               <span className="truncate lg:whitespace-normal flex-grow">
-                {displayDescription}
+                {info.row.original.description ||
+                  `${providerName} deduplication rule`}
               </span>
               <div className="flex items-center ml-2">
                 {info.row.original.default ? (
@@ -186,12 +177,12 @@ export const DeduplicationTable: React.FC<DeduplicationTableProps> = ({
                     Default
                   </Badge>
                 ) : (
-                  <Badge color="orange" size="xs" className="mx-1">
+                  <Badge className="mx-1 !bg-[#0d88c0] !text-white" size="xs">
                     Custom
                   </Badge>
                 )}
                 {info.row.original.full_deduplication && (
-                  <Badge size="xs" className="ml-1 bg-[#e6f4f9] text-[#0d88c0] border-[#0d88c0]">
+                  <Badge className="ml-1 !bg-[#0d88c0] !text-white" size="xs">
                     Full Deduplication
                   </Badge>
                 )}
@@ -235,7 +226,7 @@ export const DeduplicationTable: React.FC<DeduplicationTableProps> = ({
             ...item,
             number: maxNumber > 0 ? item.number / maxNumber + 1 : 0.5,
           }));
-          const colors = ["#0d88c0"];
+          const colors = ["cyan"];
           const showGradient = true;
           return (
             <SparkAreaChart
@@ -262,7 +253,7 @@ export const DeduplicationTable: React.FC<DeduplicationTableProps> = ({
           if (!displayFields || displayFields.length === 0) {
             return (
               <div className="flex flex-wrap items-center gap-2 w-[200px]">
-                <Badge size="md" className="bg-[#e6f4f9] text-[#0d88c0] border-[#0d88c0]">
+                <Badge className="!bg-[#0d88c0] !text-white" size="md">
                   N/A
                 </Badge>
               </div>
@@ -274,7 +265,7 @@ export const DeduplicationTable: React.FC<DeduplicationTableProps> = ({
               {displayFields.map((field: string, index: number) => (
                 <React.Fragment key={field}>
                   {index > 0 && <PlusIcon className="w-4 h-4 text-gray-400" />}
-                  <Badge size="md" className="bg-[#e6f4f9] text-[#0d88c0] border-[#0d88c0]">
+                  <Badge className="!bg-[#0d88c0] !text-white" size="md">
                     {field}
                   </Badge>
                 </React.Fragment>
@@ -308,7 +299,7 @@ export const DeduplicationTable: React.FC<DeduplicationTableProps> = ({
         ),
       }),
     ],
-    [providers]
+    []
   );
 
   const table = useReactTable({
@@ -347,6 +338,7 @@ export const DeduplicationTable: React.FC<DeduplicationTableProps> = ({
           </PageSubtitle>
         </div>
         <Button
+          className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
           onClick={() => {
             setSelectedDeduplicationRule(null);
             setIsSidebarOpen(true);
@@ -354,13 +346,14 @@ export const DeduplicationTable: React.FC<DeduplicationTableProps> = ({
           icon={PlusIcon}
           variant="primary"
           size="md"
-          className="bg-[#0d88c0] hover:bg-[#0b76a8] border-[#0d88c0] text-white"
         >
           Create Deduplication Rule
         </Button>
       </div>
-      <Card className="p-0">
-        <Table>
+      <Card className="p-0 w-full">
+        {/* UI Change Only - functionality unchanged - responsive table wrapper */}
+        <div className="w-full overflow-x-auto">
+          <Table style={{ minWidth: '700px' }}>
           <TableHead>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow
@@ -448,6 +441,7 @@ export const DeduplicationTable: React.FC<DeduplicationTableProps> = ({
             ))}
           </TableBody>
         </Table>
+        </div>
       </Card>
       <DeduplicationSidebar
         mutateDeduplicationRules={mutateDeduplicationRules}

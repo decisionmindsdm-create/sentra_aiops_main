@@ -13,14 +13,14 @@ export default function NotFound() {
       <Subtitle>
         If you believe this is an error, please contact us on{" "}
         <Link
-          href="https://www.decisionminds.com/#contact"
+          href="https://slack.keephq.dev/"
           target="_blank"
           rel="noopener noreferrer"
         >
           Slack
         </Link>
       </Subtitle>
-      <Image src="/keep.svg" alt="Keep" width={150} height={150} />
+      <Image src="/keep.svg" alt="Dm Vivek" width={150} height={150} />
       <Button
         onClick={() => {
           router.back();

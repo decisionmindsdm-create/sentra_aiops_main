@@ -19,15 +19,15 @@ export const predefinedThemes = {
     info: "bg-white",
   },
   Keep: {
-    critical: "bg-orange-400", // Highest opacity for critical
-    high: "bg-orange-300",
-    warning: "bg-orange-200",
-    low: "bg-orange-100",
-    info: "bg-orange-50", // Lowest opacity for info
+    critical: "bg-blue-400", // Highest opacity for critical
+    high: "bg-blue-300",
+    warning: "bg-blue-200",
+    low: "bg-blue-100",
+    info: "bg-blue-50", // Lowest opacity for info
   },
   Basic: {
     critical: "bg-red-200",
-    high: "bg-orange-200",
+    high: "bg-blue-200",
     warning: "bg-yellow-200",
     low: "bg-green-200",
     info: "bg-blue-200",
@@ -103,7 +103,7 @@ export const AlertTableThemeSelection = ({
       <Button
         data-testid="apply-theme-button"
         className="mt-4"
-        color="orange"
+        color="blue"
         onClick={onApplyTheme}
       >
         Apply theme

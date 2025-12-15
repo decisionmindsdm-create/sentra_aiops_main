@@ -161,29 +161,25 @@ export default function ProvidersPage({
   }
 
   const searchProviders = (provider: Provider) => {
-    if (!providersSearchString) return true;
-    
-    const searchLower = providersSearchString.toLowerCase();
     return (
-      provider.type?.toLowerCase().includes(searchLower) ||
-      provider.display_name?.toLowerCase().includes(searchLower)
+      !providersSearchString ||
+      provider.type?.toLowerCase().includes(providersSearchString.toLowerCase())
     );
   };
 
   const searchCategories = (provider: Provider) => {
-    if (providersSelectedCategories.length === 0) {
-      return true;
+    if (providersSelectedCategories.includes("Coming Soon")) {
+      if (provider.coming_soon) {
+        return true;
+      }
     }
 
-    // Check if provider matches any of the selected categories
-    const matchesComingSoon =
-      providersSelectedCategories.includes("Coming Soon") && provider.coming_soon;
-    
-    const matchesOtherCategories = provider.categories.some((category) =>
-      providersSelectedCategories.includes(category)
+    return (
+      providersSelectedCategories.length === 0 ||
+      provider.categories.some((category) =>
+        providersSelectedCategories.includes(category)
+      )
     );
-
-    return matchesComingSoon || matchesOtherCategories;
   };
 
   const searchTags = (provider: Provider) => {
@@ -200,6 +196,12 @@ export default function ProvidersPage({
       searchCategories(provider)
   );
 
+  const displayableProviders = filteredProviders.filter(
+    (provider) =>
+      Object.keys(provider.config || {}).length > 0 ||
+      (provider.tags && provider.tags.includes("alert"))
+  );
+
   return (
     <>
       {isFilteringActive && (
@@ -210,13 +212,13 @@ export default function ProvidersPage({
             isLocalhost={isLocalhost}
             mutate={mutate}
           />
-          {filteredProviders.length > 0 && (
+          {displayableProviders.length > 0 && (
             <p className="text-m text-gray-500">
-              {filteredProviders.length} provider
-              {filteredProviders.length > 1 ? "s" : ""} found
+              {displayableProviders.length} provider
+              {displayableProviders.length > 1 ? "s" : ""} found
             </p>
           )}
-          {filteredProviders.length === 0 && (
+          {displayableProviders.length === 0 && (
             <p className="text-m text-gray-500">
               No providers found matching your filters.
             </p>

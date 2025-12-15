@@ -175,20 +175,20 @@ export const EnrichAlertSidePanel: React.FC<EnrichAlertModalProps> = ({
       <div className="sticky bottom-0 p-4 border-t border-gray-200 bg-white flex justify-end gap-2">
         <Button
           onClick={addCustomField}
-          className="bg-orange-500"
+          className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
           variant="primary"
         >
           + Add Field
         </Button>
         <Button
           onClick={handleSave}
-          color="orange"
+          className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
           variant="primary"
           disabled={!isDataValid}
         >
           Save
         </Button>
-        <Button onClick={handleClose} color="orange" variant="secondary">
+        <Button onClick={handleClose} className="!text-[#0d88c0] hover:!text-[#0a6d9a]" variant="secondary">
           Close
         </Button>
       </div>

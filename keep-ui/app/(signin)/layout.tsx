@@ -2,7 +2,7 @@ import { Card, Text } from "@tremor/react";
 import Image from "next/image";
 
 export const metadata = {
-  title: "DM AIops",
+  title: "DM AIOPS",
   description: "The open-source alert management and AIOps platform",
 };
 
@@ -26,13 +26,13 @@ export default function RootLayout({
                 className="object-contain h-full"
               />
               <Text className="text-tremor-title font-bold text-tremor-content-strong">
-                Dm AIops
+                DM AIOPS
               </Text>
             </div>
             <Card
               className="w-full max-w-md p-8 min-w-96 flex flex-col gap-6 items-center"
               decoration="top"
-              decorationColor="orange"
+              decorationColor="[#0d88c0]"
             >
               {children}
             </Card>

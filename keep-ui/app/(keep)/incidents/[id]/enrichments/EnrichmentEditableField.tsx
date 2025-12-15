@@ -106,7 +106,7 @@ export const EnrichmentEditableField = ({
           disabled={!(fieldName && stringedValue)}
           tooltip="Save"
           icon={() => (
-            <Icon icon={FiSave} className={`w-4 h-4 text-orange-500`} />
+            <Icon icon={FiSave} className={`w-4 h-4 text-blue-500`} />
           )}
           onClick={handleSave}
         />
@@ -133,7 +133,7 @@ export const EnrichmentEditableField = ({
                 : value.map((item: string) => (
                     <Badge
                       key={item}
-                      color="orange"
+                      color="blue"
                       size="sm"
                       className="cursor-pointer"
                       onClick={() => filterBy(fieldName, item)}
@@ -149,7 +149,7 @@ export const EnrichmentEditableField = ({
             tooltip="Edit"
             onClick={() => setEditMode(true)}
             icon={() => (
-              <Icon icon={MdModeEdit} className={`w-4 h-4 text-orange-500`} />
+              <Icon icon={MdModeEdit} className={`w-4 h-4 text-blue-500`} />
             )}
           />
 

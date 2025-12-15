@@ -59,9 +59,8 @@ const WorkflowSecrets = ({ workflowId }: { workflowId: string }) => {
           </div>
           <Button
             onClick={() => toggleShowValue(row.original.name)}
-            className="p-1 rounded"
+            className="p-1 rounded !text-[#0d88c0] hover:!text-[#0a6d9a]"
             icon={showValues[row.original.name] ? EyeOff : Eye}
-            color="orange"
             variant="secondary"
           />
         </div>
@@ -112,7 +111,7 @@ const WorkflowSecrets = ({ workflowId }: { workflowId: string }) => {
           <Button
             onClick={handleAddSecret}
             variant="primary"
-            color="orange"
+            className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
             icon={PlusIcon}
           >
             Add Secret

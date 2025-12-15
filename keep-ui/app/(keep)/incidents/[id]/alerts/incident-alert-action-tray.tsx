@@ -35,7 +35,7 @@ export function IncidentAlertActionTray({
       <div
         className={clsx("flex items-center", [
           "transition-opacity duration-100",
-          "opacity-0 bg-orange-100",
+          "opacity-0 bg-blue-100",
           "group-hover:opacity-100",
         ])}
       >
@@ -51,7 +51,7 @@ export function IncidentAlertActionTray({
               icon={IoExpandSharp}
               className={clsx(
                 "w-4 h-4 object-cover rounded",
-                expanded ? "text-orange-400" : "text-gray-500"
+                expanded ? "text-[#0d88c0]" : "text-gray-500"
               )}
             />
           )}

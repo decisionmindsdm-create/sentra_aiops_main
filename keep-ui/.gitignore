@@ -39,6 +39,7 @@ jspm_packages
 .node_repl_history
 .next
 
+.env.local
 
 app/topology/mock-topology-data.tsx
 .vercel

@@ -259,20 +259,20 @@ export function AddEditNodeSidePanel({
       </div>
       <div className="sticky bottom-0 p-4 border-t border-gray-200 bg-white flex justify-end gap-2">
         {editData ? (
-          <Button onClick={handleUpdate} color="orange" variant="primary">
+          <Button onClick={handleUpdate} className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white" variant="primary">
             Update
           </Button>
         ) : (
           <Button
             onClick={handleSave}
-            color="orange"
+            className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
             variant="primary"
             disabled={!handleSaveValidation()}
           >
             Save
           </Button>
         )}
-        <Button onClick={handleClosePanel} color="orange" variant="secondary">
+        <Button onClick={handleClosePanel} className="!text-[#0d88c0] hover:!text-[#0a6d9a]" variant="secondary">
           Close
         </Button>
       </div>

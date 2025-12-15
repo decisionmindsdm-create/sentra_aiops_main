@@ -27,7 +27,7 @@ export function TriggerEditor() {
 
   const { data: config } = useConfig();
 
-  const docsUrl = config?.KEEP_DOCS_URL || "https://docs.keep.dev";
+  const docsUrl = config?.KEEP_DOCS_URL || "https://www.decisionminds.com/";
 
   const saveNodeDataDebounced = useCallback(
     debounce((key: string, value: string | Record<string, any>) => {

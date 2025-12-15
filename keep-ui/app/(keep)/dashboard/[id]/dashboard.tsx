@@ -168,10 +168,10 @@ const DashboardPage = () => {
               onChange={handleNameChange}
               onBlur={toggleEditingName}
               placeholder="Dashboard Name"
-              className="border-orange-500 focus:border-orange-600 focus:ring-orange-600"
+              className="border-[#0d88c0] focus:border-[#0a6d9a] focus:ring-[#0d88c0]"
             />
           ) : (
-            <Subtitle color="orange" className="mr-2">
+            <Subtitle className="mr-2 !text-[#0d88c0]">
               {dashboardName}
             </Subtitle>
           )}
@@ -179,8 +179,7 @@ const DashboardPage = () => {
             size="xs"
             icon={FiEdit2}
             onClick={toggleEditingName}
-            className="cursor-pointer absolute right-0 top-0 transform -translate-y-1/2 translate-x-1/2 text-sm"
-            color="orange"
+            className="cursor-pointer absolute right-0 top-0 transform -translate-y-1/2 translate-x-1/2 text-sm text-[#0d88c0]"
           />
         </div>
         <div className="flex gap-1 items-end">
@@ -188,12 +187,12 @@ const DashboardPage = () => {
           <div className="flex">
             <Button
               icon={FiSave}
-              color="orange"
+              className="!text-[#0d88c0] hover:!text-[#0a6d9a]"
               size="sm"
               onClick={handleSaveDashboard}
               tooltip="Save current dashboard"
             />
-            <Button color="orange" onClick={openModal} className="ml-2">
+            <Button className="ml-2 !bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white" onClick={openModal}>
               Add Widget
             </Button>
           </div>

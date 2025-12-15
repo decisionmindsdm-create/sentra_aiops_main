@@ -81,12 +81,12 @@ export default function RunMappingModal({ ruleId, isOpen, onClose }: Props) {
         )}
 
         <div className="flex justify-end gap-2 mt-4">
-          <Button onClick={clearAndClose} color="orange" variant="secondary">
+          <Button onClick={clearAndClose} className="!text-[#0d88c0] hover:!text-[#0a6d9a]" variant="secondary">
             Cancel
           </Button>
           <Button
             onClick={handleRun}
-            color="orange"
+            className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
             loading={isLoading}
             disabled={!selectedAlertId}
           >

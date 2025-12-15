@@ -31,7 +31,7 @@ export function ErrorComponent({
   const { data: config } = useConfig();
 
   const contactUsUrl =
-    config?.KEEP_CONTACT_US_URL || "https://www.decisionminds.com/#contact";
+    config?.KEEP_CONTACT_US_URL || "https://slack.keephq.dev/";
 
   useEffect(() => {
     Sentry.captureException(originalError);
