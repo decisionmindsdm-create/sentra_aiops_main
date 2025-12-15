@@ -191,7 +191,7 @@ export function ManageSelection({
         <p className="text-lg font-bold">{selectedApplication.name}</p>
         <div className="flex gap-2">
           <Button
-            color="orange"
+            className="!text-[#0d88c0] hover:!text-[#0a6d9a]"
             size="xs"
             variant="secondary"
             onClick={() => setIsModalOpen(true)}
@@ -223,10 +223,9 @@ export function ManageSelection({
         <div className="">
           {selectedServices.length === 1 && selectedServices[0].is_manual && (
             <Button
-              color="orange"
+              className="mr-3 !text-[#0d88c0] hover:!text-[#0a6d9a]"
               size="xs"
               variant="secondary"
-              className="mr-3"
               onClick={() => {
                 setIsSidePanelOpen(true);
                 setServiceToEdit(selectedServices[0]);
@@ -248,7 +247,7 @@ export function ManageSelection({
               </Button>
             )}
           <Button
-            color="orange"
+            className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
             size="xs"
             variant="primary"
             onClick={() => setIsModalOpen(true)}
@@ -297,7 +296,7 @@ export function ManageSelection({
         <div></div>
         <div className="flex gap-2">
           <Button
-            color="orange"
+            className="!text-[#0d88c0] hover:!text-[#0a6d9a]"
             size="xs"
             variant="secondary"
             onClick={() => editEdgeProtocol(selectedEdges[0])}

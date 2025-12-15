@@ -550,7 +550,7 @@ export function AlertTableServerSide({
               >
                 <div className="flex gap-2 justify-center">
                   <Button
-                    color="orange"
+                    color="blue"
                     icon={GrTest}
                     variant="secondary"
                     onClick={handleModalOpen}
@@ -559,7 +559,7 @@ export function AlertTableServerSide({
                   </Button>
                   <Button
                     icon={PlusIcon}
-                    color="orange"
+                    color="blue"
                     variant="primary"
                     onClick={() => {
                       router.push("/providers?labels=alert");
@@ -592,7 +592,7 @@ export function AlertTableServerSide({
                   icon={FunnelIcon}
                 >
                   <Button
-                    color="orange"
+                    color="blue"
                     variant="secondary"
                     onClick={() => setClearFiltersToken(uuidV4())}
                   >

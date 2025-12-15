@@ -61,10 +61,10 @@ export function Select<
   const customSelectStyles: StylesConfig<Option, IsMulti, Group> = {
     control: (provided, state) => ({
       ...provided,
-      borderColor: state.isFocused ? "orange" : "rgb(229 231 235)",
+      borderColor: state.isFocused ? "#1670A6" : "rgb(229 231 235)",
       borderRadius: "0.5rem",
-      "&:hover": { borderColor: "orange" },
-      boxShadow: state.isFocused ? "0 0 0 1px orange" : provided.boxShadow,
+      "&:hover": { borderColor: "#1670A6" },
+      boxShadow: state.isFocused ? "0 0 0 1px #1670A6" : provided.boxShadow,
       backgroundColor: "white",
     }),
     singleValue: (provided) => ({
@@ -75,22 +75,22 @@ export function Select<
     option: (provided, state) => ({
       ...provided,
       backgroundColor: state.isSelected
-        ? "orange"
+        ? "#1670A6"
         : state.isFocused
-          ? "rgba(255, 165, 0, 0.1)"
+          ? "rgba(22, 112, 166, 0.1)"
           : "transparent",
       color: state.isSelected ? "white" : "black",
       "&:hover": state.isSelected
         ? {}
         : {
-            backgroundColor: "rgba(255, 165, 0, 0.3)",
+            backgroundColor: "rgba(22, 112, 166, 0.3)",
           },
     }),
     multiValue: (provided) => ({
       ...provided,
-      backgroundColor: "rgb(255 165 0 / 0.1)",
+      backgroundColor: "rgb(22 112 166 / 0.1)",
       borderRadius: "0.25rem",
-      border: "1px solid rgb(249 115 22 / 0.2)",
+      border: "1px solid rgb(22 112 166 / 0.2)",
     }),
     multiValueLabel: (provided) => ({
       ...provided,
@@ -100,15 +100,15 @@ export function Select<
     }),
     multiValueRemove: (provided) => ({
       ...provided,
-      color: "rgb(234 88 12)",
+      color: "rgb(22 112 166)",
       "&:hover": {
-        backgroundColor: "rgb(234 88 12)",
+        backgroundColor: "rgb(22 112 166)",
         color: "white",
       },
     }),
     menu: (provided) => ({
       ...provided,
-      color: "orange",
+      color: "#1670A6",
       zIndex: 21,
     }),
     menuList: (provided) => ({

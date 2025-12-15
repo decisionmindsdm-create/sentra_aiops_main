@@ -211,7 +211,7 @@ export const TableFilters: React.FC<TableFiltersProps> = ({ workflowId }) => {
         />
       </div>
       <Button
-        color="orange"
+        className="!text-[#0d88c0] hover:!text-[#0a6d9a]"
         variant="secondary"
         onClick={() => {
           filterRef.current = { trigger: [], status: [], execution_id: "" };

@@ -27,6 +27,6 @@ export default async function Page() {
 }
 
 export const metadata = {
-  title: "DM AIops - Incidents",
+  title: "Keep - Incidents",
   description: "List of incidents",
 };

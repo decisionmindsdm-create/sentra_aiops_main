@@ -295,11 +295,11 @@ export function IncidentList({
         {!isPredictedLoading &&
         predictedIncidents &&
         predictedIncidents.items.length > 0 ? (
-          <Card className="mt-10 mb-10 flex-grow shadow-md border border-slate-200/60 rounded-xl">
-            <Title className="text-slate-900 font-bold">Incident Predictions</Title>
-            <Subtitle className="text-slate-600">
+          <Card className="mt-10 mb-10 flex-grow">
+            <Title>Incident Predictions</Title>
+            <Subtitle>
               Possible problems predicted by Keep AI & Correlation Rules{" "}
-              <Badge color="orange" className="bg-orange-100 text-orange-700 font-semibold border border-orange-200 rounded-lg">Beta</Badge>
+              <Badge color="orange">Beta</Badge>
             </Subtitle>
             <PredictedIncidentsTable
               incidents={predictedIncidents}
@@ -308,22 +308,30 @@ export function IncidentList({
           </Card>
         ) : null}
 
-        <div className="h-full flex flex-col gap-6">
-          <div className="flex justify-between items-center bg-white/60 backdrop-blur-sm p-4 rounded-xl border border-slate-200/60 shadow-sm">
+        <div className="h-full flex flex-col gap-5">
+          <div className="flex justify-between items-center mb-5">
             <div>
-              <PageTitle>Incidents</PageTitle>
-              <PageSubtitle>Group alerts into incidents</PageSubtitle>
+              <div className="text-2xl font-semibold mb-1">Incidents</div>
+              <div className="text-sm text-gray-500">Group alerts into incidents</div>
             </div>
 
             <div className="flex gap-3">
               {renderDateTimePicker()}
               <Button
-                color="orange"
+                style={{ 
+                  background: 'linear-gradient(180deg, #0d88c0 0%, #0b7aae 100%)',
+                  borderRadius: '8px',
+                  padding: '10px 20px',
+                  fontWeight: '600',
+                  fontSize: '14px',
+                  border: 'none',
+                  color: 'white',
+                  height: '40px'
+                }}
                 size="md"
                 icon={PlusIcon}
                 variant="primary"
                 onClick={() => setIsFormOpen(true)}
-                className="bg-gradient-to-r from-[#085690] to-[#0d88c0] hover:from-[#0d88c0] hover:to-[#085690] font-semibold shadow-md hover:shadow-lg transition-all duration-200 rounded-lg border-2 border-[#085690]"
               >
                 Create Incident
               </Button>
@@ -334,9 +342,9 @@ export function IncidentList({
               <IncidentListError incidentError={incidentsError} />
             ) : null}
             {incidentsError ? null : (
-              <div className="flex flex-row gap-6">
+              <div className="flex flex-row gap-5">
                 <FacetsPanelServerSide
-                  className=""
+                  className="mt-14"
                   entityName={"incidents"}
                   facetsConfig={facetsConfig}
                   facetOptionsCel={facetsCel}
@@ -346,7 +354,7 @@ export function IncidentList({
                   onCelChange={setFilterCel}
                   revalidationToken={filterRevalidationToken}
                 />
-                <div className="flex flex-col gap-6 flex-1 min-w-0">
+                <div className="flex flex-col gap-5 flex-1 min-w-0">
                   {renderIncidents()}
                 </div>
               </div>

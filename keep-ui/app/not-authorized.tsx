@@ -18,7 +18,7 @@ export default function NotAuthorized({ message }: { message?: string }) {
           <br />
           If you need help, please contact us on{" "}
           <Link
-            href="https://www.decisionminds.com/#contact"
+            href="https://slack.keephq.dev/"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -26,7 +26,7 @@ export default function NotAuthorized({ message }: { message?: string }) {
           </Link>
         </Subtitle>
       </div>
-      <Image src="/keep.svg" alt="Keep" width={150} height={150} />
+      <Image src="/keep.svg" alt="Dm Vivek" width={150} height={150} />
       <Button
         onClick={() => {
           router.back();

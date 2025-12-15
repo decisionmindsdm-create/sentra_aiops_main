@@ -262,7 +262,7 @@ export function LinkTicketModal({
           </Button>
           <Button
             variant="primary"
-            color="orange"
+            className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
             type="submit"
             disabled={isLoading || !ticketUrl.trim() || (ticketingProviders.length > 1 && !selectedProviderId)}
           >

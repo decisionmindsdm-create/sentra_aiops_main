@@ -1,4 +1,3 @@
-// UI Change Only - functionality unchanged
 "use client";
 
 import { Icon } from "@tremor/react";
@@ -12,9 +11,9 @@ export const MinimizeMenuButton = () => {
   );
 
   return (
-    <div className="hidden lg:flex items-center justify-center border-r border-gray-300 bg-gray-50" style={{ width: '30px', minWidth: '30px' }}>
+    <div className="hidden lg:flex items-center h-full justify-center fixed left-[240px] xl:left-[260px] 2xl:left-[280px] bottom-0 w-[30px] z-20" style={{ top: '56px' }}>
       <button
-        className="flex items-center justify-center h-full w-full hover:bg-gray-100 transition-colors"
+        className="flex items-center justify-center"
         onClick={() => setisMenuMinimized(!isMenuMinimized)}
       >
         <Icon

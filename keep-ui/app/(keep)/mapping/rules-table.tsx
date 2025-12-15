@@ -119,7 +119,7 @@ export default function RulesTable({ mappings, editCallback }: Props) {
       cell: (context) => (
         <div className="flex flex-wrap gap-1">
           {context.row.original.attributes?.map((attr) => (
-            <Badge key={attr} color="orange" size="xs">
+            <Badge key={attr} className="!bg-[#0d88c0] !text-white" size="xs">
               {attr}
             </Badge>
           ))}
@@ -132,7 +132,7 @@ export default function RulesTable({ mappings, editCallback }: Props) {
       cell: (context) => (
         <div className="space-x-1 flex flex-row items-center justify-end opacity-0 group-hover:opacity-100 bg-slate-100 border-l">
           <Button
-            color="orange"
+            className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
             size="xs"
             icon={MdPlayArrow}
             tooltip="Run"
@@ -142,7 +142,7 @@ export default function RulesTable({ mappings, editCallback }: Props) {
             }}
           />
           <Button
-            color="orange"
+            className="!text-[#0d88c0] hover:!text-[#0a6d9a]"
             size="xs"
             variant="secondary"
             icon={MdModeEdit}
@@ -194,7 +194,9 @@ export default function RulesTable({ mappings, editCallback }: Props) {
 
   return (
     <>
-      <Table>
+      {/* UI Change Only - functionality unchanged - responsive table wrapper */}
+      <div className="w-full overflow-x-auto">
+        <Table style={{ minWidth: '700px' }}>
         <TableHead>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow
@@ -244,6 +246,7 @@ export default function RulesTable({ mappings, editCallback }: Props) {
           ))}
         </TableBody>
       </Table>
+      </div>
 
       <RunMappingModal
         ruleId={runModalRule!}

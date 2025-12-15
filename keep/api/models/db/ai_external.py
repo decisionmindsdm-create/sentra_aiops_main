@@ -78,7 +78,57 @@ analyzing the alert feed and making decisions for each incoming alert.""",
     ),
 )
 
-EXTERNAL_AIS = [external_ai_transformers]
+# OpenAI-based correlation algorithm
+openai_correlation = ExternalAI(
+    name="OpenAI Alert Correlation",
+    description="""An OpenAI GPT-4o powered alert correlation and enrichment algorithm.
+This algorithm uses OpenAI's advanced language models to analyze alert patterns, correlate related alerts,
+and provide intelligent insights for incident management. It can automatically group similar alerts,
+suggest root causes, and enrich alert data with contextual information.""",
+    version=1,
+    api_url=None,  # OpenAI-based, no external URL needed
+    api_key=None,  # Uses OPENAI_API_KEY from environment
+    config_default=json.dumps(
+        [
+            {
+                "min": 0.5,
+                "max": 1.0,
+                "value": 0.8,
+                "type": "float",
+                "name": "Correlation Confidence Threshold",
+                "description": "The minimum confidence score (0-1) for OpenAI to correlate two alerts as related.",
+            },
+            {
+                "min": 2,
+                "max": 50,
+                "value": 10,
+                "type": "int",
+                "name": "Max Alerts to Analyze",
+                "description": "Maximum number of recent alerts to analyze for correlation in a single batch.",
+            },
+            {
+                "value": True,
+                "type": "bool",
+                "name": "Auto-Create Incidents",
+                "description": "Automatically create new incidents when correlated alerts are detected.",
+            },
+            {
+                "value": True,
+                "type": "bool",
+                "name": "Enable Enrichment",
+                "description": "Use OpenAI to enrich alerts with additional context and analysis.",
+            },
+            {
+                "value": True,
+                "type": "bool",
+                "name": "Enabled",
+                "description": "Enable or disable the OpenAI correlation algorithm.",
+            },
+        ]
+    ),
+)
+
+EXTERNAL_AIS = [external_ai_transformers, openai_correlation]
 
 
 class ExternalAIConfigAndMetadata(SQLModel, table=True):

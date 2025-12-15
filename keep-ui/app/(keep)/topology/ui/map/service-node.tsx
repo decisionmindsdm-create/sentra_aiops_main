@@ -111,7 +111,7 @@ export function ServiceNode({ data, selected }: NodeProps<ServiceNodeType>) {
   const incidentsCount = data.incidents ?? 0;
   const alertsCount = data.alerts ?? 0;
   const badgeColor =
-    incidentsCount < THRESHOLD ? "bg-orange-500" : "bg-red-500";
+    incidentsCount < THRESHOLD ? "bg-blue-500" : "bg-red-500";
 
   return (
     <>

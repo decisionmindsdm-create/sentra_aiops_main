@@ -181,8 +181,7 @@ export function AlertPresetManager({
                 ? "Collapse all groups"
                 : "Expand all groups"
             }
-            className="ml-2"
-            color="orange"
+            className="ml-2 !text-[#0d88c0] hover:!text-[#0a6d9a] !border-[#0d88c0]"
           >
             {areAllGroupsExpanded() ? "Collapse All" : "Expand All"}
           </Button>

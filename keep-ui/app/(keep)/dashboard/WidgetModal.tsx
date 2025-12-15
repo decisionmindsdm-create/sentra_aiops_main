@@ -169,7 +169,7 @@ const WidgetModal: React.FC<WidgetModalProps> = ({
           ></MetricWidgetForm>
         )}
         <Button
-          color="orange"
+          className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
           type="submit"
           disabled={!isValid || !innerFormState.isValid}
         >

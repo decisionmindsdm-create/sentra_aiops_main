@@ -146,9 +146,8 @@ const ProviderHealthResultsModal = ({
         </Title>
         <Button
           size="lg"
-          color="orange"
+          className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white w-full"
           variant="primary"
-          className="w-full"
           onClick={() => window.open(`https://platform.keephq.dev/providers`)}
         >
           Sign up to Keep

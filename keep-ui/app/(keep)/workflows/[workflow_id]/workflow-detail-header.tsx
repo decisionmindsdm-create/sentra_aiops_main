@@ -61,9 +61,8 @@ export default function WorkflowDetailHeader({
           {!!workflow && (
             <Button
               size="xs"
-              color="orange"
+              className="p-2 px-4 !bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
               disabled={isRunning || isRunButtonDisabled}
-              className="p-2 px-4"
               onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                 e.stopPropagation();
                 e.preventDefault();

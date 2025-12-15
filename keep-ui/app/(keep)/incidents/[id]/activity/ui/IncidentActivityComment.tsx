@@ -53,7 +53,7 @@ export function IncidentActivityComment({
 
       <div className="flex justify-end p-2">
         <Button
-          color="orange"
+          className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
           variant="primary"
           disabled={!comment}
           onClick={onSubmit}

@@ -87,10 +87,12 @@ export function GenericTable<T>({
 
   const Container = asCard ? Card : "div";
 
+  // UI Change Only - functionality unchanged - responsive table wrapper
   return (
     <div className="flex flex-col gap-4 w-full h-full max-h-full">
-      <Container className="p-0">
-        <TremorTable className="w-full">
+      <Container className="p-0 w-full">
+        <div className="w-full overflow-x-auto">
+          <TremorTable className="w-full" style={{ minWidth: '600px' }}>
           <TableHead>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow
@@ -129,6 +131,7 @@ export function GenericTable<T>({
             ))}
           </TableBody>
         </TremorTable>
+        </div>
       </Container>
       {pagination && <Pagination table={table} isRefreshAllowed={false} />}
     </div>

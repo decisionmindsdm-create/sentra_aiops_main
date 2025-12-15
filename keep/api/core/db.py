@@ -5488,13 +5488,18 @@ def get_alerts_metrics_by_provider(
 def get_or_create_external_ai_settings(
     tenant_id: str,
 ) -> List[ExternalAIConfigAndMetadataDto]:
+    from keep.api.models.db.ai_external import openai_correlation
+    
     with Session(engine) as session:
         algorithm_configs = session.exec(
             select(ExternalAIConfigAndMetadata).where(
                 ExternalAIConfigAndMetadata.tenant_id == tenant_id
             )
         ).all()
+        
+        # Create algorithm configs if they don't exist
         if len(algorithm_configs) == 0:
+            # Check for external transformers
             if os.environ.get("KEEP_EXTERNAL_AI_TRANSFORMERS_URL") is not None:
                 algorithm_config = ExternalAIConfigAndMetadata.from_external_ai(
                     tenant_id=tenant_id, algorithm=external_ai_transformers
@@ -5502,6 +5507,22 @@ def get_or_create_external_ai_settings(
                 session.add(algorithm_config)
                 session.commit()
                 algorithm_configs = [algorithm_config]
+            
+            # Always add OpenAI correlation if OpenAI API key is set
+            if os.environ.get("OPENAI_API_KEY") or os.environ.get("OPEN_AI_API_KEY"):
+                # Check if OpenAI algorithm already exists
+                openai_exists = any(
+                    config.algorithm_id == openai_correlation.unique_id 
+                    for config in algorithm_configs
+                )
+                if not openai_exists:
+                    openai_config = ExternalAIConfigAndMetadata.from_external_ai(
+                        tenant_id=tenant_id, algorithm=openai_correlation
+                    )
+                    session.add(openai_config)
+                    session.commit()
+                    algorithm_configs = list(algorithm_configs) + [openai_config]
+        
         return [
             ExternalAIConfigAndMetadataDto.from_orm(algorithm_config)
             for algorithm_config in algorithm_configs

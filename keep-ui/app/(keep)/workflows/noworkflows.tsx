@@ -28,7 +28,7 @@ const WorkflowsEmptyState = () => {
       icon: BellAlertIcon,
     },
     {
-      href: "https://www.decisionminds.com/#contact",
+      href: "https://slack.keephq.dev",
       label: "Get support on your Workflow",
       icon: FaSlack,
     },
@@ -52,7 +52,8 @@ const WorkflowsEmptyState = () => {
         >
           <Button
             icon={PlusIcon}
-            className="mt-4 px-6 py-2 bg-[#0d88c0] hover:bg-[#0b76a8] border-[#0d88c0] text-white"
+            className="mt-4 px-6 py-2"
+            color="orange"
             variant="primary"
             onClick={() => {
               router.push("/workflows/builder");

@@ -49,7 +49,7 @@ export default function Extraction() {
         </div>
         <div>
           <Button
-            color="orange"
+            className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
             size="md"
             type="submit"
             onClick={() => setIsSidePanelOpen(true)}
@@ -82,7 +82,7 @@ export default function Extraction() {
             ) : (
               <EmptyStateCard icon={ExportIcon} title="No extraction rules yet">
                 <Button
-                  color="orange"
+                  className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
                   size="md"
                   type="submit"
                   onClick={() => setIsSidePanelOpen(true)}

@@ -36,11 +36,11 @@ const SortableHeaderCell = ({
   return (
     <TableHeaderCell
       className={clsx(
-        "relative bg-tremor-background group",
+        "relative group",
         commonClassName,
         className
       )}
-      style={style}
+      style={{ ...style, background: '#F8FAFF', borderBottom: '1px solid #DDE3EB', fontSize: '13px', fontWeight: '600', padding: '12px 16px', color: '#4F5A67' }}
     >
       <div className="flex items-center">
         {children} {/* Column name or text */}
@@ -85,8 +85,9 @@ const SortableHeaderCell = ({
 export const IncidentTableComponent = (props: Props) => {
   const { table } = props;
 
+  // UI Change Only - functionality unchanged - ensure table has min-width for proper layout
   return (
-    <Table data-testid="incidents-table">
+    <Table data-testid="incidents-table" style={{ borderSpacing: '0', minWidth: '800px', width: '100%' }}>
       <TableHead>
         {table.getHeaderGroups().map((headerGroup, index) => (
           <TableRow
@@ -114,7 +115,8 @@ export const IncidentTableComponent = (props: Props) => {
         {table.getRowModel().rows.map((row) => (
           <TableRow
             key={row.id}
-            className="even:bg-tremor-background-muted even:dark:bg-dark-tremor-background-muted"
+            className="even:bg-tremor-background-muted even:dark:bg-dark-tremor-background-muted hover:bg-[#F5F9FF] transition-all duration-200"
+            style={{ borderBottom: '1px solid #E3E6EA' }}
           >
             {row.getVisibleCells().map((cell) => {
               const { style, className } = getCommonPinningStylesAndClassNames(
@@ -123,7 +125,7 @@ export const IncidentTableComponent = (props: Props) => {
               return (
                 <TableCell
                   key={cell.id}
-                  style={style}
+                  style={{ ...style, padding: '12px 16px', fontSize: '13px' }}
                   className={clsx(
                     cell.column.columnDef.meta?.tdClassName,
                     className,

@@ -5,6 +5,6 @@ export default function Page() {
 }
 
 export const metadata = {
-  title: "Dm AIops - Deduplication Rules",
+  title: "Keep - Deduplication Rules",
   description: "Set up rules to deduplicate similar alerts",
 };

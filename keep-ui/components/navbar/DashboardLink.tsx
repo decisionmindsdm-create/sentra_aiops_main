@@ -3,7 +3,6 @@ import { Subtitle } from "@tremor/react";
 import { FiLayout } from "react-icons/fi";
 import { LinkWithIcon } from "components/LinkWithIcon"; // Ensure you import this correctly
 import { clsx } from "clsx";
-import { ExportIcon } from "../icons";
 
 interface Dashboard {
   id: string;
@@ -32,33 +31,24 @@ export const DashboardLink = ({
   });
 
   return (
-    <>
-      <LinkWithIcon
-        href="/analysis"
-        icon={ExportIcon} // You can use a different icon if you want
-        testId="analysis"
+    <LinkWithIcon
+      href={href}
+      icon={FiLayout}
+      isDeletable={true}
+      onDelete={() => deleteDashboard(dashboard.id)}
+    >
+      <Subtitle
+        className={clsx(
+          "text-sm",
+          {
+            "text-orange-400": isActive,
+            "pointer-events-none cursor-auto": isDragging,
+          },
+          titleClassName
+        )}
       >
-        <Subtitle className="text-xs">Metrics</Subtitle>
-      </LinkWithIcon>
-
-      <LinkWithIcon
-        href={href}
-        icon={FiLayout}
-        isDeletable={true}
-        onDelete={() => deleteDashboard(dashboard.id)}
-      >
-        <Subtitle
-          className={clsx(
-            "text-sm",
-            {
-              "text-orange-400": isActive,
-              "pointer-events-none cursor-auto": isDragging,
-            },
-            titleClassName
-          )}
-        >
-          {dashboard.dashboard_name}
-        </Subtitle>
-      </LinkWithIcon></>
+        {dashboard.dashboard_name}
+      </Subtitle>
+    </LinkWithIcon>
   );
 };

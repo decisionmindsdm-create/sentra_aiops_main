@@ -81,7 +81,7 @@ const DeduplicationSidebar: React.FC<DeduplicationSidebarProps> = ({
   const alertProviders = useMemo(
     () =>
       [
-        { id: null, type: "Sentra", details: { name: "Sentra" }, tags: ["alert"] },
+        { id: null, type: "keep", details: { name: "Dm Vivek" }, tags: ["alert"] },
         ...providers.installed_providers,
         ...providers.linked_providers,
       ].filter((provider) => provider.tags?.includes("alert")),
@@ -191,22 +191,22 @@ const DeduplicationSidebar: React.FC<DeduplicationSidebarProps> = ({
 
   return (
     <SidePanel isOpen={isOpen} onClose={handleToggle}>
-      <div className="flex justify-between items-start mb-6 pb-4 border-b border-slate-200">
+      <div className="flex justify-between mb-4">
         <div>
-          <Dialog.Title className="font-bold text-xl text-slate-900" as={Title}>
+          <Dialog.Title className="font-bold" as={Title}>
             {selectedDeduplicationRule
               ? `Edit ${selectedDeduplicationRule.name}`
               : "Add deduplication rule"}
             {selectedDeduplicationRule?.default && (
-              <Badge className="ml-2 mt-1" color="orange">
+              <Badge className="ml-2 !bg-[#0d88c0] !text-white">
                 Default Rule
               </Badge>
             )}
           </Dialog.Title>
         </div>
         <div>
-          <Button onClick={toggle} variant="light" className="hover:bg-slate-100 rounded-lg transition-colors duration-200">
-            <IoMdClose className="h-6 w-6 text-slate-500 hover:text-slate-700" />
+          <Button onClick={toggle} variant="light">
+            <IoMdClose className="h-6 w-6 text-gray-500" />
           </Button>
         </div>
       </div>
@@ -214,10 +214,10 @@ const DeduplicationSidebar: React.FC<DeduplicationSidebarProps> = ({
       {selectedDeduplicationRule?.default && (
         <div className="flex flex-col">
           <Callout
-            className="mb-6 py-6 rounded-xl border-l-4 border-orange-400 bg-orange-50/50"
+            className="mb-4 py-8"
             title="Editing a Default Rule"
             icon={ExclamationTriangleIcon}
-            color="orange"
+            className="mb-4 py-8 !bg-blue-50 !border-blue-200"
           >
             Editing a default deduplication rule requires advanced knowledge.
             Default rules are carefully designed to provide optimal
@@ -231,7 +231,7 @@ const DeduplicationSidebar: React.FC<DeduplicationSidebarProps> = ({
                 config?.KEEP_DOCS_URL || "https://www.decisionminds.com/"
               }/overview/deduplication`}
               target="_blank"
-              className="text-orange-600 hover:underline mt-4"
+              className="text-[#0B57D0] hover:underline mt-4"
             >
               Learn more about deduplication rules
             </a>
@@ -242,10 +242,10 @@ const DeduplicationSidebar: React.FC<DeduplicationSidebarProps> = ({
       {selectedDeduplicationRule?.is_provisioned && (
         <div className="flex flex-col">
           <Callout
-            className="mb-6 py-6 rounded-xl border-l-4 border-orange-400 bg-orange-50/50"
+            className="mb-4 py-8"
             title="Editing a Provisioned Rule"
             icon={ExclamationTriangleIcon}
-            color="orange"
+            color="blue"
           >
             <Text>
               Editing a provisioned deduplication rule is not allowed. Please
@@ -257,13 +257,13 @@ const DeduplicationSidebar: React.FC<DeduplicationSidebarProps> = ({
 
       <form
         onSubmit={handleSubmit(onFormSubmit)}
-        className="mt-2 flex flex-col h-full"
+        className="mt-4 flex flex-col h-full"
       >
-        <div className="flex-grow space-y-5">
-          <Card className="shadow-sm border border-slate-200/60 rounded-xl">
-            <div className="space-y-5">
+        <div className="flex-grow space-y-4">
+          <Card>
+            <div className="space-y-4">
               <div>
-                <Text className="block text-sm font-semibold text-slate-700 mb-2">
+                <Text className="block text-sm font-medium text-gray-700 mb-2">
                   Rule name
                 </Text>
                 <Controller
@@ -276,13 +276,12 @@ const DeduplicationSidebar: React.FC<DeduplicationSidebarProps> = ({
                       {...field}
                       error={!!errors.name}
                       errorMessage={errors.name?.message}
-                      className="rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500"
                     />
                   )}
                 />
               </div>
               <div>
-                <Text className="block text-sm font-semibold text-slate-700 mb-2">
+                <Text className="block text-sm font-medium text-gray-700 mb-2">
                   Description
                 </Text>
                 <Controller
@@ -295,21 +294,20 @@ const DeduplicationSidebar: React.FC<DeduplicationSidebarProps> = ({
                       {...field}
                       error={!!errors.description}
                       errorMessage={errors.description?.message}
-                      className="rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500"
                     />
                   )}
                 />
               </div>
               <div>
-                <span className="text-sm font-semibold text-slate-700 flex items-center mb-2">
+                <span className="text-sm font-medium text-gray-700 flex items-center mb-2">
                   Provider
-                  <span className="ml-1.5 relative inline-flex items-center">
+                  <span className="ml-1 relative inline-flex items-center">
                     <span className="group relative flex items-center">
                       <Icon
                         icon={InformationCircleIcon}
-                        className="w-[1em] h-[1em] text-slate-500 hover:text-slate-700 transition-colors"
+                        className="w-[1em] h-[1em] text-gray-500"
                       />
-                      <span className="absolute bottom-full left-full p-3 bg-slate-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-80 text-center pointer-events-none group-hover:pointer-events-auto shadow-xl">
+                      <span className="absolute bottom-full left-full p-2 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-80 text-center pointer-events-none group-hover:pointer-events-auto">
                         Select the provider for which this deduplication rule
                         will apply. This determines the source of alerts that
                         will be processed by this rule.
@@ -329,7 +327,7 @@ const DeduplicationSidebar: React.FC<DeduplicationSidebarProps> = ({
                         selectedDeduplicationRule?.is_provisioned
                       }
                       options={alertProviders
-                        .filter((provider) => provider.type !== "Dm AIops")
+                        .filter((provider) => provider.type !== "keep")
                         .map((provider) => ({
                           value: `${provider.type}_${provider.id}`,
                           label:
@@ -377,15 +375,15 @@ const DeduplicationSidebar: React.FC<DeduplicationSidebarProps> = ({
                 )}
               </div>
               <div>
-                <span className="text-sm font-semibold text-slate-700 flex items-center mb-2">
+                <span className="text-sm font-medium text-gray-700 flex items-center mb-2">
                   Fields to use for fingerprint
-                  <span className="ml-1.5 relative inline-flex items-center">
+                  <span className="ml-1 relative inline-flex items-center">
                     <span className="group relative flex items-center">
                       <Icon
                         icon={InformationCircleIcon}
-                        className="w-[1em] h-[1em] text-slate-500 hover:text-slate-700 transition-colors"
+                        className="w-[1em] h-[1em] text-gray-500"
                       />
-                      <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 p-3 bg-slate-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-80 text-center pointer-events-none group-hover:pointer-events-auto shadow-xl">
+                      <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 p-2 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-80 text-center pointer-events-none group-hover:pointer-events-auto">
                         Fingerprint fields are used to identify and group
                         similar alerts. Choose fields that uniquely identify an
                         alert type, such as &apos;service&apos;,
@@ -437,7 +435,7 @@ const DeduplicationSidebar: React.FC<DeduplicationSidebarProps> = ({
                 )}
               </div>
               <div>
-                <div className="flex items-center space-x-3 p-3 bg-slate-50 rounded-lg border border-slate-200">
+                <div className="flex items-center space-x-2">
                   <Controller
                     name="full_deduplication"
                     control={control}
@@ -446,20 +444,19 @@ const DeduplicationSidebar: React.FC<DeduplicationSidebarProps> = ({
                         disabled={!!selectedDeduplicationRule?.is_provisioned}
                         checked={field.value}
                         onChange={field.onChange}
-                        className="data-[state=checked]:bg-blue-600"
                       />
                     )}
                   />
-                  <Text className="text-sm font-semibold text-slate-700 flex items-center">
+                  <Text className="text-sm font-medium text-gray-700 flex items-center">
                     Full deduplication
-                    <span className="ml-1.5 relative inline-flex items-center">
+                    <span className="ml-1 relative inline-flex items-center">
                       <span className="group relative flex items-center">
                         <Icon
                           icon={InformationCircleIcon}
-                          className="w-[1em] h-[1em] text-slate-500 hover:text-slate-700 transition-colors"
+                          className="w-[1em] h-[1em] text-gray-500"
                         />
-                        <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 p-3 bg-slate-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-80 text-center pointer-events-none group-hover:pointer-events-auto shadow-xl">
-                          1. Full deduplication: Dm AIops will discard events if
+                        <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 p-2 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-80 text-center pointer-events-none group-hover:pointer-events-auto">
+                          1. Full deduplication: Keep will discard events if
                           they are the same (excluding the &apos;Ignore
                           Fields&apos;).
                           <br />
@@ -476,7 +473,7 @@ const DeduplicationSidebar: React.FC<DeduplicationSidebarProps> = ({
 
               {fullDeduplication && (
                 <div>
-                  <Text className="block text-sm font-semibold text-slate-700 mb-2">
+                  <Text className="block text-sm font-medium text-gray-700 mb-2">
                     Ignore fields
                   </Text>
                   <Controller
@@ -517,7 +514,7 @@ const DeduplicationSidebar: React.FC<DeduplicationSidebarProps> = ({
           </Card>
           {errors.root?.serverError && (
             <Callout
-              className="mt-4 rounded-xl border-l-4 border-rose-400 bg-rose-50/50"
+              className="mt-4"
               title="Error while saving rule"
               color="rose"
             >
@@ -525,21 +522,20 @@ const DeduplicationSidebar: React.FC<DeduplicationSidebarProps> = ({
             </Callout>
           )}
         </div>
-        <div className="mt-6 pt-4 flex justify-end gap-3 border-t border-slate-200">
+        <div className="mt-6 flex justify-end gap-2">
           <Button
-            color="orange"
+            color="blue"
             variant="secondary"
             onClick={handleToggle}
             type="button"
-            className="border-2 border-orange-500 text-orange-600 hover:bg-orange-50 font-semibold px-6 rounded-lg transition-all duration-200"
+            className="border border-[#0B57D0] text-[#0B57D0]"
           >
             Cancel
           </Button>
           <Button
-            color="orange"
+            color="blue"
             type="submit"
             disabled={isSubmitting || selectedDeduplicationRule?.is_provisioned}
-            className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 font-semibold px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-200"
           >
             {isSubmitting ? "Saving..." : "Save"}
           </Button>

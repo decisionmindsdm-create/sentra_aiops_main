@@ -21,7 +21,7 @@ export const CorrelationPlaceholder = () => {
         description="Start building correlations to group alerts into incidents."
       >
         <Button
-          className="mb-10 bg-[#0d88c0] hover:bg-[#0b76a8] border-[#0d88c0] text-white"
+          className="mb-10 !bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
           variant="primary"
           size="md"
           onClick={() => onCorrelationClick()}

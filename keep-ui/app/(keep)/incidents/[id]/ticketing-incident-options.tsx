@@ -74,7 +74,7 @@ export function TicketingIncidentOptions({
     <>
       {linkedTicket ? (
         <Button
-          color="orange"
+          className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
           size="xs"
           variant="secondary"
           className="!py-0.5 mr-2"
@@ -87,7 +87,7 @@ export function TicketingIncidentOptions({
       ) : (
         <>
           <Button
-            color="orange"
+            className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
             size="xs"
             variant="secondary"
             className="!py-0.5 mr-2"
@@ -97,7 +97,7 @@ export function TicketingIncidentOptions({
             Create New Ticket
           </Button>
           <Button
-            color="orange"
+            className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
             size="xs"
             variant="secondary"
             className="!py-0.5 mr-2"

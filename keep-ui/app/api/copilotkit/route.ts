@@ -9,9 +9,24 @@ import { NextRequest } from "next/server";
 export const POST = async (req: NextRequest) => {
   function initializeCopilotRuntime() {
     try {
+      // Support both OPEN_AI_API_KEY and OPENAI_API_KEY for compatibility
+      const apiKey = process.env.OPEN_AI_API_KEY || process.env.OPENAI_API_KEY;
+      
+      console.log("[AI CONFIG DEBUG] OPEN_AI_API_KEY exists:", !!process.env.OPEN_AI_API_KEY);
+      console.log("[AI CONFIG DEBUG] OPENAI_API_KEY exists:", !!process.env.OPENAI_API_KEY);
+      console.log("[AI CONFIG DEBUG] Final API key loaded:", !!apiKey);
+      if (apiKey) {
+        console.log("[AI CONFIG DEBUG] API key preview:", apiKey.substring(0, 20) + "...");
+      }
+      
+      if (!apiKey) {
+        console.error("No OpenAI API key found in environment variables");
+        return null;
+      }
+      
       const openai = new OpenAI({
         organization: process.env.OPEN_AI_ORGANIZATION_ID,
-        apiKey: process.env.OPEN_AI_API_KEY,
+        apiKey: apiKey,
       });
       const serviceAdapter = new OpenAIAdapter({
         openai,

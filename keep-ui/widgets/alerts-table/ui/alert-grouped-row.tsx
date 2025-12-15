@@ -67,12 +67,12 @@ export const GroupedRow = ({
     return (
       <>
         {/* Group Header Row */}
-        <TableRow className="bg-orange-100 hover:bg-orange-200 cursor-pointer border-t border-orange-300">
+        <TableRow className="bg-blue-100 hover:bg-blue-200 cursor-pointer border-t border-blue-300">
           {/* Render a single cell that spans the entire width */}
           <TableCell
             colSpan={row.getVisibleCells().length}
             onClick={() => onToggleExpanded?.(groupKey)}
-            className="group-header-cell bg-orange-100 group-hover:bg-orange-200"
+            className="group-header-cell bg-blue-100 group-hover:bg-blue-200"
           >
             <div className="flex items-center gap-2">
               <ChevronDownIcon

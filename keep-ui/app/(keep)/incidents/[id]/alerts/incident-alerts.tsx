@@ -206,7 +206,7 @@ export default function IncidentAlerts({ incident }: Props) {
       >
         <div className="flex gap-2">
           <Button
-            color="orange"
+            className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
             variant="secondary"
             size="md"
             onClick={() => {
@@ -216,7 +216,7 @@ export default function IncidentAlerts({ incident }: Props) {
             Add Alerts Manually
           </Button>
           <Button
-            color="orange"
+            className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
             variant="primary"
             size="md"
             onClick={() => {

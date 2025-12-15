@@ -79,15 +79,16 @@ export const AlertsLinks = ({ session }: AlertsLinksProps) => {
           <>
             <Disclosure.Button className="w-full flex justify-between items-center px-2">
               <div className="flex items-center relative group">
-                <Subtitle className="text-xs ml-2 text-gray-900 font-medium uppercase">
+                {/* UI Change Only - functionality unchanged */}
+                <Subtitle className="text-xs ml-2 text-gray-600 font-semibold uppercase">
                   Alerts
                 </Subtitle>
                 <FiFilter
                   className={clsx(
-                    "absolute left-full ml-2 cursor-pointer text-gray-400 transition-opacity",
+                    "absolute left-full ml-2 cursor-pointer text-gray-500 transition-opacity",
                     {
-                      "opacity-100 text-orange-500": storedTags.length > 0,
-                      "opacity-0 group-hover:opacity-100 group-hover:text-orange-500":
+                      "opacity-100 text-[#0d88c0]": storedTags.length > 0,
+                      "opacity-0 group-hover:opacity-100 group-hover:text-[#0d88c0]":
                         storedTags.length === 0,
                     }
                   )}
@@ -99,7 +100,7 @@ export const AlertsLinks = ({ session }: AlertsLinksProps) => {
                 />
               </div>
               <IoChevronUp
-                className={clsx("mr-2 text-slate-400", {
+                className={clsx("mr-2 text-gray-500", {
                   "rotate-180": open,
                 })}
               />
@@ -141,7 +142,7 @@ export const AlertsLinks = ({ session }: AlertsLinksProps) => {
       >
         <div className="space-y-2">
           <Subtitle>Select tags to watch</Subtitle>
-          <Callout title="" color="orange">
+          <Callout title="" className="!bg-[#e6f7fc] !border-[#0d88c0] !text-[#0d88c0]">
             Customize your presets list by watching specific tags.
           </Callout>
           <CreatableMultiSelect
@@ -161,7 +162,7 @@ export const AlertsLinks = ({ session }: AlertsLinksProps) => {
             <Button
               size="lg"
               variant="secondary"
-              color="orange"
+              className="!text-[#0d88c0] hover:!text-[#0a6d9a]"
               onClick={() => setIsTagModalOpen(false)}
               tooltip="Close Modal"
             >
@@ -169,7 +170,7 @@ export const AlertsLinks = ({ session }: AlertsLinksProps) => {
             </Button>
             <Button
               size="lg"
-              color="orange"
+              className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
               onClick={handleApplyTags}
               tooltip="Apply Tags"
             >

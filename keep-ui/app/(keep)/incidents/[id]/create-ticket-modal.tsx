@@ -208,7 +208,7 @@ export function CreateTicketModal({
                 <strong>Note:</strong> After creating the ticket, you&apos;ll need to manually link it back to this incident using the ticket URL.
               </Text>
             </div>
-            <Text className="text-sm text-orange-500 mt-1">
+            <Text className="text-sm text-[#0d88c0] mt-1">
               You will be redirected to the {selectedProvider.display_name || selectedProvider.id} instance with the details above.
             </Text>
           </>
@@ -224,7 +224,7 @@ export function CreateTicketModal({
           </Button>
           <Button
             variant="primary"
-            color="orange"
+            className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
             onClick={handleCreateTicket}
             disabled={!selectedProviderId || !ticketTitle.trim()}
           >
