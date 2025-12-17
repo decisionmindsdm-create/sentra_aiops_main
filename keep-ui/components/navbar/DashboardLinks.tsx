@@ -23,6 +23,14 @@ import { MdOutlineFactCheck } from "react-icons/md";
 import { AiOutlineCode, AiOutlineBarChart } from "react-icons/ai";
 import { HiOutlineServer } from "react-icons/hi";
 import { TbDatabase } from "react-icons/tb";
+import { 
+  
+
+  
+  
+  ComputerDesktopIcon,
+  
+} from "@heroicons/react/24/outline";
 
 export const DashboardLinks = () => {
   const { dashboards = [], isLoading, error, mutate } = useDashboards();
@@ -123,7 +131,39 @@ export const DashboardLinks = () => {
               }
             )}
           >
-            Dashboard
+            Executive Overview
+          </Subtitle>
+        </LinkWithIcon>
+        
+        <LinkWithIcon
+                  href="/Operations-Dashboard"
+                  icon={ComputerDesktopIcon}>
+                  
+                
+          <Subtitle
+            className={clsx(
+              "text-sm",
+              {
+                "text-gray-900": pathname === "/Operations-Dashboard",
+              }
+            )}
+          >
+            Operations Dashboard
+          </Subtitle>
+        </LinkWithIcon>
+              
+
+        {/* Infra Monitoring Link */}
+        <LinkWithIcon href="/infra-monitoring" icon={HiOutlineServer}>
+          <Subtitle
+            className={clsx(
+              "text-sm",
+              {
+                "text-gray-900": pathname === "/infra-monitoring",
+              }
+            )}
+          >
+            Infrastructure Dashboard
           </Subtitle>
         </LinkWithIcon>
 
@@ -155,19 +195,6 @@ export const DashboardLinks = () => {
           </Subtitle>
         </LinkWithIcon>
 
-        {/* Infra Monitoring Link */}
-        <LinkWithIcon href="/infra-monitoring" icon={HiOutlineServer}>
-          <Subtitle
-            className={clsx(
-              "text-sm",
-              {
-                "text-gray-900": pathname === "/infra-monitoring",
-              }
-            )}
-          >
-            Infra Monitoring
-          </Subtitle>
-        </LinkWithIcon>
 
         <DndContext
           sensors={sensors}
