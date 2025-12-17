@@ -250,7 +250,7 @@ export const Client: React.FC = () => {
   return (
     <div className="flex-1 flex flex-col h-full gap-6 px-4 py-5">
       <div>
-        <Title>Dashboard</Title>
+        <Title>Executive Overview Dashboard</Title>
       </div>
 
       {/* Summary Metrics */}

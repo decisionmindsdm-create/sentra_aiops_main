@@ -195,19 +195,6 @@ export const DashboardLinks = () => {
           </Subtitle>
         </LinkWithIcon>
 
-        {/* Infra Monitoring Link */}
-        <LinkWithIcon href="/infra-monitoring" icon={HiOutlineServer}>
-          <Subtitle
-            className={clsx(
-              "text-sm",
-              {
-                "text-gray-900": pathname === "/infra-monitoring",
-              }
-            )}
-          >
-            Infra Monitoring
-          </Subtitle>
-        </LinkWithIcon>
 
         <DndContext
           sensors={sensors}
