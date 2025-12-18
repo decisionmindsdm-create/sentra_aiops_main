@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { ReactElement, useEffect, useMemo, useRef } from "react";
 import { Facet } from "./facet";
 import {
   FacetDto,
@@ -28,11 +28,11 @@ export interface FacetsPanelProps {
   renderFacetOptionLabel?: (
     facetName: string,
     optionDisplayName: string
-  ) => JSX.Element | string | undefined;
+  ) => ReactElement | string | undefined;
   renderFacetOptionIcon?: (
     facetName: string,
     optionDisplayName: string
-  ) => JSX.Element | undefined;
+  ) => ReactElement | undefined;
   onCelChange?: (cel: string) => void;
   onAddFacet: () => void;
   onDeleteFacet: (facetId: string) => void;
