@@ -61,8 +61,6 @@ ENV EE_PATH="ee"
 COPY --from=builder /venv /venv
 COPY --from=builder /app/examples /examples
 COPY --from=builder /app/unknown-icon.png unknown-icon.png
-# Create state directory with proper permissions
-RUN mkdir -p /state && chown -R keep:keep /state
 # Make entrypoint executable
 RUN chmod +x /venv/lib/python3.13/site-packages/keep/entrypoint.sh
 # as per Openshift guidelines, https://docs.openshift.com/container-platform/4.11/openshift_images/create-images.html#use-uid_create-images
