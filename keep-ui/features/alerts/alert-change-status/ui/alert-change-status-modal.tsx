@@ -190,10 +190,10 @@ export function AlertChangeStatusModal({
           </div>
         </div>
         <div className="flex justify-end mt-4 gap-2">
-          <Button onClick={handleClose} color="orange" variant="secondary">
+          <Button onClick={handleClose} variant="secondary">
             Cancel
           </Button>
-          <Button onClick={handleChangeStatus} color="orange">
+          <Button onClick={handleChangeStatus} variant="primary">
             Change Status
           </Button>
         </div>
@@ -248,10 +248,10 @@ export function AlertChangeStatusModal({
           </div>
         </div>
         <div className="flex justify-end mt-4 gap-2">
-          <Button onClick={handleClose} color="blue" variant="secondary">
+          <Button onClick={handleClose} variant="secondary">
             Cancel
           </Button>
-          <Button onClick={handleChangeStatusBatch} color="blue">
+          <Button onClick={handleChangeStatusBatch} variant="primary">
             Change Status
           </Button>
         </div>

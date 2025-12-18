@@ -230,7 +230,7 @@ export function AlertTriggerModal({
           >
             Cancel
           </Button>
-          <Button color="orange" type="submit">
+          <Button variant="primary" type="submit">
             Run workflow
           </Button>
         </div>
