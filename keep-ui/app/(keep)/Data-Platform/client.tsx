@@ -124,7 +124,7 @@ export const Client: React.FC = () => {
     <div className="flex-1 flex flex-col h-full gap-6 px-4 py-5">
       {/* Header */}
       <div>
-        <Title>Data Quality Dashboard</Title>
+        <Title>Data Platform Dashboard</Title>
       </div>
 
       {/* Quality Metrics - Top KPIs */}

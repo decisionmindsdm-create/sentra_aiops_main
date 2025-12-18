@@ -27,7 +27,7 @@ import {
   
 
   
-  
+  ChartBarIcon,
   ComputerDesktopIcon,
   
 } from "@heroicons/react/24/outline";
@@ -167,31 +167,44 @@ export const DashboardLinks = () => {
           </Subtitle>
         </LinkWithIcon>
 
-        {/* DevOps Monitoring Link */}
-        <LinkWithIcon href="/devops-monitoring" icon={AiOutlineCode}>
-          <Subtitle
-            className={clsx(
-              "text-sm",
-              {
-                "text-gray-900": pathname === "/devops-monitoring",
-              }
-            )}
-          >
-            DevOps Monitoring
-          </Subtitle>
-        </LinkWithIcon>
 
         {/* Data Quality Link */}
-        <LinkWithIcon href="/data-quality" icon={TbDatabase}>
+        <LinkWithIcon href="/Data-Platform" icon={TbDatabase}>
           <Subtitle
             className={clsx(
               "text-sm",
               {
-                "text-gray-900": pathname === "/data-quality",
+                "text-gray-900": pathname === "/Data-Platform",
               }
             )}
           >
-            Data Quality
+            Data Platform
+          </Subtitle>
+        </LinkWithIcon>
+        {/* Appliation Monitoring Link */}
+        <LinkWithIcon href="/Application " icon={AiOutlineCode}>
+          <Subtitle
+            className={clsx(
+              "text-sm",
+              {
+                "text-gray-900": pathname === "/Application",
+              }
+            )}
+          >
+            Application
+          </Subtitle>
+        </LinkWithIcon>
+        {/* DevOps Monitoring Link */}
+        <LinkWithIcon href="/custom-dashboard" icon={ChartBarIcon}>
+          <Subtitle
+            className={clsx(
+              "text-sm",
+              {
+                "text-gray-900": pathname === "/custom-dashboard",
+              }
+            )}
+          >
+            Custom Dashboard
           </Subtitle>
         </LinkWithIcon>
 
