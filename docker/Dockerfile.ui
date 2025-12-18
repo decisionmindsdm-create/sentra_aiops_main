@@ -5,7 +5,7 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 # keep-ui is your root UI folder; copy only manifests first for caching
 COPY keep-ui/package*.json ./
-RUN npm ci --no-audit --no-fund --maxsockets 1
+RUN npm i --no-audit --no-fund --maxsockets 1
 
 # -------- builder --------
 FROM base AS builder
