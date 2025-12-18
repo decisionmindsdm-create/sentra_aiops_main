@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, useCallback } from "react";
 import {
   Button,
   Card,
@@ -78,7 +78,7 @@ export const DeduplicationTable: React.FC<DeduplicationTableProps> = ({
     router.push("/deduplication");
   };
 
-  const handleDeleteRule = async (
+  const handleDeleteRule = useCallback(async (
     rule: DeduplicationRule,
     event: React.MouseEvent
   ) => {
@@ -96,7 +96,7 @@ export const DeduplicationTable: React.FC<DeduplicationTableProps> = ({
         console.error("Error deleting deduplication rule:", error);
       }
     }
-  };
+  }, [api, mutateDeduplicationRules]);
 
   useEffect(() => {
     if (selectedId && !isSidebarOpen) {
@@ -106,7 +106,7 @@ export const DeduplicationTable: React.FC<DeduplicationTableProps> = ({
         setIsSidebarOpen(true);
       }
     }
-  }, [selectedId, deduplicationRules]);
+  }, [selectedId, deduplicationRules, isSidebarOpen]);
 
   useEffect(() => {
     if (!isSidebarOpen && selectedId) {
@@ -299,7 +299,7 @@ export const DeduplicationTable: React.FC<DeduplicationTableProps> = ({
         ),
       }),
     ],
-    []
+    [providers.installed_providers, handleDeleteRule]
   );
 
   const table = useReactTable({

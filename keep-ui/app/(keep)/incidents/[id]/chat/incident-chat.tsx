@@ -61,7 +61,7 @@ export function IncidentChat({
         JSON.stringify(messages)
       );
     }
-  }, [messages]);
+  }, [messages, incident.id]);
 
   // load from local storage when component mounts// initially load from local storage
   useEffect(() => {
@@ -97,7 +97,7 @@ export function IncidentChat({
       });
       setMessages(parsedMessages);
     }
-  }, []);
+  }, [incident.id, setMessages]);
 
   const { data: providers } = useProviders();
   const { updateIncident, invokeProviderMethod, enrichIncident } =
@@ -113,6 +113,29 @@ export function IncidentChat({
     [providers]
   );
 
+  // Tasks
+  const rcaTask = useMemo(
+    () =>
+      new CopilotTask({
+        instructions: `First, add the the response to the rca points.
+    If there's an existing external incident, add it to it's timeline.
+    If there's no external incident, try to create one and then add it to it's timeline.`,
+        includeCopilotActions: true,
+        includeCopilotReadable: true,
+      }),
+    []
+  );
+
+  const handleFeedback = useCallback(
+    async (type: "thumbsUp" | "thumbsDown", message: Element) => {
+      const messageContent = message.textContent
+        ?.replace("Add to RCA", "")
+        .trim();
+      await rcaTask.run(context, messageContent);
+    },
+    [context, rcaTask]
+  );
+
   // Suggestions
   // useCopilotChatSuggestions(
   //   {
@@ -121,15 +144,6 @@ export function IncidentChat({
   //   },
   //   [incident, alerts, providersWithGetTrace]
   // );
-
-  // Tasks
-  const rcaTask = new CopilotTask({
-    instructions: `First, add the the response to the rca points.
-    If there's an existing external incident, add it to it's timeline.
-    If there's no external incident, try to create one and then add it to it's timeline.`,
-    includeCopilotActions: true,
-    includeCopilotReadable: true,
-  });
 
   // Chat context
   useCopilotReadable({
@@ -518,17 +532,7 @@ export function IncidentChat({
     });
 
     return () => observer.disconnect();
-  }, [context]);
-
-  const handleFeedback = async (
-    type: "thumbsUp" | "thumbsDown",
-    message: Element
-  ) => {
-    const messageContent = message.textContent
-      ?.replace("Add to RCA", "")
-      .trim();
-    await rcaTask.run(context, messageContent);
-  };
+  }, [context, handleFeedback]);
 
   const handleSubmitMessage = useCallback((_message: string) => {
     capture("incident_chat_message_submitted");

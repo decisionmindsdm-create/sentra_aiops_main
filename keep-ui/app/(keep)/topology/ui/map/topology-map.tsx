@@ -498,7 +498,7 @@ export function TopologyMap({
       setNodes(layoutedElements.nodes);
       setEdges(layoutedElements.edges);
     },
-    [topologyData, applicationMap, allIncidents, mutateTopologyData]
+    [topologyData, applicationMap, allIncidents, allAlerts, mutateTopologyData]
   );
 
   useEffect(

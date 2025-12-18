@@ -53,7 +53,7 @@ const PopoverContent: React.FC<PopoverContentProps> = ({
       value = [];
     }
     setSelectedOptions(new Set(value));
-  }, [filterRef]);
+  }, [filterRef, type]);
 
   const handleCheckboxChange = (option: string, checked: boolean) => {
     setSelectedOptions((prev) => {
@@ -130,7 +130,7 @@ export const TableFilters: React.FC<TableFiltersProps> = ({ workflowId }) => {
       router.push(`${pathname}?${newParams.toString()}`);
       setApply(false); // Reset apply state
     }
-  }, [apply]);
+  }, [apply, searchParams, pathname, router]);
 
   useEffect(() => {
     if (searchParams) {

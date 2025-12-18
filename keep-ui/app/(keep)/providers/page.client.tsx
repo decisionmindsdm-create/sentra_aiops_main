@@ -23,22 +23,6 @@ export const useFetchProviders = () => {
 
   const isLocalhost = data && data.is_localhost;
   const toastShownKey = "localhostToastShown";
-  const ToastMessage = () => (
-    <div>
-      Webhooks are disabled because Keep is not accessible from the internet.
-      <br />
-      <Link
-        href={`${
-          config?.KEEP_DOCS_URL || "https://www.decisionminds.com/"
-        }/development/external-url`}
-        target="_blank"
-        rel="noreferrer noopener"
-      >
-        Read docs
-      </Link>{" "}
-      to learn how to enable it.
-    </div>
-  );
 
   useEffect(() => {
     // Check if we're in a browser environment before accessing localStorage
@@ -49,23 +33,39 @@ export const useFetchProviders = () => {
     const toastShown = localStorage.getItem(toastShownKey);
 
     if (isLocalhost && !toastShown) {
-      toast(<ToastMessage />, {
-        type: "info",
-        position: "top-center",
-        autoClose: 10000,
-        onClick: () =>
-          window.open(
-            `${config?.KEEP_DOCS_URL || "https://www.decisionminds.com/"}`,
-            "_blank"
-          ),
-        style: {
-          width: "250%",
-          marginLeft: "-75%",
-        },
-      });
+      toast(
+        <div>
+          Webhooks are disabled because Keep is not accessible from the internet.
+          <br />
+          <Link
+            href={`${
+              config?.KEEP_DOCS_URL || "https://www.decisionminds.com/"
+            }/development/external-url`}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Read docs
+          </Link>{" "}
+          to learn how to enable it.
+        </div>,
+        {
+          type: "info",
+          position: "top-center",
+          autoClose: 10000,
+          onClick: () =>
+            window.open(
+              `${config?.KEEP_DOCS_URL || "https://www.decisionminds.com/"}`,
+              "_blank"
+            ),
+          style: {
+            width: "250%",
+            marginLeft: "-75%",
+          },
+        }
+      );
       localStorage.setItem(toastShownKey, "true");
     }
-  }, [isLocalhost]);
+  }, [isLocalhost, config]);
 
   useEffect(() => {
     if (data) {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import * as Popover from "@radix-ui/react-popover";
 import { Button, Badge, Subtitle, Text } from "@tremor/react";
 import { Calendar } from "./Calendar";
@@ -299,28 +299,35 @@ export default function EnhancedDateRangePicker({
     []
   );
 
+  const handlePresetSelect = useCallback(
+    (preset: TimePreset, isPaused = true) => {
+      setSelectedPreset(preset);
+      setTimeFrame({
+        ...preset.value(),
+        paused: isPaused,
+        isFromCalendar: false,
+      });
+      setIsPaused(isPaused);
+      setIsOpen(false);
+      setSelectedCategory(null);
+      setShowMoreOptions(false);
+    },
+    [setTimeFrame]
+  );
+
   // set initial preset and notify parent
   useEffect(() => {
-    setTimeout(() => {
-      handlePresetSelect(
-        quickPresets.find((preset) => preset.badge === "all") as TimePreset,
-        pausedByDefault
-      );
+    const timeout = setTimeout(() => {
+      const allPreset = quickPresets.find(
+        (preset) => preset.badge === "all"
+      ) as TimePreset | undefined;
+      if (allPreset) {
+        handlePresetSelect(allPreset, pausedByDefault);
+      }
     }, 100);
-  }, []);
 
-  const handlePresetSelect = (preset: TimePreset, isPaused = true) => {
-    setSelectedPreset(preset);
-    setTimeFrame({
-      ...preset.value(),
-      paused: isPaused,
-      isFromCalendar: false,
-    });
-    setIsPaused(isPaused);
-    setIsOpen(false);
-    setSelectedCategory(null);
-    setShowMoreOptions(false);
-  };
+    return () => clearTimeout(timeout);
+  }, [handlePresetSelect, pausedByDefault, quickPresets]);
 
   const togglePlayPause = () => {
     setIsPaused(!isPaused);

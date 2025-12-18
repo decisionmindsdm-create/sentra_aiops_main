@@ -103,6 +103,7 @@ const QualityTable = ({
     setFilter: setFields,
   };
   const searchParams = useSearchParams();
+  const searchParamsString = searchParams?.toString();
   const entries = searchParams ? Array.from(searchParams.entries()) : [];
   const columnHelper = createColumnHelper<FinalAlertQuality>();
 
@@ -144,7 +145,7 @@ const QualityTable = ({
 
   useEffect(() => {
     handlePaginationChange(10, 0);
-  }, [tab, searchParams?.toString()]);
+  }, [tab, searchParamsString]);
 
   // Construct columns based on the fields selected
   const columns = useMemo(() => {
@@ -198,7 +199,7 @@ const QualityTable = ({
       ...baseColumns,
       ...dynamicColumns,
     ] as DisplayColumnDef<FinalAlertQuality>[];
-  }, [fields]);
+  }, [fields, columnHelper]);
 
   // Process data and include dynamic fields
   const finalData = useMemo(() => {

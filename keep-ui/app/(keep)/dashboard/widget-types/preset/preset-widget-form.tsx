@@ -9,7 +9,7 @@ import {
   TextInput,
   Switch,
 } from "@tremor/react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useCallback } from "react";
 import {
   Controller,
   get,
@@ -83,9 +83,9 @@ export const PresetWidgetForm: React.FC<PresetWidgetFormProps> = ({
       showFiringOnly: formValues.showFiringOnly ?? false,
       customLink: formValues.customLink || "",
     };
-  }, [formValues, presetColumns]);
+  }, [formValues, presetColumns, presets]);
 
-  function getLayoutValues(): LayoutItem {
+  const getLayoutValues = useCallback((): LayoutItem => {
     if (editingItem) {
       return {} as LayoutItem;
     }
@@ -115,7 +115,7 @@ export const PresetWidgetForm: React.FC<PresetWidgetFormProps> = ({
       minH: 4,
       static: false,
     } as LayoutItem;
-  }
+  }, [editingItem, normalizedFormValues.presetPanelType, normalizedFormValues.countOfLastAlerts]);
 
   useEffect(() => {
     onChange(
@@ -133,7 +133,7 @@ export const PresetWidgetForm: React.FC<PresetWidgetFormProps> = ({
       },
       isValid
     );
-  }, [normalizedFormValues, isValid]);
+  }, [normalizedFormValues, isValid, getLayoutValues, onChange]);
 
   const handleThresholdBlur = () => {
     const reorderedThreesholds = formValues?.thresholds

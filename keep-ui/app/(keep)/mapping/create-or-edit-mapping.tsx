@@ -238,7 +238,7 @@ export default function CreateOrEditMapping({
     if (mappingType === "topology" && !editMode) {
       setAttributeGroups([["service"]]);
     }
-  }, [mappingType]);
+  }, [mappingType, editMode]);
 
   const handleAttributeChange = (groupIndex: number, selected: string[]) => {
     const newGroups = [...attributeGroups];
@@ -258,7 +258,7 @@ export default function CreateOrEditMapping({
         setAttributeGroups([[firstGroup[0]]]);
       }
     }
-  }, [isMultiLevel]);
+  }, [isMultiLevel, attributeGroups]);
 
   const addAttributeGroup = () => {
     setAttributeGroups([...attributeGroups, []]);

@@ -1,5 +1,5 @@
 import { Select, SelectItem, Subtitle } from "@tremor/react";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { Controller, get, useForm, useWatch } from "react-hook-form";
 import { MetricsWidget } from "@/utils/hooks/useDashboardMetricWidgets";
 import { LayoutItem } from "../../types";
@@ -29,14 +29,7 @@ export const MetricWidgetForm: React.FC<MetricWidgetFormProps> = ({
   });
   const formValues = useWatch({ control });
 
-  useEffect(() => {
-    const metric = metricWidgets.find(
-      (p) => p.id === formValues.selectedMetricWidget
-    );
-    onChange({ ...getLayoutValues(), metric }, isValid);
-  }, [formValues]);
-
-  function getLayoutValues(): LayoutItem {
+  const getLayoutValues = useCallback((): LayoutItem => {
     if (editingItem) {
       return {} as LayoutItem;
     }
@@ -48,7 +41,14 @@ export const MetricWidgetForm: React.FC<MetricWidgetFormProps> = ({
       minH: 7,
       static: false,
     } as LayoutItem;
-  }
+  }, [editingItem]);
+
+  useEffect(() => {
+    const metric = metricWidgets.find(
+      (p) => p.id === formValues.selectedMetricWidget
+    );
+    onChange({ ...getLayoutValues(), metric }, isValid);
+  }, [formValues, metricWidgets, getLayoutValues, onChange, isValid]);
 
   return (
     <div className="mb-4 mt-2">

@@ -15,7 +15,7 @@ export function useMatchingAlerts(rules: RuleGroupType | undefined) {
         offset: 0,
       });
     }
-  }, [debouncedRules]);
+  }, [debouncedRules, rules]);
 
   return useLastAlerts(alertsQuery);
 }

@@ -45,7 +45,7 @@ export const DynamicImageProviderIcon = (props: any) => {
     };
 
     loadImage();
-  }, [providers, getImageUrl, providerType]);
+  }, [providers, getImageUrl, providerType, imageSrc]);
 
   if (!imageSrc) return;
 
