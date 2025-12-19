@@ -68,9 +68,9 @@ export default function ExtractionsTable({ extractions, editCallback }: Props) {
       header: "Pre-formatting",
       cell: (context) =>
         context.row.original.pre ? (
-          <Icon icon={IoCheckmark} size="md" color="orange" />
+          <Icon icon={IoCheckmark} size="md" className="text-[#0d88c0]" />
         ) : (
-          <Icon icon={HiMiniXMark} size="md" color="orange" />
+          <Icon icon={HiMiniXMark} size="md" className="text-[#0d88c0]" />
         ),
     }),
     columnHelper.display({
@@ -128,7 +128,7 @@ export default function ExtractionsTable({ extractions, editCallback }: Props) {
       cell: (context) => (
         <div className="flex flex-wrap">
           {extractNamedGroups(context.row.original.regex).map((attr) => (
-            <Badge key={attr} color="orange" size="xs">
+            <Badge key={attr} className="!bg-[#0d88c0] !text-white" size="xs">
               {attr}
             </Badge>
           ))}
@@ -141,7 +141,7 @@ export default function ExtractionsTable({ extractions, editCallback }: Props) {
       cell: (context) => (
         <div className="space-x-1 flex flex-row items-center justify-end opacity-0 group-hover:opacity-100 bg-slate-100 border-l">
           <Button
-            color="orange"
+            className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
             size="xs"
             icon={MdPlayArrow}
             tooltip="Run"
@@ -151,7 +151,7 @@ export default function ExtractionsTable({ extractions, editCallback }: Props) {
             }}
           />
           <Button
-            color="orange"
+            className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
             size="xs"
             variant="secondary"
             icon={MdModeEdit}

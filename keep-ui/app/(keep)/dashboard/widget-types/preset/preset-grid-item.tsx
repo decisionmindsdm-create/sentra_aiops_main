@@ -113,7 +113,7 @@ const PresetGridItem: React.FC<GridItemProps> = ({ item }) => {
             </Tooltip.Trigger>
             <Tooltip.Portal>
               <Tooltip.Content sideOffset={5}>
-                <div className="bg-white invert-dark-mode border py-0.5 px-1 rounded-md text-orange-500">
+                <div className="bg-white invert-dark-mode border py-0.5 px-1 rounded-md text-[#0d88c0]">
                   {presetCel}
                 </div>
                 <Tooltip.Arrow />
@@ -196,7 +196,7 @@ const PresetGridItem: React.FC<GridItemProps> = ({ item }) => {
         </div>
         <div className="flex items-center">
           <Button
-            color="orange"
+            className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
             variant="secondary"
             size="xs"
             onClick={handleGoToPresetClick}

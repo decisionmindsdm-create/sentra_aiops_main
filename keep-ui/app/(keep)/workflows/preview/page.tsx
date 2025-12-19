@@ -24,7 +24,7 @@ export default function Page(props: PageProps) {
     } else {
       setWorkflowPreviewData({});
     }
-  }, [params.workflowId, searchParams.workflowId]);
+  }, [params.workflowId, searchParams.workflowId, key]);
 
   return (
     <>

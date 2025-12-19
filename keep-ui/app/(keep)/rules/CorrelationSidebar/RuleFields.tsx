@@ -332,7 +332,7 @@ export const RuleFields = ({
             onClick={onAddRuleFieldClick}
             type="button"
             variant="light"
-            className="text-[#0d88c0] hover:bg-[#e6f4f9]"
+            className="!text-[#0d88c0] hover:!text-[#0a6d9a]"
             disabled={availableFields.length === 0}
           >
             Add condition

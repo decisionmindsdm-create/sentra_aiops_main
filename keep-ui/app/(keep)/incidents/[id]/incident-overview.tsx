@@ -372,7 +372,7 @@ export function IncidentOverview({ incident: initialIncidentData }: Props) {
                       <div className="flex flex-wrap gap-1 truncate">
                         <Badge
                           size="sm"
-                          color="orange"
+                          className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white cursor-pointer text-ellipsis"
                           icon={
                             incident.enrichments?.incident_provider
                               ? (props: any) => (
@@ -388,7 +388,6 @@ export function IncidentOverview({ incident: initialIncidentData }: Props) {
                                 )
                               : undefined
                           }
-                          className="cursor-pointer text-ellipsis"
                           onClick={() =>
                             window.open(
                               incident.enrichments.incident_url,
@@ -427,7 +426,7 @@ export function IncidentOverview({ incident: initialIncidentData }: Props) {
                         return (
                           <Badge
                             key={repo}
-                            color="orange"
+                            className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white cursor-pointer"
                             size="sm"
                             icon={(props: any) => (
                               <DynamicImageProviderIcon
@@ -438,7 +437,6 @@ export function IncidentOverview({ incident: initialIncidentData }: Props) {
                                 {...props}
                               />
                             )}
-                            className="cursor-pointer"
                             onClick={() => window.open(repo, "_blank")}
                           >
                             {repoName}
@@ -461,7 +459,7 @@ export function IncidentOverview({ incident: initialIncidentData }: Props) {
                   )}
                   <div>
                     <span
-                      className="text-sm text-gray-500 cursor-pointer hover:text-orange-500 underline"
+                      className="text-sm text-gray-500 cursor-pointer hover:text-[#0d88c0] underline"
                       onClick={() => {
                         if (
                           confirm(
@@ -483,9 +481,8 @@ export function IncidentOverview({ incident: initialIncidentData }: Props) {
                     <FieldHeader>Grouped by</FieldHeader>
                     <div className="flex flex-wrap gap-1">
                       <Badge
-                        color="orange"
+                        className="!bg-[#0d88c0] !text-white cursor-pointer overflow-ellipsis"
                         size="sm"
-                        className="cursor-pointer overflow-ellipsis"
                         tooltip={incident.rule_fingerprint}
                       >
                         {incident.rule_fingerprint.length > 10
@@ -556,8 +553,7 @@ export function IncidentOverview({ incident: initialIncidentData }: Props) {
           <FieldHeader>Resolve on</FieldHeader>
           <Badge
             size="sm"
-            color="orange"
-            className="cursor-help"
+            className="cursor-help !bg-[#0d88c0] !text-white"
             tooltip={
               incident.resolve_on === "all_resolved"
                 ? "Incident will be resolved when all its alerts are resolved"

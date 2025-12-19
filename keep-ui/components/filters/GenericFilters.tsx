@@ -1,6 +1,6 @@
 import GenericPopover from "@/components/popover/GenericPopover";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
-import { useRef, useState, useEffect, ChangeEvent, useMemo } from "react";
+import { useRef, useState, useEffect, ChangeEvent, useMemo, useCallback } from "react";
 import { GoPlusCircle } from "react-icons/go";
 import { DateRangePicker, DateRangePickerValue, Title } from "@tremor/react";
 import { MdOutlineDateRange } from "react-icons/md";
@@ -168,7 +168,7 @@ function CustomDate({
     to: undefined,
   });
 
-  const onDateRangePickerChange = ({
+  const onDateRangePickerChange = useCallback(({
     from: start,
     to: end,
   }: DateRangePickerValue) => {
@@ -177,7 +177,7 @@ function CustomDate({
 
     setDateRange({ from: start ?? undefined, to: endOfDayDate ?? undefined });
     handleDate(start, endOfDayDate);
-  };
+  }, [handleDate]);
 
   useEffect(() => {
     if (filter) {
@@ -186,7 +186,7 @@ function CustomDate({
       const to = filterValue.end ? new Date(filterValue.end) : undefined;
       onDateRangePickerChange({ from, to });
     }
-  }, [filter?.value]);
+  }, [filter, filter?.value, onDateRangePickerChange]);
 
   if (!filter) return null;
 
@@ -314,7 +314,7 @@ export const GenericFilters: React.FC<FiltersProps> = ({ filters }) => {
       }
       setApply(false); // Reset apply state
     }
-  }, [apply]);
+  }, [apply, filters, pathname, router, searchParamString, searchParams]);
 
   useEffect(() => {
     if (searchParams) {
@@ -345,7 +345,7 @@ export const GenericFilters: React.FC<FiltersProps> = ({ filters }) => {
         value: filter.value || "",
       }));
     }
-  }, [searchParamString, filters]);
+  }, [searchParamString, filters, searchParams]);
   // Handle textarea value change
   const onValueChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     //to do handle the value change

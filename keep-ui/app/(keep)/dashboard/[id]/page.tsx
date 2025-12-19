@@ -5,6 +5,6 @@ export default function Page() {
 }
 
 export const metadata = {
-  title: "DM AIops - Dashboards",
+  title: "Keep - Dashboards",
   description: "Single pane of glass for all your alerts.",
 };

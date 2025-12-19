@@ -60,7 +60,7 @@ export function CreateOrUpdateApplicationForm({
   >(application?.services || []);
   const [errors, setErrors] = useState<FormErrors>({});
 
-  const validateForm = (
+  const validateForm = useCallback((
     formValues: Omit<TopologyApplication, "id">
   ): FormErrors => {
     const newErrors: FormErrors = {};
@@ -74,7 +74,7 @@ export function CreateOrUpdateApplicationForm({
       newErrors.repository = "Please enter a valid URL";
     }
     return newErrors;
-  };
+  }, []);
 
   const isValidUrl = (url: string) => {
     try {
@@ -127,6 +127,7 @@ export function CreateOrUpdateApplicationForm({
       selectedServices,
       applicationId,
       onSubmit,
+      validateForm,
     ]
   );
 

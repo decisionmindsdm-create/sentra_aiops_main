@@ -8,6 +8,11 @@ import {
 } from "@/utils/authenticationType";
 
 export function getConfig(): InternalConfig {
+  // Debug logging for AI configuration
+  console.log("[GET_CONFIG DEBUG] OPEN_AI_API_KEY:", !!process.env.OPEN_AI_API_KEY);
+  console.log("[GET_CONFIG DEBUG] OPENAI_API_KEY:", !!process.env.OPENAI_API_KEY);
+  console.log("[GET_CONFIG DEBUG] NEXT_PUBLIC_OPENAI_API_KEY:", !!process.env.NEXT_PUBLIC_OPENAI_API_KEY);
+  
   let authType = process.env.AUTH_TYPE;
   // Backward compatibility
   if (authType === MULTI_TENANT) {
@@ -33,6 +38,23 @@ export function getConfig(): InternalConfig {
   } else {
     API_URL_CLIENT = process.env.API_URL_CLIENT;
   }
+
+  // Parse alert sidebar fields from environment variable
+  // Default includes all standard fields
+  const defaultAlertSidebarFields = [
+    "service",
+    "source",
+    "description",
+    "message",
+    "fingerprint",
+    "url",
+    "incidents",
+    "timeline",
+    "relatedServices",
+  ];
+  const alertSidebarFields = process.env.ALERT_SIDEBAR_FIELDS
+    ? process.env.ALERT_SIDEBAR_FIELDS.split(",").map((field) => field.trim())
+    : defaultAlertSidebarFields;
 
   return {
     AUTH_TYPE: authType,
@@ -61,9 +83,9 @@ export function getConfig(): InternalConfig {
     // NOISY ALERTS DISABLED BY DEFAULT TO SPARE SPACE ON THE TABLE
     NOISY_ALERTS_ENABLED: process.env.NOISY_ALERTS_ENABLED === "true",
     // The URL of the documentation site
-    KEEP_DOCS_URL: process.env.KEEP_DOCS_URL || "https://www.decisionminds.com/",
+    KEEP_DOCS_URL: process.env.KEEP_DOCS_URL || "https://docs.keephq.dev",
     KEEP_CONTACT_US_URL:
-      process.env.KEEP_CONTACT_US_URL || "https://www.decisionminds.com/#contact",
+      process.env.KEEP_CONTACT_US_URL || "https://slack.keephq.dev/",
     KEEP_HIDE_SENSITIVE_FIELDS:
       process.env.KEEP_HIDE_SENSITIVE_FIELDS === "true",
     KEEP_WORKFLOW_DEBUG: process.env.KEEP_WORKFLOW_DEBUG === "true",
@@ -78,9 +100,15 @@ export function getConfig(): InternalConfig {
     HIDE_NAVBAR_EXTRACTION:
       process.env.HIDE_NAVBAR_EXTRACTION?.toLowerCase() === "true",
     HIDE_NAVBAR_MAINTENANCE_WINDOW:
-      process.env.HIDE_NAVBAR_MAINTENANCE_WINDOW?.toLowerCase() === "true",  
+      process.env.HIDE_NAVBAR_MAINTENANCE_WINDOW?.toLowerCase() === "true",
+    HIDE_NAVBAR_AI_PLUGINS:
+      process.env.HIDE_NAVBAR_AI_PLUGINS?.toLowerCase() === "true",
     // Ticketing integration
     KEEP_TICKETING_ENABLED:
       process.env.KEEP_TICKETING_ENABLED?.toLowerCase() === "true",
+    KEEP_WF_LIST_EXTENDED_INFO:
+      process.env.KEEP_WF_LIST_EXTENDED_INFO?.toLowerCase() === "true",
+    // Alert sidebar fields configuration
+    ALERT_SIDEBAR_FIELDS: alertSidebarFields,
   };
 }

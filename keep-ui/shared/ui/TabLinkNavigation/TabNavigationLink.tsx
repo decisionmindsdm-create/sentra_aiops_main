@@ -45,8 +45,8 @@ export function TabNavigationLink({
 
         // Active state
         isActive && [
-          "border-orange-500 dark:border-orange-500",
-          "text-orange-500 dark:text-orange-500",
+          "border-[#1670A6] dark:border-[#1670A6]",
+          "text-[#1670A6] dark:text-[#1670A6]",
           "pointer-events-none",
         ],
 
@@ -60,7 +60,7 @@ export function TabNavigationLink({
       {Icon && <Icon className="!size-5 flex-shrink-0" />}
       <span className="truncate">{children}</span>
       {count && (
-        <Badge size="xs" color="orange">
+        <Badge size="xs" color="blue">
           {count}
         </Badge>
       )}

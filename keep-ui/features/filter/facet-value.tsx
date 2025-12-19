@@ -1,3 +1,4 @@
+import { ReactElement } from "react";
 import { ShortNumber } from "@/components/ui";
 import { Text } from "@tremor/react";
 import clsx from "clsx";
@@ -9,8 +10,8 @@ export interface FacetValueProps {
   isSelected: boolean;
   isSelectable: boolean;
   showIcon: boolean;
-  renderLabel?: () => JSX.Element | string | undefined;
-  renderIcon?: () => JSX.Element | undefined;
+  renderLabel?: () => ReactElement | string | undefined;
+  renderIcon?: () => ReactElement | undefined;
   onSelectOneOption: (value: string) => void;
   onSelectAllOptions: () => void;
   onToggleOption: (value: string) => void;
@@ -79,7 +80,8 @@ export const FacetValue: React.FC<FacetValueProps> = ({
       <div className="flex-shrink-0 w-8 text-right flex justify-end">
         <button
           onClick={handleActionClick}
-          className="h-full text-xs text-[#0d88c0] hidden hover:text-[#085690] group-hover:block font-semibold"
+          className="h-full text-xs hidden group-hover:block"
+          style={{ color: '#0d88c0' }}
         >
           {isExclusivelySelected ? "All" : "Only"}
         </button>

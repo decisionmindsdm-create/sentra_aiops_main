@@ -238,7 +238,7 @@ export default function CreateOrEditMapping({
     if (mappingType === "topology" && !editMode) {
       setAttributeGroups([["service"]]);
     }
-  }, [mappingType]);
+  }, [mappingType, editMode]);
 
   const handleAttributeChange = (groupIndex: number, selected: string[]) => {
     const newGroups = [...attributeGroups];
@@ -258,7 +258,7 @@ export default function CreateOrEditMapping({
         setAttributeGroups([[firstGroup[0]]]);
       }
     }
-  }, [isMultiLevel]);
+  }, [isMultiLevel, attributeGroups]);
 
   const addAttributeGroup = () => {
     setAttributeGroups([...attributeGroups, []]);
@@ -521,7 +521,7 @@ export default function CreateOrEditMapping({
                 (attribute) => !attributeGroups.flat().includes(attribute)
               )
               .map((attribute) => (
-                <Badge key={attribute} color="orange">
+                <Badge key={attribute} className="!bg-[#0d88c0] !text-white">
                   {attribute}
                 </Badge>
               ))
@@ -531,7 +531,7 @@ export default function CreateOrEditMapping({
 
       <div className={"space-x-1 flex flex-row justify-end items-center"}>
         <Button
-          color="orange"
+          className="!text-[#0d88c0] hover:!text-[#0a6d9a]"
           size="xs"
           variant="secondary"
           onClick={exitEditOrCreateMode}
@@ -540,7 +540,7 @@ export default function CreateOrEditMapping({
         </Button>
 
         <Button
-          color="orange"
+          className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
           size="xs"
           type="submit"
           disabled={

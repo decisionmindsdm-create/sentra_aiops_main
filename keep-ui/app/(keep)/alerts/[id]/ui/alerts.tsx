@@ -154,7 +154,7 @@ export default function Alerts({ presetName, initialFacets }: AlertsProps) {
       setAlertsQueryState(alertsQuery);
       alertsQueryStateRef.current = alertsQuery;
     },
-    [setAlertsQueryState]
+    [setAlertsQueryState, mutateAlerts]
   );
 
   // if we don't have presets data yet, just show loading

@@ -6,6 +6,22 @@ set -e
 # Print commands and their arguments as they are executed
 set -x
 
+# Ensure /state directory exists and is writable (for volume mounts)
+if [ -d "/state" ]; then
+    # Try to create a test file to check write permissions
+    if ! touch /state/.write_test 2>/dev/null; then
+        echo "ERROR: /state directory exists but is not writable by user $(whoami) (uid=$(id -u), gid=$(id -g))"
+        echo "Please run: sudo chown -R 1000:1000 /var/opt/sentra_state && sudo chmod -R 755 /var/opt/sentra_state"
+        exit 1
+    else
+        rm -f /state/.write_test
+        echo "✓ /state directory is writable"
+    fi
+else
+    echo "ERROR: /state directory does not exist. Please create it with: sudo mkdir -p /var/opt/sentra_state && sudo chown -R 1000:1000 /var/opt/sentra_state"
+    exit 1
+fi
+
 # Get the directory of the current script
 SCRIPT_DIR=$(dirname "$0")
 

@@ -31,7 +31,7 @@ export const CreateWorkflowModal: React.FC<CreateWorkflowModalProps> = ({
             <p>
               Or skip this, and{" "}
               <Button
-                className="ml-2 bg-[#0d88c0] hover:bg-[#0b76a8] border-[#0d88c0] text-white"
+                className="ml-2 !bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
                 size="xs"
                 variant="primary"
                 onClick={() => router.push("/workflows/builder")}

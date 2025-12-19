@@ -41,7 +41,7 @@ export function WorkflowBuilderChatSafe({
             <Title>AI is disabled</Title>
             <Text>Contact us to enable AI for you.</Text>
             <Link
-              href="https://www.decisionminds.com/#contact"
+              href="https://slack.keephq.dev/"
               target="_blank"
               rel="noopener noreferrer"
             >

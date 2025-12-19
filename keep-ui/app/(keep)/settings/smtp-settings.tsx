@@ -290,7 +290,7 @@ export default function SMTPSettingsForm({ selectedTab }: Props) {
             onChange={handleChange}
             color="orange"
             error={!!errors.from_email}
-            placeholder="DmAIopsserver@example.com"
+            placeholder="keepserver@example.com"
           />
           <label className="block text-sm font-medium mb-1 text-gray-500">
             The default address this server will use to send the emails from.
@@ -396,7 +396,7 @@ export default function SMTPSettingsForm({ selectedTab }: Props) {
             error={!!errors.to_email}
           />
           <label className="block text-sm font-medium mb-1 text-gray-500">
-            A test mail address. DM AIops will try to send email to this address.
+            A test mail address. Keep will try to send email to this address.
           </label>
           {errors.to_email && (
             <p className="mt-1 text-sm text-red-500">{errors.to_email}</p>

@@ -110,7 +110,7 @@ const WidgetAlertsTable: React.FC<WidgetAlertsTableProps> = ({
         renderValue: (alert: any) => <TimeAgo date={alert.lastReceived} />,
       },
     }),
-    [columnRenameMapping]
+    []
   );
 
   const orderedColumns = useMemo(() => {

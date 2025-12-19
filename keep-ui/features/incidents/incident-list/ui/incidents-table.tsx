@@ -48,10 +48,19 @@ function SelectedRowActions({
   onGenerateReport: () => void;
 }) {
   return (
-    <div className="w-full flex justify-between">
+    <div className="w-full flex justify-between mb-4">
       <div>
         <Button
-          color="orange"
+          style={{ 
+            background: 'linear-gradient(180deg, #0d88c0 0%, #0b7aae 100%)',
+            borderRadius: '8px',
+            padding: '10px 20px',
+            fontWeight: '600',
+            fontSize: '14px',
+            border: 'none',
+            color: 'white',
+            height: '40px'
+          }}
           variant="primary"
           icon={DocumentChartBarIcon}
           tooltip="Generate report for currently visible incidents"
@@ -62,14 +71,23 @@ function SelectedRowActions({
         </Button>
       </div>
 
-      <div className="flex gap-2 items-center">
+      <div className="flex gap-3 items-center">
         {selectedRowIds.length ? (
           <span className="accent-dark-tremor-content text-sm px-2">
             {selectedRowIds.length} selected
           </span>
         ) : null}
         <Button
-          color="orange"
+          style={{ 
+            background: '#7dd3f8',
+            borderRadius: '8px',
+            padding: '10px 24px',
+            fontWeight: '600',
+            fontSize: '14px',
+            border: 'none',
+            color: 'white',
+            height: '40px'
+          }}
           variant="primary"
           size="md"
           disabled={selectedRowIds.length < 2}
@@ -78,7 +96,16 @@ function SelectedRowActions({
           Merge
         </Button>
         <Button
-          color="red"
+          style={{ 
+            background: '#ff6b6b',
+            borderRadius: '8px',
+            padding: '10px 24px',
+            fontWeight: '600',
+            fontSize: '14px',
+            border: 'none',
+            color: 'white',
+            height: '40px'
+          }}
           variant="primary"
           size="md"
           disabled={!selectedRowIds.length}
@@ -359,8 +386,11 @@ export default function IncidentsTable({
         onGenerateReport={generateReport}
       />
       {incidents.items.length > 0 ? (
-        <Card className="p-0 overflow-hidden">
-          <IncidentTableComponent table={table} />
+        <Card className="p-0 w-full" style={{ border: '1px solid #E3E6EA', borderRadius: '10px', boxShadow: '0 2px 6px rgba(0,0,0,0.08)' }}>
+          {/* UI Change Only - functionality unchanged - responsive table wrapper */}
+          <div className="w-full overflow-x-auto">
+            <IncidentTableComponent table={table} />
+          </div>
         </Card>
       ) : (
         <Card className="flex-grow">

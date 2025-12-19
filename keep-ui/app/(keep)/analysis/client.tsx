@@ -159,16 +159,19 @@ export const Client: React.FC = () => {
     { priority: "Medium (Sev-3)", mttr: 38, target: 48 },
   ];
 
-  const incidentCategories = [
-    { name: "Database Errors", value: 245 },
-    { name: "API Timeouts", value: 198 },
-    { name: "UI/Login Issues", value: 156 },
-    { name: "Network Issues", value: 132 },
-    { name: "Authentication", value: 98 },
-    { name: "Batch Job Failures", value: 87 },
-    { name: "Performance", value: 65 },
-    { name: "Other", value: 76 },
-  ];
+  const incidentCategories = useMemo(
+    () => [
+      { name: "Database Errors", value: 245 },
+      { name: "API Timeouts", value: 198 },
+      { name: "UI/Login Issues", value: 156 },
+      { name: "Network Issues", value: 132 },
+      { name: "Authentication", value: 98 },
+      { name: "Batch Job Failures", value: 87 },
+      { name: "Performance", value: 65 },
+      { name: "Other", value: 76 },
+    ],
+    []
+  );
 
   const mtbfData = [
     { month: "Jan", mtbf: 168, incident: false },
@@ -194,17 +197,23 @@ export const Client: React.FC = () => {
     { priority: "Sev-3 (5 days)", target: 90, achievement: 92 },
   ];
 
-  const csatPositive = [
-    { name: "Quick Resolution", value: 45 },
-    { name: "Helpful Engineer", value: 35 },
-    { name: "Good Communication", value: 20 },
-  ];
+  const csatPositive = useMemo(
+    () => [
+      { name: "Quick Resolution", value: 45 },
+      { name: "Helpful Engineer", value: 35 },
+      { name: "Good Communication", value: 20 },
+    ],
+    []
+  );
 
-  const csatNegative = [
-    { name: "Slow Response", value: 60 },
-    { name: "Issue Recurred", value: 30 },
-    { name: "Unclear Explanation", value: 10 },
-  ];
+  const csatNegative = useMemo(
+    () => [
+      { name: "Slow Response", value: 60 },
+      { name: "Issue Recurred", value: 30 },
+      { name: "Unclear Explanation", value: 10 },
+    ],
+    []
+  );
 
   const costMetrics = [
     { metric: "Total Ticket Volume", value: "1,250", trend: "Down 5%", isPositive: true },
@@ -250,7 +259,7 @@ export const Client: React.FC = () => {
   return (
     <div className="flex-1 flex flex-col h-full gap-6 px-4 py-5">
       <div>
-        <Title>Dashboard</Title>
+        <Title>Executive Overview Dashboard</Title>
       </div>
 
       {/* Summary Metrics */}

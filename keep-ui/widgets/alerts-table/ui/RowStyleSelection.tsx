@@ -26,7 +26,7 @@ export function RowStyleSelection({ onClose }: RowStyleSelectionProps) {
             onClick={() => handleStyleChange("default")}
             className={`w-full text-left p-3 rounded ${
               rowStyle === "default"
-                ? "bg-orange-100 text-orange-700"
+                ? "bg-blue-100 text-blue-700"
                 : "hover:bg-gray-100"
             }`}
           >
@@ -40,7 +40,7 @@ export function RowStyleSelection({ onClose }: RowStyleSelectionProps) {
             onClick={() => handleStyleChange("relaxed")}
             className={`w-full text-left p-3 rounded ${
               rowStyle === "relaxed"
-                ? "bg-orange-100 text-orange-700"
+                ? "bg-blue-100 text-blue-700"
                 : "hover:bg-gray-100"
             }`}
           >

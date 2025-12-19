@@ -74,10 +74,9 @@ export function TicketingIncidentOptions({
     <>
       {linkedTicket ? (
         <Button
-          color="orange"
+          className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white !py-0.5 mr-2"
           size="xs"
           variant="secondary"
-          className="!py-0.5 mr-2"
           icon={MdOutlineOpenInNew}
           onClick={() => openInProvider(linkedTicket)}
           disabled={!linkedTicketUrl}
@@ -87,20 +86,18 @@ export function TicketingIncidentOptions({
       ) : (
         <>
           <Button
-            color="orange"
+            className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white !py-0.5 mr-2"
             size="xs"
             variant="secondary"
-            className="!py-0.5 mr-2"
             icon={MdOutlineBookmarkAdd}
             onClick={createNewTicket}
           >
             Create New Ticket
           </Button>
           <Button
-            color="orange"
+            className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white !py-0.5 mr-2"
             size="xs"
             variant="secondary"
-            className="!py-0.5 mr-2"
             icon={MdLink}
             onClick={linkIncidentToExistingTicket}
           >

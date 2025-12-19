@@ -1,10 +1,8 @@
-// UI Change Only - functionality unchanged
 import { ReactNode } from "react";
 import { NextAuthProvider } from "../auth-provider";
-import { Mulish } from "next/font/google";
+import { Inter } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import Navbar from "components/navbar/Navbar";
-import HeaderWrapper from "components/header/HeaderWrapper";
 import { TopologyPollingContextProvider } from "@/app/(keep)/topology/model/TopologyPollingContext";
 import { getConfig } from "@/shared/lib/server/getConfig";
 import { ConfigProvider } from "../config-provider";
@@ -17,10 +15,12 @@ import "react-toastify/dist/ReactToastify.css";
 import { PostHogPageView } from "@/shared/ui/PostHogPageView";
 import { WorkflowModalProvider } from "@/features/workflows/manual-run-workflow";
 
-// If loading a variable font, you don't need to specify the font weight
-const mulish = Mulish({
+// UI Change Only - functionality unchanged
+// Use Inter font for modern enterprise look
+const inter = Inter({
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
 type RootLayoutProps = {
@@ -32,8 +32,8 @@ export default async function RootLayout({ children }: RootLayoutProps) {
   const session = await auth();
 
   return (
-    <html lang="en" className={`bg-white ${mulish.className}`}>
-      <body className="h-screen flex flex-col bg-gradient-to-br from-slate-50 via-blue-50/40 to-cyan-50/30">
+    <html lang="en" className={`${inter.className}`} style={{ backgroundColor: '#FFFFFF' }}>
+      <body className="h-screen flex flex-col overflow-hidden">
         {/* ThemeScript must be the first thing to avoid flickering */}
         <ThemeScript />
         <ConfigProvider config={config}>
@@ -44,24 +44,27 @@ export default async function RootLayout({ children }: RootLayoutProps) {
                   {/* @ts-ignore-error Server Component */}
                   <PostHogPageView />
                   
-                  {/* Header at the top - visible on all pages */}
-                  <HeaderWrapper session={session} />
+                  {/* Fixed Top Header */}
+                  <Navbar />
                   
-                  {/* Main container with sidebar and content */}
-                  <div className="flex-1 flex overflow-hidden">
-                    {/* Sidebar */}
-                    <Navbar />
+                  {/* Main layout wrapper - flex row with sidebar and content */}
+                  {/* UI Change Only - functionality unchanged */}
+                  <div className="flex flex-1 overflow-hidden" style={{ marginTop: '56px' }}>
+                    {/* Spacer for fixed sidebar on desktop - matches sidebar widths at each breakpoint */}
+                    <div className="hidden lg:block xl:hidden flex-shrink-0" style={{ width: '240px' }} />
+                    <div className="hidden xl:block 2xl:hidden flex-shrink-0" style={{ width: '260px' }} />
+                    <div className="hidden 2xl:block flex-shrink-0" style={{ width: '280px' }} />
                     
-                  {/* Main content area */}
-                  <main className="flex-1 flex flex-col overflow-auto bg-white/40 backdrop-blur-sm">
-                    {/* Add the banner here, before the content */}
-                    {config.READ_ONLY && <ReadOnlyBanner />}
-                    <div className="flex-1 p-1">{children}</div>
+                    {/* Main Content Area - automatically sizes to remaining space */}
+                    <main className="page-container flex flex-col flex-1 overflow-y-auto overflow-x-hidden" style={{ paddingTop: '20px' }}>
+                      {/* Add the banner here, before the navbar */}
+                      {config.READ_ONLY && <ReadOnlyBanner />}
+                      <div className="flex-1">{children}</div>
                       {/** footer */}
                       {process.env.GIT_COMMIT_HASH &&
                         process.env.SHOW_BUILD_INFO !== "false" && (
-                          <div className="pointer-events-none w-full px-4 py-2 text-slate-400 text-xs bg-gradient-to-t from-slate-50/80 to-transparent">
-                            <div className="w-full text-right font-medium">
+                          <div className="pointer-events-none opacity-80 w-full p-2 text-slate-400 text-xs">
+                            <div className="w-full text-right">
                               Version: {process.env.KEEP_VERSION} | Build:{" "}
                               {process.env.GIT_COMMIT_HASH.slice(0, 6)}
                             </div>

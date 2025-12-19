@@ -211,38 +211,46 @@ if (authType === AuthType.AZUREAD && proxyUrl) {
 }
 
 // Modify the session callback to ensure tenantIds are available
-const originalSessionCallback = config.callbacks.session;
-config.callbacks.session = async (params) => {
-  const session = await originalSessionCallback(params);
+if (config.callbacks?.session) {
+  const originalSessionCallback = config.callbacks.session;
+  config.callbacks.session = async (params) => {
+    const session = await originalSessionCallback(params);
 
-  // Make sure tenantIds from the token are added to the session
-  if (params.token && "tenantIds" in params.token) {
-    session.user.tenantIds = params.token.tenantIds as {
-      tenant_id: string;
-      tenant_name: string;
-    }[];
-  }
+    if (session.user) {
+      // Make sure tenantIds from the token are added to the session
+      if (params.token && "tenantIds" in params.token) {
+        session.user.tenantIds = params.token.tenantIds as {
+          tenant_id: string;
+          tenant_name: string;
+        }[];
+      }
 
-  // Also copy tenantIds from user object if available
-  if (params.user && "tenantIds" in params.user) {
-    session.user.tenantIds = params.user.tenantIds || session.user.tenantIds;
-  }
+      // Also copy tenantIds from user object if available
+      if (params.user && "tenantIds" in params.user) {
+        session.user.tenantIds = params.user.tenantIds || session.user.tenantIds;
+      }
+    }
 
-  return session;
-};
+    return session;
+  };
+}
 
 // Modify the JWT callback to preserve tenantIds
-const originalJwtCallback = config.callbacks.jwt;
-config.callbacks.jwt = async (params) => {
-  const token = await originalJwtCallback(params);
+if (config.callbacks?.jwt) {
+  const originalJwtCallback = config.callbacks.jwt;
+  config.callbacks.jwt = async (params) => {
+    const token = await originalJwtCallback(params);
 
-  // Make sure tenantIds from the user are preserved in the token
-  if (params.user && "tenantIds" in params.user) {
-    token.tenantIds = params.user.tenantIds;
-  }
+    if (token) {
+      // Make sure tenantIds from the user are preserved in the token
+      if (params.user && "tenantIds" in params.user) {
+        token.tenantIds = params.user.tenantIds;
+      }
+    }
 
-  return token;
-};
+    return token;
+  };
+}
 
 console.log("Starting Keep frontend with auth type:", authType);
 export const { handlers, auth, signIn, signOut } = NextAuth(config);

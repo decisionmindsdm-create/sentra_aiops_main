@@ -1,116 +1,44 @@
-import type {NextAuthConfig, User} from "next-auth";
-import {AuthError} from "next-auth";
+import { NextAuthConfig, User } from "next-auth";
+import Auth0 from "next-auth/providers/auth0";
 import Credentials from "next-auth/providers/credentials";
 import Keycloak from "next-auth/providers/keycloak";
-import Auth0 from "next-auth/providers/auth0";
-import MicrosoftEntraID from "next-auth/providers/microsoft-entra-id";
 import Okta from "next-auth/providers/okta";
 import OneLogin from "next-auth/providers/onelogin";
-import {AuthenticationError, AuthErrorCodes} from "@/errors";
-import type {JWT} from "next-auth/jwt";
-import {getApiURL} from "@/utils/apiUrl";
-import {
-  AuthType,
-  MULTI_TENANT,
-  NO_AUTH,
-  NoAuthTenant,
-  NoAuthUserEmail,
-  SINGLE_TENANT,
-} from "@/utils/authenticationType";
+import MicrosoftEntraID from "next-auth/providers/microsoft-entra-id";
+import { getApiURL } from "@/utils/apiUrl";
+import { AuthType, NoAuthUserEmail, NoAuthTenant } from "@/utils/authenticationType";
+import type { JWT } from "next-auth/jwt";
+import { AuthenticationError, AuthErrorCodes } from "@/errors";
 
-export class BackendRefusedError extends AuthError {
-  static type = "BackendRefusedError";
-}
+const authSessionTimeout = parseInt(
+  process.env.AUTH_SESSION_TIMEOUT_SECONDS || "2592000",
+  10
+);
 
-const authSessionTimeout = process.env.AUTH_SESSION_TIMEOUT
-  ? Number.parseInt(process.env.AUTH_SESSION_TIMEOUT)
-  : 30 * 24 * 60 * 60; // Default to 30 days if not set
-// Determine auth type with backward compatibility
-const authTypeEnv = process.env.AUTH_TYPE;
-export const authType =
-  authTypeEnv === MULTI_TENANT
-    ? AuthType.AUTH0
-    : authTypeEnv === SINGLE_TENANT
-      ? AuthType.DB
-      : authTypeEnv === NO_AUTH
-        ? AuthType.NOAUTH
-        : (authTypeEnv as AuthType);
+// Extract authType from environment variables
+export const authType = (() => {
+  const envAuthType = process.env.AUTH_TYPE;
 
+  // Map legacy values to new values
+  if (envAuthType === "MULTI_TENANT") {
+    return AuthType.AUTH0;
+  } else if (envAuthType === "SINGLE_TENANT") {
+    return AuthType.DB;
+  } else if (envAuthType === "NO_AUTH") {
+    return AuthType.NOAUTH;
+  } else if (Object.values(AuthType).includes(envAuthType as AuthType)) {
+    return envAuthType as AuthType;
+  } else {
+    return AuthType.NOAUTH;
+  }
+})();
+
+// Extract proxy URL from environment variables
 export const proxyUrl =
   process.env.HTTP_PROXY ||
   process.env.HTTPS_PROXY ||
   process.env.http_proxy ||
   process.env.https_proxy;
-
-async function refreshAccessToken(token: any) {
-  let issuerUrl = "";
-  let clientId = "";
-  let clientSecret = "";
-  let refreshTokenUrl = "";
-
-  switch (authType) {
-    case AuthType.KEYCLOAK: {
-      issuerUrl = process.env.KEYCLOAK_ISSUER || "";
-      clientId = process.env.KEYCLOAK_ID || "";
-      clientSecret = process.env.KEYCLOAK_SECRET || "";
-      refreshTokenUrl = `${issuerUrl}/protocol/openid-connect/token`;
-      break;
-    }
-    case AuthType.OKTA: {
-      issuerUrl = process.env.OKTA_ISSUER || "";
-      clientId = process.env.OKTA_CLIENT_ID || "";
-      clientSecret = process.env.OKTA_CLIENT_SECRET || "";
-      refreshTokenUrl = `${issuerUrl}/v1/token`;
-      break;
-    }
-    case AuthType.ONELOGIN: {
-      issuerUrl = process.env.ONELOGIN_ISSUER || "";
-      clientId = process.env.ONELOGIN_CLIENT_ID || "";
-      clientSecret = process.env.ONELOGIN_CLIENT_SECRET || "";
-      refreshTokenUrl = `${issuerUrl}/token`;
-      break;
-    }
-    default: {
-      throw new Error("Refresh token not supported for this auth type");
-    }
-  }
-
-  try {
-    const response = await fetch(refreshTokenUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: new URLSearchParams({
-        client_id: clientId,
-        client_secret: clientSecret,
-        grant_type: "refresh_token",
-        refresh_token: token.refreshToken,
-      }),
-    });
-
-    const refreshedTokens = await response.json();
-
-    if (!response.ok) {
-      throw new Error(
-        `Refresh token failed: ${response.status} ${response.statusText}`
-      );
-    }
-
-    return {
-      ...token,
-      accessToken: refreshedTokens.access_token,
-      accessTokenExpires: Date.now() + (refreshedTokens.expires_in || 3600) * 1000,
-      refreshToken: refreshedTokens.refresh_token ?? token.refreshToken,
-    };
-  } catch (error) {
-    console.error("Error refreshing access token:", error);
-    return {
-      ...token,
-      error: "RefreshAccessTokenError",
-    };
-  }
-}
 
 // Base provider configurations without AzureAD
 const baseProviderConfigs = {
@@ -130,8 +58,8 @@ const baseProviderConfigs = {
     Credentials({
       name: "Credentials",
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "DmAiops" },
-        password: { label: "Password", type: "password", placeholder: "DmAiops" },
+        username: { label: "Username", type: "text", placeholder: "keep" },
+        password: { label: "Password", type: "password", placeholder: "keep" },
       },
       async authorize(credentials): Promise<User | null> {
         try {
@@ -207,12 +135,12 @@ const baseProviderConfigs = {
           }),
           tenantIds: [
             {
-              tenant_id: "Dm Vivek",
-              tenant_name: "Tenant of Dm Vivek (tenant_id: Dm Vivek)",
+              tenant_id: "keep",
+              tenant_name: "Tenant of Dm Vivek (tenant_id: keep)",
             },
             {
-              tenant_id: "Dm Aiops",
-              tenant_name: "Tenant of another Dm Aiops (tenant_id: Dm Aiops)",
+              tenant_id: "keep2",
+              tenant_name: "Tenant of another Dm Vivek (tenant_id: keep2)",
             },
           ],
           tenantId: tenantId,
@@ -275,7 +203,7 @@ if (isDebug) {
   console.log("Auth debug mode enabled");
 }
 
-export const config = {
+export const config: NextAuthConfig = {
   debug: isDebug,
   trustHost: true,
   providers:
@@ -389,113 +317,43 @@ export const config = {
               });
 
               if (response.ok) {
-                const orgDict = await response.json();
+                const orgsData = await response.json();
 
-                // Create a properly typed array (not undefined)
-                const tenantArr: {
-                  tenant_id: string;
-                  tenant_name: string;
-                  tenant_logo_url?: string;
-                }[] = [];
+                if (orgsData && orgsData.length > 0) {
+                  token.tenantIds = orgsData;
 
-                // Populate the array with tenant data, handling null/undefined values
-                Object.entries(orgDict).forEach(([org_name, orgData]) => {
-                  const tenantObject: {
-                    tenant_id: string;
-                    tenant_name: string;
-                    tenant_logo_url?: string;
-                  } = {
-                    tenant_id: String((orgData as any).tenant_id),
-                    tenant_name: `${org_name}`,
-                  };
-
-                  // Only add tenant_logo_url if it exists and is not null
-                  const logoUrl = (orgData as any).tenant_logo_url;
-                  if (logoUrl !== null && logoUrl !== undefined) {
-                    tenantObject.tenant_logo_url = logoUrl;
+                  // Default to first org
+                  if (!token.tenantId) {
+                    token.tenantId = orgsData[0].tenant_id;
                   }
-
-                  tenantArr.push(tenantObject);
-                });
-
-                // Only assign if we have entries (avoids undefined)
-                if (tenantArr.length > 0) {
-                  token.tenantIds = tenantArr;
-
-                  // Set default tenant to the first one if available
-                  token.tenantId = tenantArr[0].tenant_id || token.tenantId;
-
-                  console.log("Successfully processed user orgs:", tenantArr);
-                } else {
-                  console.warn("No orgs returned from /auth/user/orgs");
                 }
               } else {
-                console.error(
-                  "Failed to fetch user orgs:",
-                  response.statusText
-                );
+                console.warn("Failed to fetch organizations:", response.status);
               }
             } catch (error) {
-              console.error("Error fetching user orgs:", error);
+              console.error("Error fetching organizations:", error);
             }
           }
         }
 
-        // Refresh token logic for Keycloak, Okta and OneLogin
-        if (authType === AuthType.KEYCLOAK || authType === AuthType.OKTA || authType === AuthType.ONELOGIN) {
-          token.refreshToken = account.refresh_token;
-          token.accessTokenExpires =
-            Date.now() + (account.expires_in as number) * 1000;
-        }
-      } else if (
-        (authType === AuthType.KEYCLOAK || authType === AuthType.OKTA || authType === AuthType.ONELOGIN) &&
-        token.refreshToken &&
-        token.accessTokenExpires &&
-        typeof token.accessTokenExpires === "number" &&
-        Date.now() > token.accessTokenExpires
-      ) {
-        token = await refreshAccessToken(token);
-        if (!token.accessToken) {
-          throw new Error("Failed to refresh access token");
+        // Copy tenantIds to token if they exist
+        if (user.tenantIds) {
+          token.tenantIds = user.tenantIds;
         }
       }
-
       return token;
     },
-    session: async ({ session, token, user }) => {
-      return {
-        ...session,
-        accessToken: token.accessToken as string,
-        tenantId: token.tenantId as string,
-        userRole: token.role as string,
-        user: {
-          ...session.user,
-          accessToken: token.accessToken as string,
-          tenantId: token.tenantId as string,
-          role: token.role as string,
-          tenantIds: token.tenantIds || [],
-        },
-      };
+    session: async ({ session, token }) => {
+      if (token) {
+        session.accessToken = token.accessToken as string;
+        session.tenantId = token.tenantId as string;
+        session.userRole = token.role as string;
+        session.user.tenantIds = token.tenantIds as {
+          tenant_id: string;
+          tenant_name: string;
+        }[];
+      }
+      return session;
     },
   },
-} satisfies NextAuthConfig;
-
-if (isDebug && authType === AuthType.AZUREAD && proxyUrl) {
-  // add cookies override for AzureAD
-  (config as any).cookies = {
-    pkceCodeVerifier: {
-      name: "authjs.pkce.code_verifier",
-      options: {
-        httpOnly: true,
-        sameSite: "lax",
-        path: "/",
-        secure: false,
-      },
-    },
-  };
-}
-
-// if debug is enabled, log the config
-if (isDebug) {
-  console.log("Auth config:", config);
-}
+};

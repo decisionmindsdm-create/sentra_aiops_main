@@ -1,11 +1,10 @@
 import { Client } from "./client";
 
-export default function Page() {
-  // Inherits the same sidebar/top layout from /(keep) layout automatically
+export default function AnalysisPage() {
   return <Client />;
 }
 
 export const metadata = {
-  title: "Dm AIops - Analysis",
-  description: "analysis dashboard",
+  title: "DM AIOPS - Analysis",
+  description: "Incident analysis and operational metrics dashboard.",
 };

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { ReactElement, useRef } from "react";
 import { Popover } from "@headlessui/react";
 import {
   arrow,
@@ -15,7 +15,7 @@ interface PopoverProps {
   triggerIcon?: IconType;
   triggerColor?: string;
   triggerVariant?: "light" | "dark";
-  content: React.JSX.Element;
+  content: ReactElement;
   buttonLabel?: string;
   onApply?: () => void;
 }

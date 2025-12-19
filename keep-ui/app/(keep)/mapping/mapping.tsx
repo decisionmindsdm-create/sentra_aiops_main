@@ -46,7 +46,7 @@ export default function Mapping() {
         </div>
         <div>
           <Button
-            color="orange"
+            className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
             size="md"
             type="submit"
             onClick={() => setIsSidePanelOpen(true)}
@@ -88,7 +88,7 @@ export default function Mapping() {
               description="Create a new mapping rule using the mapping rules wizard"
             >
               <Button
-                color="orange"
+                className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
                 size="md"
                 type="submit"
                 onClick={() => setIsSidePanelOpen(true)}

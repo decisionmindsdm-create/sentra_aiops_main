@@ -1,9 +1,17 @@
 import { Button } from "@/components/ui";
+import { useConfig } from "@/utils/hooks/useConfig";
+import {
+  useCopilotAction,
+  useCopilotContext,
+  useCopilotReadable,
+} from "@copilotkit/react-core";
+import { CopilotTask } from "@copilotkit/react-core";
 import { Subtitle, TextInput, Select, SelectItem } from "@tremor/react";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { PresetControls } from "./preset-controls";
 import CreatableMultiSelect from "@/components/ui/CreatableMultiSelect";
 import { AlertsCountBadge } from "./alerts-count-badge";
+import { TbSparkles } from "react-icons/tb";
 import { MultiValue } from "react-select";
 import { useTags } from "@/utils/hooks/useTags";
 import { Preset } from "@/entities/presets/model/types";
@@ -46,6 +54,7 @@ export function CreateOrUpdatePresetForm({
 
   const [groupColumn, setGroupColumn] = useState(presetData.groupColumn ?? "");
 
+  const [generatingName, setGeneratingName] = useState(false);
   const [selectedTags, setSelectedTags] = useState<TagOption[]>(
     presetData.tags ?? []
   );
@@ -80,6 +89,36 @@ export function CreateOrUpdatePresetForm({
       }))
     );
   };
+
+  const { data: configData } = useConfig();
+  const isAIEnabled = configData?.OPEN_AI_API_KEY_SET;
+  const context = useCopilotContext();
+
+  useCopilotReadable({
+    description: "The CEL query for the alert preset",
+    value: presetData.CEL,
+  });
+
+  useCopilotAction({
+    name: "setGeneratedName",
+    description: "Set the generated preset name",
+    parameters: [
+      { name: "name", type: "string", description: "The generated name" },
+    ],
+    handler: async ({ name }) => {
+      setPresetName(name);
+    },
+  });
+
+  const generatePresetName = useCallback(async () => {
+    setGeneratingName(true);
+    const task = new CopilotTask({
+      instructions:
+        "Generate a short, descriptive name for an alert preset based on the provided CEL query. The name should be concise but meaningful, reflecting the key conditions in the query.",
+    });
+    await task.run(context);
+    setGeneratingName(false);
+  }, [context]);
 
   const { createPreset, updatePreset } = usePresetActions();
   const addOrUpdatePreset = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -126,20 +165,34 @@ export function CreateOrUpdatePresetForm({
       <div className="space-y-2">
         <Subtitle>Preset Name</Subtitle>
         <div className="space-y-2">
-          <TextInput
-            data-testid="preset-name-input"
-            // TODO: don't show error until user tries to save
-            error={!presetName}
-            errorMessage="Preset name is required"
-            placeholder={
-              presetName === "feed" || presetName === "deleted"
-                ? ""
-                : presetName
-            }
-            value={presetName}
-            onChange={(e) => setPresetName(e.target.value)}
-            className="w-full"
-          />
+          <div className="flex items-center gap-2">
+            <TextInput
+              data-testid="preset-name-input"
+              // TODO: don't show error until user tries to save
+              error={!presetName}
+              errorMessage="Preset name is required"
+              placeholder={
+                presetName === "feed" || presetName === "deleted"
+                  ? ""
+                  : presetName
+              }
+              value={presetName}
+              onChange={(e) => setPresetName(e.target.value)}
+              className="w-full"
+            />
+            {isAIEnabled && (
+              <Button
+                variant="secondary"
+                onClick={generatePresetName}
+                disabled={!presetData.CEL || generatingName}
+                loading={generatingName}
+                icon={TbSparkles}
+                size="xs"
+              >
+                AI
+              </Button>
+            )}
+          </div>
         </div>
         <PresetControls
           isPrivate={isPrivate}

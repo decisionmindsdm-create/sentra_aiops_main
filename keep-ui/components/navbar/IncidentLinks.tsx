@@ -40,11 +40,12 @@ export const IncidentsLinks = ({ session }: IncidentsLinksProps) => {
       <Disclosure.Button className="w-full flex justify-between items-center px-2">
         {({ open }) => (
           <>
-            <Subtitle className="text-xs ml-2 text-gray-900 font-medium uppercase">
+            {/* UI Change Only - functionality unchanged */}
+            <Subtitle className="text-xs ml-2 text-gray-600 font-semibold uppercase">
               INCIDENTS
             </Subtitle>
             <IoChevronUp
-              className={clsx({ "rotate-180": open }, "mr-2 text-slate-400")}
+              className={clsx({ "rotate-180": open }, "mr-2 text-gray-500")}
             />
           </>
         )}

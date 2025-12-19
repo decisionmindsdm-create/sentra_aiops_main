@@ -89,10 +89,9 @@ export function IncidentHeader({
                 />
               )}
               <Button
-                color="orange"
+                className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white !py-0.5 mr-2"
                 size="xs"
                 variant="secondary"
-                className="!py-0.5 mr-2"
                 icon={MdPlayArrow}
                 onClick={(e: React.MouseEvent) => {
                   e.preventDefault();
@@ -103,10 +102,9 @@ export function IncidentHeader({
                 Run Workflow
               </Button>
               <Button
-                color="orange"
+                className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white !py-0.5"
                 size="xs"
                 variant="secondary"
-                className="!py-0.5"
                 icon={MdModeEdit}
                 onClick={(e: React.MouseEvent) => {
                   e.preventDefault();
@@ -133,7 +131,7 @@ export function IncidentHeader({
             )}
             {incident.rule_is_deleted && (
               <Badge
-                color="orange"
+                className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
                 size="xs"
                 icon={TbInfoCircle}
                 tooltip={`Created by deleted rule ${incident.rule_name}`}
@@ -145,7 +143,7 @@ export function IncidentHeader({
           {incident.is_candidate && (
             <div className="space-x-1 flex flex-row items-center justify-center">
               <Button
-                color="orange"
+                className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
                 size="xs"
                 tooltip="Confirm incident"
                 variant="secondary"

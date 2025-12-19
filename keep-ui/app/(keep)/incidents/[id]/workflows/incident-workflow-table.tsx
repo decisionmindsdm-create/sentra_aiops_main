@@ -148,7 +148,7 @@ export default function IncidentWorkflowTable({ incident }: Props) {
         return triggered_by ? (
           <div className="flex items-center gap-2">
             <Button
-              className="px-3 py-1 bg-orange-100 text-black rounded-xl border-2 border-orange-400 inline-flex items-center gap-2 font-bold hover:bg-orange-200"
+              className="px-3 py-1 bg-blue-100 text-black rounded-xl border-2 border-blue-400 inline-flex items-center gap-2 font-bold hover:bg-blue-200"
               variant="secondary"
               tooltip={triggered_by ?? ""}
               icon={getTriggerIcon(valueToShow)}
@@ -168,7 +168,7 @@ export default function IncidentWorkflowTable({ incident }: Props) {
         return triggered_by ? (
           <div className="flex items-center gap-2 flex-wrap">
             {details.map((detail, index) => (
-              <Badge key={index} className="px-3 py-1" color="orange">
+              <Badge key={index} className="px-3 py-1 !bg-[#0d88c0] !text-white">
                 {detail}
               </Badge>
             ))}
@@ -200,10 +200,9 @@ export default function IncidentWorkflowTable({ incident }: Props) {
       <Card className="p-0 overflow-hidden">
         {!isLoading && (workflows?.items ?? []).length === 0 && (
           <Callout
-            className="m-4"
+            className="m-4 !bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
             title="No Workflows"
             icon={ExclamationTriangleIcon}
-            color="orange"
           >
             No workflows have been executed for this incident yet.
           </Callout>

@@ -152,7 +152,7 @@ export function TopologyMap({
   const [nodes, setNodes] = useState<TopologyNode[]>([]);
   const [edges, setEdges] = useState<Edge[]>([]);
 
-  const reactFlowInstanceRef = useRef<ReactFlowInstance<TopologyNode, Edge>>();
+  const reactFlowInstanceRef = useRef<ReactFlowInstance<TopologyNode, Edge> | null>(null);
 
   const highlightNodes = useCallback((nodeIds: string[]) => {
     setNodes((nds) =>
@@ -382,7 +382,7 @@ export function TopologyMap({
     const newEdges = [...edges];
     const currentEdge = newEdges.find((e) => e.id === edge.id);
     if (currentEdge) {
-      currentEdge.style = eventType === "enter" ? { stroke: "orange" } : {};
+      currentEdge.style = eventType === "enter" ? { stroke: "#0d88c0" } : {};
       currentEdge.labelBgStyle =
         eventType === "enter" ? edgeLabelBgStyleHover : edgeLabelBgStyleNoHover;
       currentEdge.markerEnd =
@@ -498,7 +498,7 @@ export function TopologyMap({
       setNodes(layoutedElements.nodes);
       setEdges(layoutedElements.edges);
     },
-    [topologyData, applicationMap, allIncidents, mutateTopologyData]
+    [topologyData, applicationMap, allIncidents, allAlerts, mutateTopologyData]
   );
 
   useEffect(
@@ -602,7 +602,7 @@ export function TopologyMap({
           <div className="flex gap-2">
             <Button
               onClick={() => setIsSidePanelOpen(true)}
-              color="orange"
+              className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
               variant="primary"
               size="md"
               icon={PlusIcon}
@@ -690,7 +690,7 @@ export function TopologyMap({
                     >
                       <div className="flex gap-2">
                         <Button
-                          color="orange"
+                          className="!text-[#0d88c0] hover:!text-[#0a6d9a]"
                           variant="secondary"
                           size="md"
                           onClick={handleImportTopology}
@@ -698,7 +698,7 @@ export function TopologyMap({
                           Import
                         </Button>
                         <Button
-                          color="orange"
+                          className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
                           variant="primary"
                           size="md"
                           onClick={() =>

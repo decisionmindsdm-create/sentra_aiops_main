@@ -1,0 +1,6 @@
+#!C:\Users\Localuser\Downloads\sentra_aiops_main-3\keep_env\Scripts\python.exe
+
+from logmine_pkg.run import run
+
+if __name__ == '__main__':
+    run()

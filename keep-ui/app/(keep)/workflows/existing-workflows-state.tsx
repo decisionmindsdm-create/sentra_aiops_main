@@ -138,7 +138,7 @@ export function ExistingWorkflowsState({
               return <XCircleIcon className="w-5 h-5 text-red-500" />;
             }
             case "in_progress": {
-              return <ArrowPathIcon className="w-5 h-5 text-orange-500" />;
+              return <ArrowPathIcon className="w-5 h-5 text-[#0d88c0]" />;
             }
             default: {
               return (
@@ -199,7 +199,7 @@ export function ExistingWorkflowsState({
               icon={FunnelIcon}
             >
               <Button
-                color="orange"
+                className="!text-[#0d88c0] hover:!text-[#0a6d9a]"
                 variant="secondary"
                 onClick={() => setClearFiltersToken(uuidV4())}
               >
@@ -222,7 +222,7 @@ export function ExistingWorkflowsState({
               icon={MagnifyingGlassIcon}
             >
               <Button
-                color="orange"
+                className="!text-[#0d88c0] hover:!text-[#0a6d9a]"
                 variant="secondary"
                 onClick={() => setSearchedValue(null)}
               >
@@ -268,6 +268,7 @@ export function ExistingWorkflowsState({
             </div>
             <div className="flex gap-2">
               <Button
+                className="!text-[#0d88c0] hover:!text-[#0a6d9a]"
                 size="md"
                 variant="secondary"
                 onClick={() => {
@@ -275,16 +276,15 @@ export function ExistingWorkflowsState({
                 }}
                 icon={ArrowUpOnSquareStackIcon}
                 id="uploadWorkflowButton"
-                className="border-[#0d88c0] text-[#0d88c0] hover:bg-[#e6f4f9]"
               >
                 Upload Workflows
               </Button>
               <Button
+                className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
                 size="md"
                 variant="primary"
                 onClick={() => setIsCreateWorkflowModalOpen(true)}
                 icon={PlusIcon}
-                className="bg-[#0d88c0] hover:bg-[#0b76a8] border-[#0d88c0] text-white"
               >
                 Create Workflow
               </Button>

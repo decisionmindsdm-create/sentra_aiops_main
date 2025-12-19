@@ -46,6 +46,7 @@ import {
   TooltipPosition,
 } from "@/components/ui/ImagePreviewTooltip";
 import { useExpandedRows } from "@/utils/hooks/useExpandedRows";
+import { useConfig } from "@/utils/hooks/useConfig";
 
 interface Props {
   alert: AlertDto;
@@ -84,7 +85,10 @@ export function AlertMenu({
 }: Props) {
   const api = useApi();
   const router = useRouter();
-  const { data: executions } = useWorkflowExecutions();
+  const { data: appConfig } = useConfig();
+  const { data: executions } = appConfig?.KEEP_WF_LIST_EXTENDED_INFO === true
+    ? useWorkflowExecutions()
+    : { data: [] };
   const [rowStyle] = useAlertRowStyle();
   const [viewedAlerts, setViewedAlerts] = useLocalStorage<ViewedAlert[]>(
     `viewed-alerts-${presetName}`,
@@ -220,7 +224,7 @@ export function AlertMenu({
         showActionsOnHover
           ? [
               "transition-opacity duration-100",
-              "opacity-0 bg-orange-100",
+              "opacity-0 bg-[#E6F5FA]",
               "group-hover:opacity-100",
             ]
           : "opacity-100"
@@ -235,7 +239,7 @@ export function AlertMenu({
             icon={TbCodeDots}
             className={clsx(
               "w-4 h-4 object-cover rounded text-gray-500",
-              viewedAlert ? "text-orange-400" : ""
+              viewedAlert ? "text-[#0d88c0]" : ""
             )}
           />
         )}
@@ -261,7 +265,7 @@ export function AlertMenu({
             icon={IoExpandSharp}
             className={clsx(
               "w-4 h-4 object-cover rounded",
-              expanded ? "text-orange-400" : "text-gray-500"
+              expanded ? "text-[#0d88c0]" : "text-gray-500"
             )}
           />
         )}

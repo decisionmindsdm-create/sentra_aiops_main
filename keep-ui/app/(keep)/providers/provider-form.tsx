@@ -470,10 +470,10 @@ const ProviderForm = ({
           <>
             <Button
               type="button"
-              color="orange"
               variant="secondary"
               icon={ArrowTopRightOnSquareIcon}
               onClick={handleOauth}
+              className="!text-[#0d88c0] hover:!text-[#0a6d9a]"
             >
               Install with OAuth2
             </Button>
@@ -699,8 +699,7 @@ const ProviderForm = ({
               icon={GlobeAltIcon}
               onClick={callInstallWebhook}
               variant="secondary"
-              color="orange"
-              className="mt-2.5"
+              className="mt-2.5 !text-[#0d88c0] hover:!text-[#0a6d9a]"
               disabled={!installOrUpdateWebhookEnabled || provider.provisioned}
               tooltip={
                 !installOrUpdateWebhookEnabled
@@ -728,7 +727,7 @@ const ProviderForm = ({
           <div className="flex-grow flex gap-1">
             <Title>Connect to {provider.display_name}</Title>
             {provider.provisioned && (
-              <Badge color="orange" className="ml-2">
+              <Badge className="ml-2 !bg-[#0d88c0] !text-white">
                 Provisioned
               </Badge>
             )}
@@ -751,7 +750,7 @@ const ProviderForm = ({
         <Subtitle>
           Need help? Check out the{" "}
           <Link
-            className="text-orange-600 underline"
+            className="text-[#0d88c0] hover:text-[#0a6d9a] underline"
             href={`${
               config?.KEEP_DOCS_URL || "https://www.decisionminds.com/"
             }/providers/documentation/${provider.type}-provider`}
@@ -761,7 +760,7 @@ const ProviderForm = ({
           </Link>
           , or ask{" "}
           <Link
-            className="text-orange-600 underline"
+            className="text-[#0d88c0] hover:text-[#0a6d9a] underline"
             href={`https://getkeep.slack.com/join/shared_invite/zt-2leydxr6s-XmuQtBttgxZ0GOv8MJu6rQ#/shared-invite/email`}
             target="_blank"
           >
@@ -780,8 +779,7 @@ const ProviderForm = ({
             <Callout
               title=""
               icon={ExclamationTriangleIcon}
-              color="orange"
-              className="w-full"
+              className="w-full !bg-orange-50 !border-orange-200"
             >
               <Text>
                 Editing provisioned providers is not possible from UI.
@@ -887,9 +885,8 @@ const ProviderForm = ({
         <div className="flex items-center">
           <Button
             variant="secondary"
-            color="orange"
+            className="mr-2.5 !text-[#0d88c0] hover:!text-[#0a6d9a]"
             onClick={closeModal}
-            className="mr-2.5"
             disabled={isLoading}
           >
             Cancel
@@ -899,7 +896,7 @@ const ProviderForm = ({
               loading={isLoading}
               onClick={handleUpdateClick}
               icon={UpdateIcon}
-              color="orange"
+              className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
               disabled={provider.provisioned}
               variant="primary"
             >
@@ -910,7 +907,7 @@ const ProviderForm = ({
             <Button
               loading={isLoading}
               onClick={handleConnectClick}
-              color="orange"
+              className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
               icon={LightningBoltIcon}
             >
               {isHealthCheck ? `Check health` : `Connect`}

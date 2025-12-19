@@ -69,7 +69,7 @@ export default function MappingExecutionDetailsPage(props: {
                 Alert ID:{" "}
                 <Link
                   href={alertFilterUrl}
-                  className="text-orange-500 hover:text-orange-600"
+                  className="text-[#0d88c0] hover:text-[#0a6d9a]"
                 >
                   {execution.enrichment_event.alert_id}
                 </Link>
@@ -81,7 +81,7 @@ export default function MappingExecutionDetailsPage(props: {
                 execution.enrichment_event.enriched_fields || {}
               ).map(([key, value]) => (
                 <div key={key}>
-                  <Badge color="orange" size="sm">
+                  <Badge className="!bg-[#0d88c0] !text-white" size="sm">
                     {key}
                   </Badge>
                   <div className="mt-1 text-sm">{JSON.stringify(value)}</div>

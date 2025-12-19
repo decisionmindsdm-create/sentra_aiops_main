@@ -126,7 +126,7 @@ export const CorrelationSidebarBody = ({
           <Link
             icon={ArrowUpRightIcon}
             iconPosition="right"
-            className="!text-[#0d88c0] hover:!text-[#0b76a8] ml-0.5"
+            className="!text-[#0d88c0] hover:!text-[#0a6d9a] ml-0.5"
             target="_blank"
             href={`${
               config?.KEEP_DOCS_URL || "https://www.decisionminds.com/"
@@ -145,10 +145,9 @@ export const CorrelationSidebarBody = ({
       )}
       {isNoteShown && (
         <Callout
-          className="relative"
+          className="relative !bg-[#e6f7fc] !border-[#0d88c0] !text-[#0d88c0]"
           title="NOTE: Rules will be applied only to new alerts. Historical data will
           be ignored."
-          color="blue"
         >
           <Button
             className="absolute top-0 right-0"

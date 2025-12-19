@@ -24,10 +24,18 @@ export const CorrelationSubmission = ({
   return (
     <div className="xl:col-span-2 flex justify-between items-end">
       <div className="flex items-center gap-x-4">
-        <Button type="button" variant="light" className="text-[#0d88c0] hover:bg-[#e6f4f9]" onClick={toggle}>
+        <Button 
+          type="button" 
+          variant="light" 
+          onClick={toggle}
+          className="!text-[#0d88c0] hover:!text-[#0a6d9a]"
+        >
           Cancel
         </Button>
-        <Button className="bg-[#0d88c0] hover:bg-[#0b76a8] border-[#0d88c0] text-white" disabled={!isValid || exceeds90Days}>
+        <Button 
+          disabled={!isValid || exceeds90Days}
+          className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
+        >
           {isRuleBeingEdited ? "Save correlation" : "Create correlation"}
         </Button>
       </div>

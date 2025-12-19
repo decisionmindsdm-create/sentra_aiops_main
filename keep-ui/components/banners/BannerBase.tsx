@@ -21,7 +21,7 @@ const KeepBanner = ({
       <div className="flex items-center justify-between gap-4">
         <Image
           src={KeepPng}
-          alt="Keep Logo"
+          alt="Dm Vivek Logo"
           width={20}
           height={20}
           className="inline-block mr-2"
@@ -55,10 +55,10 @@ const KeepBanner = ({
                 source: bannerId,
               });
               {newWindow ? window.open(
-                "https://www.decisionminds.com/#contact",
+                "https://www.keephq.dev/meet-keep",
                 "_blank",
                 "noopener,noreferrer"
-              ) : window.location.href = "https://www.decisionminds.com/#contact"}
+              ) : window.location.href = "https://www.keephq.dev/meet-keep"}
             }}
             color="orange"
             variant="secondary"

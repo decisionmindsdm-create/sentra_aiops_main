@@ -191,7 +191,7 @@ export const FacetValue: React.FC<FacetValueProps> = ({
       <div className="flex-shrink-0 w-8 text-right flex justify-end">
         <button
           onClick={handleActionClick}
-          className="text-xs text-[#0d88c0] hover:text-[#085690] hidden group-hover:block font-semibold"
+          className="text-xs text-[#0d88c0] hover:text-[#0a6d9a] hidden group-hover:block"
         >
           {isExclusivelySelected() ? "All" : "Only"}
         </button>
