@@ -85,19 +85,19 @@ export function APIKeysTable({
                   tooltip="Regenerate key"
                   icon={UpdateIcon}
                   variant="light"
-                  color="orange"
                   onClick={(e) =>
                     !isDisabled && onRegenerate(key.reference_id, e)
                   }
                   disabled={isDisabled}
+                  className="!text-[#0d88c0] hover:!text-[#0a6d9a]"
                 />
                 <Button
                   tooltip="Delete key"
                   icon={TrashIcon}
                   variant="light"
-                  color="orange"
                   onClick={(e) => !isDisabled && onDelete(key.reference_id, e)}
                   disabled={isDisabled}
+                  className="!text-[#0d88c0] hover:!text-[#0a6d9a]"
                 />
               </div>
             </TableCell>

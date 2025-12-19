@@ -89,10 +89,9 @@ export function IncidentHeader({
                 />
               )}
               <Button
-                className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
+                className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white !py-0.5 mr-2"
                 size="xs"
                 variant="secondary"
-                className="!py-0.5 mr-2"
                 icon={MdPlayArrow}
                 onClick={(e: React.MouseEvent) => {
                   e.preventDefault();
@@ -103,10 +102,9 @@ export function IncidentHeader({
                 Run Workflow
               </Button>
               <Button
-                className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
+                className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white !py-0.5"
                 size="xs"
                 variant="secondary"
-                className="!py-0.5"
                 icon={MdModeEdit}
                 onClick={(e: React.MouseEvent) => {
                   e.preventDefault();

@@ -470,10 +470,10 @@ const ProviderForm = ({
           <>
             <Button
               type="button"
-              color="orange"
               variant="secondary"
               icon={ArrowTopRightOnSquareIcon}
               onClick={handleOauth}
+              className="!text-[#0d88c0] hover:!text-[#0a6d9a]"
             >
               Install with OAuth2
             </Button>

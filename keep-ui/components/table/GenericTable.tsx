@@ -59,7 +59,7 @@ export function GenericTable<T>({
     if (offset !== currentOffset || limit !== pagination.pageSize) {
       onPaginationChange?.(pagination.pageSize, currentOffset);
     }
-  }, [pagination]);
+  }, [pagination, offset, limit, onPaginationChange]);
 
   const finalData = (
     dataFetchedAtOneGO

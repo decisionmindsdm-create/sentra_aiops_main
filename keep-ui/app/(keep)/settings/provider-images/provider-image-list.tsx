@@ -53,12 +53,14 @@ export function ProviderImagesList() {
     };
 
     loadImages();
+  }, [customImages, getImageUrl]);
 
-    // Cleanup URLs on unmount
-    return () => {
+  useEffect(
+    () => () => {
       Object.values(imageUrls).forEach(URL.revokeObjectURL);
-    };
-  }, [customImages]);
+    },
+    [imageUrls]
+  );
 
   if (isLoading) {
     return null; // Or a loading spinner

@@ -1,5 +1,5 @@
 import { Select, SelectItem, Subtitle } from "@tremor/react";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { Controller, get, useForm, useWatch } from "react-hook-form";
 import { GenericsMetrics, LayoutItem } from "../../types";
 
@@ -36,14 +36,14 @@ export const GenericMetricsWidgetForm: React.FC<
   });
   const formValues = useWatch({ control });
 
-  const deepClone = (obj: GenericsMetrics | undefined) => {
+  function deepClone(obj: GenericsMetrics | undefined) {
     if (!obj) {
       return obj;
     }
     return JSON.parse(JSON.stringify(obj)) as GenericsMetrics;
-  };
+  }
 
-  function getLayoutValues(): LayoutItem {
+  const getLayoutValues = useCallback((): LayoutItem => {
     if (editingItem) {
       return {} as LayoutItem;
     }
@@ -55,14 +55,14 @@ export const GenericMetricsWidgetForm: React.FC<
       minH: 15,
       static: false,
     } as LayoutItem;
-  }
+  }, [editingItem]);
 
   useEffect(() => {
     const genericMetrics = deepClone(
       GENERIC_METRICS.find((g) => g.key === formValues.selectedGenericMetrics)
     );
     onChange({ ...getLayoutValues(), genericMetrics }, true);
-  }, [formValues]);
+  }, [formValues, getLayoutValues, onChange]);
 
   return (
     <div className="mb-4 mt-2">

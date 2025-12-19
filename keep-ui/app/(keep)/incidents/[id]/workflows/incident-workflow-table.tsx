@@ -200,10 +200,9 @@ export default function IncidentWorkflowTable({ incident }: Props) {
       <Card className="p-0 overflow-hidden">
         {!isLoading && (workflows?.items ?? []).length === 0 && (
           <Callout
-            className="m-4"
+            className="m-4 !bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
             title="No Workflows"
             icon={ExclamationTriangleIcon}
-            className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
           >
             No workflows have been executed for this incident yet.
           </Callout>

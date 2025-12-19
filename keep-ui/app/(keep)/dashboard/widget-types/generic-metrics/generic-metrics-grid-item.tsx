@@ -31,7 +31,7 @@ const GenericMetricsGridItem: React.FC<GridItemProps> = ({ item, onEdit }) => {
     };
 
     onEdit(updatedItem as WidgetData);
-  }, [filters]);
+  }, [filters, item, onEdit]);
 
   function renderGenericMetrics() {
     switch (item?.genericMetrics?.key) {

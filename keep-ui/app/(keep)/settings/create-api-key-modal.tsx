@@ -145,13 +145,13 @@ export default function CreateApiKeyModal({
 
         {/* Submit and Cancel Buttons */}
         <div className="mt-6 flex gap-2">
-          <Button color="orange" type="submit">
+          <Button variant="primary" type="submit">
             Create API Key{" "}
           </Button>
           <Button
             onClick={handleClose}
             variant="secondary"
-            className="border border-orange-500 text-orange-500"
+            className="border !border-[#0d88c0] !text-[#0d88c0] hover:!bg-[#0d88c0] hover:!text-white"
           >
             Cancel
           </Button>

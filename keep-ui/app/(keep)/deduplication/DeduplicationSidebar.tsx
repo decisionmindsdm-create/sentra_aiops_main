@@ -214,7 +214,6 @@ const DeduplicationSidebar: React.FC<DeduplicationSidebarProps> = ({
       {selectedDeduplicationRule?.default && (
         <div className="flex flex-col">
           <Callout
-            className="mb-4 py-8"
             title="Editing a Default Rule"
             icon={ExclamationTriangleIcon}
             className="mb-4 py-8 !bg-blue-50 !border-blue-200"

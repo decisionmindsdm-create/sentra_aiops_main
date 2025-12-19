@@ -4,22 +4,22 @@ services:
       - "3000:3000"
     environment:
       - NEXTAUTH_SECRET=secret
-      - NEXTAUTH_URL=http://localhost:3000
-      - NEXT_PUBLIC_API_URL=http://localhost:8081
+      - NEXTAUTH_URL=https://sentra.decisionminds.com
+      - NEXT_PUBLIC_API_URL=https://sentra.decisionminds.com/backend
+      # - NEXTAUTH_URL=http://localhost:3000
+      # - NEXT_PUBLIC_API_URL=http://localhost:8080
+      #- NEXTAUTH_URL=http://keep-frontend:3000
+      #- NEXT_PUBLIC_API_URL=http://keep-backend:8080
       - POSTHOG_KEY=phc_muk9qE3TfZsX3SZ9XxX52kCGJBclrjhkP9JxAQcm1PZ
       - POSTHOG_HOST=https://ingest.keephq.dev
       - NEXT_PUBLIC_SENTRY_DSN=https://0d4d59e3105ffe8afa27dcb95a222009@o4505515398922240.ingest.us.sentry.io/4508258058764288
       - PUSHER_HOST=localhost
       - PUSHER_PORT=6001
       - PUSHER_APP_KEY=keepappkey
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
-      - NEXT_PUBLIC_OPENAI_API_KEY=${OPENAI_API_KEY}
-      - HIDE_NAVBAR_AI_PLUGINS=false
-      - KEEP_EXTERNAL_AI_TRANSFORMERS_URL=http://localhost:8081/ai/transformers
 
   keep-backend-common:
     ports:
-      - "8081:8080"
+      - "8080:8080"
     environment:
       - PORT=8080
       - SECRET_MANAGER_TYPE=FILE

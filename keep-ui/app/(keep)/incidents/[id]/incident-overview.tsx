@@ -372,7 +372,7 @@ export function IncidentOverview({ incident: initialIncidentData }: Props) {
                       <div className="flex flex-wrap gap-1 truncate">
                         <Badge
                           size="sm"
-                          className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white"
+                          className="!bg-[#0d88c0] hover:!bg-[#0a6d9a] !text-white cursor-pointer text-ellipsis"
                           icon={
                             incident.enrichments?.incident_provider
                               ? (props: any) => (
@@ -388,7 +388,6 @@ export function IncidentOverview({ incident: initialIncidentData }: Props) {
                                 )
                               : undefined
                           }
-                          className="cursor-pointer text-ellipsis"
                           onClick={() =>
                             window.open(
                               incident.enrichments.incident_url,

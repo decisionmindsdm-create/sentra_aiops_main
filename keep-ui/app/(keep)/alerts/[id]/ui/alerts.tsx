@@ -96,6 +96,20 @@ export default function Alerts({ presetName, initialFacets }: AlertsProps) {
     facetsPanelRefreshToken,
   } = useAlertsTableData(alertsTableDataQuery);
 
+  const resetUrlAfterModal = useCallback(() => {
+    const currentParams = new URLSearchParams(window.location.search);
+    Array.from(currentParams.keys())
+      .filter((paramKey) => paramKey !== "cel")
+      .forEach((paramKey) => currentParams.delete(paramKey));
+    let url = `${window.location.pathname}`;
+
+    if (currentParams.toString()) {
+      url += `?${currentParams.toString()}`;
+    }
+
+    router.replace(url);
+  }, [router]);
+
   useEffect(() => {
     const fingerprint = searchParams?.get("alertPayloadFingerprint");
     const enrich = searchParams?.get("enrich");
@@ -121,7 +135,7 @@ export default function Alerts({ presetName, initialFacets }: AlertsProps) {
       setEnrichAlertModal(null);
       setIsEnrichSidebarOpen(false);
     }
-  }, [searchParams, alerts]);
+  }, [searchParams, alerts, resetUrlAfterModal]);
 
   const alertsQueryStateRef = useRef(alertsQueryState);
 
@@ -140,22 +154,8 @@ export default function Alerts({ presetName, initialFacets }: AlertsProps) {
       setAlertsQueryState(alertsQuery);
       alertsQueryStateRef.current = alertsQuery;
     },
-    [setAlertsQueryState]
+    [setAlertsQueryState, mutateAlerts]
   );
-
-  const resetUrlAfterModal = useCallback(() => {
-    const currentParams = new URLSearchParams(window.location.search);
-    Array.from(currentParams.keys())
-      .filter((paramKey) => paramKey !== "cel")
-      .forEach((paramKey) => currentParams.delete(paramKey));
-    let url = `${window.location.pathname}`;
-
-    if (currentParams.toString()) {
-      url += `?${currentParams.toString()}`;
-    }
-
-    router.replace(url);
-  }, [router]);
 
   // if we don't have presets data yet, just show loading
   if (!selectedPreset && isPresetsLoading) {

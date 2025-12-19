@@ -3,12 +3,12 @@ services:
     extends:
       file: docker-compose.common.yml
       service: keep-frontend-common
-    image: us-central1-docker.pkg.dev/keephq/keep/keep-ui
+    image: sentra/ui:v2
     environment:
-      - AUTH_TYPE=NO_AUTH
+      - AUTH_TYPE=NOAUTH
       - API_URL=http://keep-backend:8080
     volumes:
-      - ./state:/state
+      - /var/opt/sentra_state:/state
     depends_on:
       - keep-backend
 
@@ -16,16 +16,13 @@ services:
     extends:
       file: docker-compose.common.yml
       service: keep-backend-common
-    image: us-central1-docker.pkg.dev/keephq/keep/keep-api
+    image: sentra/api:v2
     environment:
       - AUTH_TYPE=NO_AUTH
       - PROMETHEUS_MULTIPROC_DIR=/tmp/prometheus
       - KEEP_METRICS=true
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
-      - OPEN_AI_API_KEY=${OPENAI_API_KEY}
-      - KEEP_EXTERNAL_AI_TRANSFORMERS_URL=http://localhost:8081/ai/transformers
     volumes:
-      - ./state:/state
+      - /var/opt/sentra_state:/state
 
   keep-websocket-server:
     extends:

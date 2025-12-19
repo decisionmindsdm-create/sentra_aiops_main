@@ -1,6 +1,7 @@
 import { PlusIcon } from "@radix-ui/react-icons";
 import { Badge, Icon } from "@tremor/react";
 import * as Tooltip from "@radix-ui/react-tooltip";
+import { ReactElement } from "react";
 
 type GroupedByCellProps = {
   fields: string[];
@@ -15,7 +16,7 @@ export const GroupedByCell = ({ fields }: GroupedByCellProps) => {
     fieldsInTooltip = fields.slice(1);
   }
 
-  function renderFields(fields: string[]): JSX.Element[] | JSX.Element {
+  function renderFields(fields: string[]): ReactElement[] | ReactElement {
     return fields.map((group, index) => (
       <>
         <Badge className="!bg-[#0d88c0] !text-white" key={group}>

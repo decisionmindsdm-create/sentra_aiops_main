@@ -19,7 +19,7 @@ const ColumnsSelection: React.FC<ColumnsSelectionProps> = ({
 
   useEffect(
     () => onChange(Array.from(selectedColumnsState)),
-    [selectedColumnsState]
+    [selectedColumnsState, onChange]
   );
 
   const sortedOptions = useMemo(() => {
