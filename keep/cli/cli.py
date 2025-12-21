@@ -13,7 +13,10 @@ import requests
 from dotenv import find_dotenv, load_dotenv
 from prettytable import PrettyTable
 
-from keep.api.core.posthog import posthog_client
+try:
+    from keep.api.core.posthog import posthog_client
+except ImportError:
+    posthog_client = None
 from keep.functions import cyaml
 from keep.providers.providers_factory import ProviderEncoder, ProvidersFactory
 

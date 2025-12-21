@@ -27,6 +27,6 @@ export default async function Page() {
 }
 
 export const metadata = {
-  title: "Keep - Incidents",
+  title: "Sentra - Incidents",
   description: "List of incidents",
 };

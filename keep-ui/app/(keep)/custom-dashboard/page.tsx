@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Keep - Custom Dashboard",
+  title: "Sentra - Custom Dashboard",
   description: "The open-source AIOps and alert management platform.",
 };
 

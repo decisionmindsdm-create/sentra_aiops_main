@@ -25,9 +25,10 @@ export default async function NavbarInner() {
       <Menu session={session}>
         <div className="pt-2 pb-2 space-y-3 flex-1 overflow-y-auto px-2">
           <DashboardLinks />
+          <ObservabilityLinks session={session} />
           <IncidentsLinks session={session} />
           <AlertsLinks session={session} />
-          <ObservabilityLinks session={session} />
+
           <NoiseReductionLinks session={session} />
         </div>
         <UserInfo session={session} />
