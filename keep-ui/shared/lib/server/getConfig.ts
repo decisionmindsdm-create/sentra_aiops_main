@@ -83,9 +83,9 @@ export function getConfig(): InternalConfig {
     // NOISY ALERTS DISABLED BY DEFAULT TO SPARE SPACE ON THE TABLE
     NOISY_ALERTS_ENABLED: process.env.NOISY_ALERTS_ENABLED === "true",
     // The URL of the documentation site
-    KEEP_DOCS_URL: process.env.KEEP_DOCS_URL || "https://docs.keephq.dev",
+    KEEP_DOCS_URL: process.env.KEEP_DOCS_URL || "https://www.decisionminds.com/",
     KEEP_CONTACT_US_URL:
-      process.env.KEEP_CONTACT_US_URL || "https://slack.keephq.dev/",
+      process.env.KEEP_CONTACT_US_URL || "https://www.decisionminds.com/#contact/",
     KEEP_HIDE_SENSITIVE_FIELDS:
       process.env.KEEP_HIDE_SENSITIVE_FIELDS === "true",
     KEEP_WORKFLOW_DEBUG: process.env.KEEP_WORKFLOW_DEBUG === "true",

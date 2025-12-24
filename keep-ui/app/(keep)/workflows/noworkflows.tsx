@@ -1,4 +1,4 @@
-import React from "react";
+limport React from "react";
 import { Button, Icon } from "@tremor/react";
 import { useRouter } from "next/navigation";
 import { MdArrowForwardIos } from "react-icons/md";
@@ -28,7 +28,7 @@ const WorkflowsEmptyState = () => {
       icon: BellAlertIcon,
     },
     {
-      href: "https://slack.keephq.dev",
+      href: "https://www.decisionminds.com/#contact/",
       label: "Get support on your Workflow",
       icon: FaSlack,
     },

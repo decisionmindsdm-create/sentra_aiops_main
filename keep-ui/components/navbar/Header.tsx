@@ -108,7 +108,7 @@ export const Header = ({ session, searchComponent }: HeaderProps) => {
           </Link>
 
           <Link
-            href="https://slack.keephq.dev/"
+            href="https://www.decisionminds.com/#contact/"
             target="_blank"
             className="flex items-center gap-2 px-4 py-2 text-sm text-white hover:bg-white/10 font-medium rounded-lg transition-all duration-200"
           >

@@ -18,11 +18,11 @@ export default function NotAuthorized({ message }: { message?: string }) {
           <br />
           If you need help, please contact us on{" "}
           <Link
-            href="https://slack.keephq.dev/"
+            href="https://www.decisionminds.com/#contact/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Slack
+            Contact Us
           </Link>
         </Subtitle>
       </div>
