@@ -24,12 +24,9 @@ import { AiOutlineCode, AiOutlineBarChart } from "react-icons/ai";
 import { HiOutlineServer } from "react-icons/hi";
 import { TbDatabase } from "react-icons/tb";
 import { 
-  
-
-  
   ChartBarIcon,
   ComputerDesktopIcon,
-  
+  Squares2X2Icon,
 } from "@heroicons/react/24/outline";
 
 export const DashboardLinks = () => {
@@ -99,20 +96,18 @@ export const DashboardLinks = () => {
       <Disclosure.Button className="w-full flex justify-between items-center px-2">
         {({ open }) => (
           <>
-            <div className="flex justify-between items-center w-full">
-              {/* UI Change Only - functionality unchanged */}
-              <Subtitle className="text-xs ml-2 text-gray-600 font-semibold uppercase">
+            <div className="flex items-center gap-2">
+              <Squares2X2Icon className="h-4 w-4 text-gray-500" />
+              <Subtitle className="text-xs text-gray-600 font-semibold uppercase">
                 Dashboards
               </Subtitle>
-              <div className="flex items-center">
-                <IoChevronUp
-                  className={clsx(
-                    { "rotate-180": open },
-                    "mr-2 text-gray-500"
-                  )}
-                />
-              </div>
             </div>
+            <IoChevronUp
+              className={clsx(
+                { "rotate-180": open },
+                "mr-2 text-gray-500"
+              )}
+            />
           </>
         )}
       </Disclosure.Button>
