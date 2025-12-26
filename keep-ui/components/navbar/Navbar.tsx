@@ -2,10 +2,10 @@ import { auth } from "@/auth";
 import { Search } from "@/components/navbar/Search";
 import { SearchBar } from "@/components/navbar/SearchBar";
 import { NoiseReductionLinks } from "@/components/navbar/NoiseReductionLinks";
-import { ObservabilityLinks } from "@/components/navbar/ObservabilityLinks";
 import { AlertsLinks } from "@/components/navbar/AlertsLinks";
 import { SettingsLinks } from "@/components/navbar/SettingsLinks";
 import { GovernanceLinks } from "@/components/navbar/GovernanceLinks";
+import { ControlPlaneLinks } from "@/components/navbar/ControlPlaneLinks";
 import { UserInfo } from "@/components/navbar/UserInfo";
 import { Menu } from "@/components/navbar/Menu";
 import { MinimizeMenuButton } from "@/components/navbar/MinimizeMenuButton";
@@ -26,9 +26,9 @@ export default async function NavbarInner() {
       {/* Left Sidebar */}
       <Menu session={session}>
         <div className="pt-2 pb-2 space-y-3 flex-1 overflow-y-auto px-2">
+          <ControlPlaneLinks session={session} />
           <IncidentsLinks session={session} />
           <AlertsLinks session={session} />
-          <ObservabilityLinks session={session} />
           <NoiseReductionLinks session={session} />
           <DashboardLinks />
           <GovernanceLinks session={session} />
